@@ -3,6 +3,38 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
+		
+		// first use the createTeams method to create desired number of teams
+		// then start a simulation run
+		// each run will have 4 seasons
+		// What is supposed to happen at the end of 4 seasons ?
+		
+		ArrayList<Season> seasons = new ArrayList<Season>();
+		ArrayList<Team> results = new ArrayList<>();
+		int numberOfSeasons = // hardcode the value here !
+		
+		// after all the teams have been created
+		// run the simulation
+
+		for(int i=0; i<numberOfSeasons; i++)
+		{
+			seasons.add(new Seasons()); // create a list of all the seasons
+						    // have to add the correct parameters while creating each season
+						    
+		}
+		
+		for(Season s: seasons)
+		{
+			s.startSeason();
+			s.play();
+			results.add(s.seasonResult());
+		}
+		
+		// the ArrayList<Team> results now stores the final result of every season
+		
+
+
+
 		ArrayList<Player> RosterBears = new ArrayList<Player>();
 		ArrayList<Player> RosterCardinals = new ArrayList<Player>();
 
@@ -165,6 +197,11 @@ public class Main {
 	 * System.out.println("Number of Coaches?"); //Coaches Num return
 	 * inputs.nextInt(); }
 	 */
+	 
+	 
+	 
+	 
+	 
 	 
 	 // This method accepts an integer as a parameter and returns a list of 
 	 // the desired number of teams
