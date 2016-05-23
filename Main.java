@@ -197,7 +197,7 @@ public class Main {
 	 	// Coach selection is in order of City name (alphabetical order)
 	 	for(Team t: sortByCityNames(allTeams))
 	 	{
-	 		t.pickACoachForTeam();
+	 		t.pickACoach();
 	 	}
 	 	// Now the team is ready for the season
 	 	// the list of all the teams created is in allTeams
@@ -210,4 +210,16 @@ public class Main {
 	 	
 	 	return allTeams;
 	 }
+	 
+	 // method takes a list of teams and sorts them in alpahbetical order of city names (hometowns)
+	 // return list of teams
+	 // used to sort teams while selecting coaches for each team
+	 public ArrayList<Team> sortByCityNames(ArrayList<Team> toSort)
+	 {
+	 	// figure out how to sort the teams by hometown
+	 	// compile sorted list in an arraylist<team> type
+	 	// return
+	 }
+	 
+	 
 }
