@@ -95,5 +95,60 @@ public class Team {
 	public void profitPrinter() {
 		System.out.println(name + "'s Total Profit: $" + profit);
 	}
-
+	
+	public void selectStarters(ArrayList<Player> offensivePlayersInRoster, ArrayList<Player> defensivePlayersInRoster)
+	{
+		// Coach has to select 22 uninjured players from the roster
+		// 11 have to be defensive
+		// 11 have to be offensive
+		
+		// pass in the player pool
+		// player pool should be passed in as 2 seperate lists
+		// offensive players
+		// defensive players
+		
+		// coach selects 11 from defensive
+		// coach selects 11 from offensive
+		// populates the starters list for the team with these 22 players
+		// all are uninjured
+		
+		starters.addAll(getRandomUninjured11FromList(offensivePlayersInRoster));
+		starters.addAll(getRandomUninjured11FromList(defensivePlayersInRoster));
+		
+		// the starters have been selected
+	}
+	
+	// helper method to select 11 random uniinjured palayers from a list of players
+	// returns null if the list that is passed does not have 11 players to select from
+	public ArrayList<Player> getRandomUninjured11FromList(ArrayList<Player> players)
+	{
+		if(players.size()>11)
+		{
+		// figure out how to select random players
+		// what is the distribution/criteria to be ued to determine which players to select.
+		ArrayList<Player> selectedPlayers = new ArrayList<Player>();
+		for(Player p: players)
+		{
+			if(!p.isInjured())
+			{
+				
+				int rand = // generate 1 or 0 randomly .. select player if its 1, dont select if 0
+				if(rand == 1)
+				{
+					players.add(p);
+				}
+				// select till the list has 11 players
+			}
+			if(selectedPlayers.size() == 11)
+			{
+				break;
+			}
+		}
+		return selectedPlayers;
+		}
+		else
+		{
+			return null;
+		}
+	}
 }
