@@ -165,4 +165,43 @@ public class Main {
 	 * System.out.println("Number of Coaches?"); //Coaches Num return
 	 * inputs.nextInt(); }
 	 */
+	 
+	 // This method accepts an integer as a parameter and returns a list of 
+	 // the desired number of teams
+	 public ArrayList<Team> createTeams(int numberOfTeams, ArrayList<GeneralManager> randomListOfGM)
+	 {
+	 	ArrayList<Team> allTeams = new ArrayList<Team>():
+	 	String[] teamNames = new String[32];
+	 	String[] teamHometowns = new String[32];
+	 	// now iterate over numberOfTeams and create Teams with the name and hometown
+	 	for(int i=0; i<numberOfTeams; i++)
+	 	{
+	 		allTeams.add(new Team(teamNames[i],teamHometowns[i]));
+	 	}
+	 	// Then assign randomly 1 GM to each of the teams
+	 	int c = 0;
+	 	for(Team t: allTeams)
+	 	{
+	 		t.setGM(randomListOfGM(c++));
+	 	}
+	 	// Let each of the general managers pick 50 players from the player pool. 
+	 	// GMs choosing the players will choose one at a time and it will go in rounds
+	 	for(int i=0; i<50; i++)
+	 	{
+	 	for(Team t: allTeams)
+	 	{
+	 	t.pickNewRandomPlayerForRoster();	
+	 	}
+	 	}
+	 	// From the Pool of coaches each GM will then choose a coach for the team
+	 	// Coach selection is in order of City name (alphabetical order)
+	 	for(Team t: sortByCityNames(allTeams))
+	 	{
+	 		t.pickACoachForTeam();
+	 	}
+	 	// Now the team is ready for the season
+	 	// the list of all the teams created is in allTeams
+	 	
+	 	return allTeams;
+	 }
 }
