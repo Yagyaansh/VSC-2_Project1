@@ -12,8 +12,21 @@ public class Team {
 	private double grossRevenue = 0;
 	double expenses = 0;
 	double profit = 0;
+	private ArrayList<Player> offensiveRoster;
+	private ArrayList<PLayer> defensiveRoster;
+	
+	// constructor to intialize a team with only the name and hometown
+	public Team(String name, String hometown)
+	{
+		this.name = name;
+		this.hometown = hometown;
+		
+		// please someone give me all the populations for all the hometowns
+		
 
-	Team(String name, String hometown, GeneralManager GM, Coach coach,
+	}
+
+	public Team(String name, String hometown, GeneralManager GM, Coach coach,
 			ArrayList<Player> roster, ArrayList<Player> starters) {
 
 		if (hometown == "Chicago") {
@@ -150,5 +163,62 @@ public class Team {
 		{
 			return null;
 		}
+	}
+	
+	// the team selects a new player from the players remaining in the playerPool.
+	// gets the playerPool form the Main class
+	
+	// I need the player pool to complete the selection
+	ArrayList<Player> playerPool = Main.getPlayerPool();  //check if this is the correct class to get player pool from
+
+	public void pickNewRandomPlayerForRoster()
+	{
+		
+		// select a random player from the list of players in playerPool.
+		// add the player to the roster of "this" team
+		// remove that player from playerPool to avoid duplicates
+		
+	}
+	
+	// first get the pool of coaches in this class
+	
+	ArrayList<Coach> coaches = new ArrayList<>();
+	coaches = Main.getCoachesPool(); // check if this is the correct method to get the pool of coaches from
+	
+	// picks a coach radomly from the pool of coaches to complete the team
+	public void pickACoach()
+	{
+		// randomly select a coach from the list of coaches.
+		// set that coach to be the coach of "this" team
+		// remove the coach from the coach_Pool (coaches) - to avoid duplicates
+	}
+	
+	// calls for the entire roster of the team
+	// uses the Player class to check if the players is offensive of defensive type
+	// if the player is offensive - adds to the offensiveRoster
+	// if the player is defensive - adds to the defensiveRoster
+	public void divideRoster_OffensiveAndDefensive()
+	{
+		for(Player p: this.roster)
+		{
+			if(p.isOffensive())
+			{
+				this.offensiveRoster.add(p);
+			}
+			else
+			{
+				this.defensiveRoster.add(p);
+			}
+		}
+	}
+	
+	public ArrayList<Player> getOffensivePlayersInRoster()
+	{
+		return this.offensiveRoster;
+	}
+	
+	public ArrayList<Player> getDefensivePlayersInRoster()
+	{
+		return this.defensiveRoster;
 	}
 }
