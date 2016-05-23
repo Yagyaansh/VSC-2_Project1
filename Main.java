@@ -202,6 +202,12 @@ public class Main {
 	 	// Now the team is ready for the season
 	 	// the list of all the teams created is in allTeams
 	 	
+	 	// Now populate each team with 22 starters
+	 	for(Team t: allTeams)
+	 	{
+	 		t.selectStarters(t.getOffensivePlayersInRoster(),t.getDefensivePlayersInRoster());
+	 	}
+	 	
 	 	return allTeams;
 	 }
 }
