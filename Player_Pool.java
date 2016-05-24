@@ -31,15 +31,19 @@ public class Player_Pool {
 
 	}
 	
-	public void pickAlternator(Player_Pool players, ArrayList<Team> teams) { 
+	public void pickAlternator(ArrayList<Player> GMPicksTeam1,
+			ArrayList<Player> GMPicksTeam2, Player_Pool PlayerPool, GeneralManager GM_of_team1, GeneralManager GM_of_team2) { 
 		//General managers alternate between selecting of players in the PlayerPool
-		for (int i = 0; i<50; i++){
-			for (int j=0; j<teams.size(); j++){
-				teams.get(j).getGM().GeneralManagerPick(players);
+		boolean bool = true;
+		for (int i = 0; i < 100; i++) {
+			if (bool == true) {
+				GMPicksTeam1.add(GM_of_team1.GeneralManagerPick(PlayerPool));
+				bool = false;
+			} else {
+				GMPicksTeam2.add(GM_of_team2.GeneralManagerPick(PlayerPool));
+				bool = true;
 			}
 		}
-		
-		
 
 	}
 
