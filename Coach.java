@@ -10,6 +10,7 @@ public class Coach {
 	private int salary;
 	private String firstNameCoach;
 	private String lastNameCoach;
+	public ArrayList<Player> coachPicks;
 
 	// private Random ran = new Random();
 
@@ -19,6 +20,7 @@ public class Coach {
 		this.setScheme(scheme);
 		this.setFavor(50);
 		this.setSalary(1000000);
+		this.coachPicks=new ArrayList<Player>();
 	}
 
 	public void printCoach() {
@@ -55,19 +57,17 @@ public class Coach {
 		this.salary = salary;
 	}
 	
-	public ArrayList<Player> coachPickStarters(ArrayList<Player> GMPicks) {
+	public void coachPickStarters(ArrayList<Player> GMPicks) {
 		//Coach chooses starters from the players selected by the GM
-		ArrayList<Player> CoachPicks = new ArrayList<Player>();
-
 		Random ranIndex = new Random();
 		for (int i = 0; i < 22; i++) {
 			int index = ranIndex.nextInt(GMPicks.size());
-			CoachPicks.add(GMPicks.get(index));
+			coachPicks.add(GMPicks.get(index));
 
 			GMPicks.remove(index);
 		}
 		// System.out.println(PlayerPool.getSize());
-		return CoachPicks;
+
 	}
 	
 
