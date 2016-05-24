@@ -57,6 +57,11 @@ public class Season
   {
     // tell me how to calculate in the case of ties and all that 
     // then I can complete the method
+    
+    
+    // first find the team with the best Won-Loss Record
+    // update this team's gross revenue - have to add 1,000,000 to the current gross revenues for the team
+    
   }
 
 }
