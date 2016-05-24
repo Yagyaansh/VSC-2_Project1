@@ -75,8 +75,13 @@ public class Team {
 
 	}
 
-	public void updateGrossRevenue() {
-		grossRevenue = grossRevenue + population / 10;
+	public void updateHomeTeamRevenue() {
+		this.grossRevenue += (population / 10); // update revenues from home games
+	}
+	
+	public void updateWinningTeamRevenue()
+	{
+		this.grossRevenue += 100000; // update revenue if the team wins a game
 	}
 
 	public double getUpdateGrossRevenue() {
