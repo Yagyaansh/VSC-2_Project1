@@ -6,19 +6,28 @@ import java.util.Scanner;
 public class Coach {
 
 	private int scheme;
-	private int favor;
+	private int favor; // guys whats this field ? Could not find it in the document
 	private int salary;
 	private String firstNameCoach;
 	private String lastNameCoach;
 
 	// private Random ran = new Random();
+	
+	// the scheme will be a random value between 25 and 75. 
+	// removed it from the constructor
 
-	public Coach(String firstName, String lastName, int scheme) {
-		this.firstNameCoach=firstName;
-		this.lastNameCoach=lastName;
-		this.setScheme(scheme);
-		this.setFavor(50);
+	public Coach(String firstName, String lastName) {
+		this.firstNameCoach = firstName; // will always be set to "Coach"
+		this.lastNameCoach = lastName;
+		this.setScheme(getRandomScheme());
+		this.setFavor(50); // ??
 		this.setSalary(1000000);
+	}
+	
+	public int getRandomScheme()
+	{
+		// randomly generated
+		// uniform distribution between 25 and 75
 	}
 
 	public void printCoach() {
