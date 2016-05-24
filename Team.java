@@ -13,7 +13,8 @@ public class Team {
 	double expenses = 0;
 	double profit = 0;
 
-	Team(String name, String hometown, GeneralManager_Pool GMPool, Coaches_Pool coachPool) {
+	Team(String name, String hometown, GeneralManager GM, Coach coach,
+			ArrayList<Player> roster, ArrayList<Player> starters) {
 
 		if (hometown == "Chicago") {
 			population = 2695598;
@@ -22,28 +23,12 @@ public class Team {
 		}
 
 		this.name = name;
-		this.coach = coachPool.chooseCoach();
-		this.GM = GMPool.chooseGeneralManager();
+		this.coach = coach;
+		this.GM = GM;
 		this.hometown = hometown;
+		this.roster = roster;
+		this.starters = starters;
 	}
-	
-	public GeneralManager getGM(){
-		return this.GM;
-	}
-	
-	public Coach getCoach(){
-		return this.coach;
-	}
-	
-	public void setPlayerList(){
-		// Determines the roster for the team
-		this.roster=this.GM.GMPickTeam;
-	
-		// Determines the starters for the team
-		this.coach.coachPickStarters(this.roster);
-		this.starters=coach.coachPicks;
-	}
-	
 
 	public void printTeam() {
 		System.out.println("Team Name: " + name);
