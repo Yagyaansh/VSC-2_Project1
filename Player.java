@@ -9,6 +9,8 @@ public class Player {
 	private Random ran = new Random();
 	private String firstName;
 	private String lastName;
+	private boolean injured;
+	private boolean offensive;
 
 	// -------------------------------------------------------
 
@@ -70,6 +72,18 @@ public class Player {
 
 	public boolean getRookie() {
 		return this.rookie;
+	}
+	
+	// this method is used to check if the player is injured
+	public boolean isInjured()
+	{
+		return this.injured;
+	}
+	
+	// this method is used to check if the player is offensive or defensive type
+	public boolean isOffensive()
+	{
+		return this.offensive;
 	}
 
 }
