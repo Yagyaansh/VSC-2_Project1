@@ -1,20 +1,30 @@
 import java.util.ArrayList;
 
 public class Player_Pool {
+	// player pool is basically an ArrayList of players right now
 
 	private ArrayList<Player> PlayerPool = new ArrayList<Player>();
 
-	public Player_Pool() throws Exception{
-		NameGenerator randomNames=new NameGenerator();
-
-		for (int x = 0; x < 200; x++) {
-
+	// The constructor accepts the size of the pool
+	// This will help generalize the program in case of more changes
+	public Player_Pool(int sizeOfPool) {
+		// I removed throw for Exceptions to try and catch
+		// throwing can make it hard to find the problem
+		// plus i dont think throwing is good if you actually want to use the exception case
+		try
+		{
+		NameGenerator randomNames = new NameGenerator();
+		for (int x = 0; x < sizeOfPool; x++) {
 			Player e = new Player(randomNames.randomFirstName(), randomNames.randomLastName());
-
 			this.PlayerPool.add(e);
-
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception in Player_Pool constructor");
+			System.exit(0);
 		}
 
+		}
 	}
 
 	public ArrayList<Player> getPlayerPool() {
@@ -26,9 +36,7 @@ public class Player_Pool {
 	}
 
 	public int getSize() {
-
 		return PlayerPool.size();
-
 	}
 	
 	// method will not work since this is only for 2 teams
