@@ -3,15 +3,7 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		ArrayList<Player> RosterBears = new ArrayList<Player>();
-		ArrayList<Player> RosterCardinals = new ArrayList<Player>();
-
-		ArrayList<Player> GMPicksBears = new ArrayList<Player>();
-		ArrayList<Player> GMPicksCardinals = new ArrayList<Player>();
-
-		ArrayList<Player> CoachPicksBears = new ArrayList<Player>();
-		ArrayList<Player> CoachPicksCardinals = new ArrayList<Player>();
-
+		// Constructing the Pools
 		Player_Pool PlayerPool = new Player_Pool();
 		Coaches_Pool CoachPool = new Coaches_Pool();
 		GeneralManager_Pool GeneralManagerPool = new GeneralManager_Pool();
@@ -22,25 +14,17 @@ public class Main {
 		Team seasonVictor;
 		boolean thirdGame = false;
 		
-		GeneralManager bearsGM=GeneralManagerPool.chooseGeneralManager();
-		GeneralManager cardinalsGM=GeneralManagerPool.chooseGeneralManager();
-		
-		Coach bearsCoach=CoachPool.chooseCoach();
-		Coach cardinalsCoach=CoachPool.chooseCoach();
+		// Constructing the teams
+		ArrayList<Team> teams= new ArrayList<Team>();
+		Team chicagoBears = new Team("Bears", "Chicago", GeneralManagerPool, CoachPool);
+		Team arizonaCardinals = new Team("Cardinals", "Phoenix", GeneralManagerPool, CoachPool);
+		teams.add(chicagoBears);
+		teams.add(arizonaCardinals);
 
-		PlayerPool.pickAlternator(GMPicksBears, GMPicksCardinals, PlayerPool, bearsGM, cardinalsGM);
-		RosterBears = GMPicksBears;
-		RosterCardinals = GMPicksCardinals;
-		CoachPicksBears = bearsCoach.coachPickStarters(GMPicksBears);
-		CoachPicksCardinals = cardinalsCoach.coachPickStarters(GMPicksCardinals);
-
-		Team chicagoBears = new Team("Bears", "Chicago", bearsGM, bearsCoach, RosterBears, CoachPicksBears);
-
-		Team arizonaCardinals = new Team("Cardinals", "Phoenix",
-				cardinalsGM, cardinalsCoach, RosterCardinals,
-				CoachPicksCardinals);
-
-		// chicagoBears.printTeam();
+		// Determining the players for each team
+		PlayerPool.pickAlternator(PlayerPool, teams);
+		chicagoBears.setPlayerList();
+		arizonaCardinals.setPlayerList();
 
 		Game game1 = new Game();
 		Game game2 = new Game();
