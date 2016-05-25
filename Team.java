@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Team {
 
@@ -13,7 +14,7 @@ public class Team {
 	double expenses = 0;
 	double profit = 0;
 	private ArrayList<Player> offensiveRoster;
-	private ArrayList<PLayer> defensiveRoster;
+	private ArrayList<Player> defensiveRoster;
 	
 	// constructor to intialize a team with only the name and hometown
 	public Team(String name, String hometown)
@@ -26,23 +27,43 @@ public class Team {
 
 	}
 
-	public Team(String name, String hometown, GeneralManager GM, Coach coach,
-			ArrayList<Player> roster, ArrayList<Player> starters) {
+	public Team(String name, String hometown, GeneralManager_Pool GMPool, Coaches_Pool coachPool) {
 
 		if (hometown == "Chicago") {
 			population = 2695598;
 		} else if (hometown == "Phoenix") {
 			population = 1445632;
 		}
+		else if(hometown == "Pittsburgh"){
+			population=305841;
+		}
+		else if(hometown == "Boston"){
+			population = 645966;
+		}
 
 		this.name = name;
-		this.coach = coach;
-		this.GM = GM;
+		this.coach = coachPool.chooseCoach();
+		this.GM = GMPool.chooseGeneralManager();
 		this.hometown = hometown;
-		this.roster = roster;
-		this.starters = starters;
 	}
 
+	public GeneralManager getGM(){
+		return this.GM;
+	}
+	
+	public Coach getCoach(){
+		return this.coach;
+	}
+	
+	public void setPlayerList(){
+		// Determines the roster for the team
+		this.roster=this.GM.GMPickTeam;
+	
+		// Determines the starters for the team
+		this.coach.coachPickStarters(this.roster);
+		this.starters=coach.coachPicks;
+	}
+	
 	public void printTeam() {
 		System.out.println("Team Name: " + name);
 		System.out.println("Hometown: " + hometown);
@@ -99,7 +120,7 @@ public class Team {
 	public double profitCalculator() {
 
 		for (int i = 0; i < starters.size(); i++) {
-			expenses += starters.get(i).getSalary();
+			expenses += starters.get(i).getSalaryAmount();
 		}
 
 		expenses += GM.getSalary();
@@ -149,9 +170,10 @@ public class Team {
 		{
 			if(!p.isInjured())
 			{
-				
-				int rand = // generate 1 or 0 randomly .. select player if its 1, dont select if 0
-				if(rand == 1)
+				Random rand = new Random();
+				// if select is true, then player is add; don't add if false
+				boolean select = rand.nextBoolean();
+				if(select)
 				{
 					players.add(p);
 				}
@@ -174,28 +196,30 @@ public class Team {
 	// gets the playerPool form the Main class
 	
 	// I need the player pool to complete the selection
-	ArrayList<Player> playerPool = Main.getPlayerPool();  //check if this is the correct class to get player pool from
+	//ArrayList<Player> playerPool = Main.getPlayerPool();  //check if this is the correct class to get player pool from
 
-	public void pickNewRandomPlayerForRoster()
+	public void pickNewRandomPlayerForRoster(Player_Pool pool)
 	{
 		
 		// select a random player from the list of players in playerPool.
 		// add the player to the roster of "this" team
 		// remove that player from playerPool to avoid duplicates
+		GM.GeneralManagerPickPlayers(pool);
 		
 	}
 	
 	// first get the pool of coaches in this class
 	
-	ArrayList<Coach> coaches = new ArrayList<>();
+	/*ArrayList<Coach> coaches = new ArrayList<>();
 	coaches = Main.getCoachesPool(); // check if this is the correct method to get the pool of coaches from
-	
+	*/
 	// picks a coach radomly from the pool of coaches to complete the team
-	public void pickACoach()
+	public void pickACoach(Coaches_Pool pool)
 	{
 		// randomly select a coach from the list of coaches.
 		// set that coach to be the coach of "this" team
 		// remove the coach from the coach_Pool (coaches) - to avoid duplicates
+		pool.chooseCoach();
 	}
 	
 	// calls for the entire roster of the team
