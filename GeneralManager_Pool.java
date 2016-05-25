@@ -5,23 +5,24 @@ public class GeneralManager_Pool {
 
 	private ArrayList<GeneralManager> GeneralManagerPool = new ArrayList<GeneralManager>();
 
-	public GeneralManager_Pool() throws Exception {
-		NameGenerator randomNames= new NameGenerator();
-		GeneralManager bearsGeneralManager = new GeneralManager(randomNames.randomFirstName(), randomNames.randomLastName());
-		GeneralManager cardinalsGeneralManager = new GeneralManager(randomNames.randomFirstName(), randomNames.randomLastName());
-		this.GeneralManagerPool.add(bearsGeneralManager);
-		this.GeneralManagerPool.add(cardinalsGeneralManager);
+	public GeneralManager_Pool(int sizeOfGeneralManagerPool) {
 
-		/*
-		 * for(int x = 0; x < 2; x++){
-		 * 
-		 * GeneralManager e = new GeneralManager(x);
-		 * 
-		 * this.GeneralManagerPool.add(e);
-		 * 
-		 * }
-		 */
+		try {
+			// creates the random name generator to generate last names for all
+			// the coaches
+			NameGenerator randomNames = new NameGenerator();
 
+			for (int i = 0; i < sizeOfGeneralManagerPool; i++) // sizeOfCoaches is used
+														// for code flexibility
+			{
+				// creates a coach and adds to the pool
+				GeneralManagerPool.add(new GeneralManager(randomNames.randomFirstName(), randomNames.randomLastName()));
+			}
+		} catch (Exception e) {
+			System.out.println("Error encountered in GeneralManager_Pool");
+			e.printStackTrace();
+			System.exit(0);
+		}
 	}
 	
 
