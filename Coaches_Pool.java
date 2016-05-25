@@ -39,14 +39,16 @@ public class Coaches_Pool {
 		return CoachesPool.size();
 
 	}
-
-	public Coach chooseCoach() {
-		// Chooses the coach for the team from the player pool
-		Random rand = new Random();
-		int index = rand.nextInt(CoachesPool.size());
-		Coach person = CoachesPool.get(index);
-		CoachesPool.remove(index);
-		return person;
-	}
+	
+	// Implemented in the team class, no need for so many levels of methods
+	
+	// public Coach chooseCoach() {
+	// 	// Chooses the coach for the team from the player pool
+	// 	Random rand = new Random();
+	// 	int index = rand.nextInt(CoachesPool.size());
+	// 	Coach person = CoachesPool.get(index);
+	// 	CoachesPool.remove(index);
+	// 	return person;
+	// }
 
 }
