@@ -12,8 +12,22 @@ public class Team {
 	private double grossRevenue = 0;
 	double expenses = 0;
 	double profit = 0;
+	private ArrayList<Player> offensiveRoster;
+	private ArrayList<PLayer> defensiveRoster;
+	
+	// constructor to intialize a team with only the name and hometown
+	public Team(String name, String hometown)
+	{
+		this.name = name;
+		this.hometown = hometown;
+		
+		// please someone give me all the populations for all the hometowns
+		
 
-	Team(String name, String hometown, GeneralManager_Pool GMPool, Coaches_Pool coachPool) {
+	}
+
+	public Team(String name, String hometown, GeneralManager GM, Coach coach,
+			ArrayList<Player> roster, ArrayList<Player> starters) {
 
 		if (hometown == "Chicago") {
 			population = 2695598;
@@ -22,28 +36,12 @@ public class Team {
 		}
 
 		this.name = name;
-		this.coach = coachPool.chooseCoach();
-		this.GM = GMPool.chooseGeneralManager();
+		this.coach = coach;
+		this.GM = GM;
 		this.hometown = hometown;
+		this.roster = roster;
+		this.starters = starters;
 	}
-	
-	public GeneralManager getGM(){
-		return this.GM;
-	}
-	
-	public Coach getCoach(){
-		return this.coach;
-	}
-	
-	public void setPlayerList(){
-		// Determines the roster for the team
-		this.roster=this.GM.GMPickTeam;
-	
-		// Determines the starters for the team
-		this.coach.coachPickStarters(this.roster);
-		this.starters=coach.coachPicks;
-	}
-	
 
 	public void printTeam() {
 		System.out.println("Team Name: " + name);
@@ -77,8 +75,13 @@ public class Team {
 
 	}
 
-	public void updateGrossRevenue() {
-		grossRevenue = grossRevenue + population / 10;
+	public void updateHomeTeamRevenue() {
+		this.grossRevenue += (population / 10); // update revenues from home games
+	}
+	
+	public void updateWinningTeamRevenue()
+	{
+		this.grossRevenue += 100000; // update revenue if the team wins a game
 	}
 
 	public double getUpdateGrossRevenue() {
@@ -110,5 +113,117 @@ public class Team {
 	public void profitPrinter() {
 		System.out.println(name + "'s Total Profit: $" + profit);
 	}
+	
+	public void selectStarters(ArrayList<Player> offensivePlayersInRoster, ArrayList<Player> defensivePlayersInRoster)
+	{
+		// Coach has to select 22 uninjured players from the roster
+		// 11 have to be defensive
+		// 11 have to be offensive
+		
+		// pass in the player pool
+		// player pool should be passed in as 2 seperate lists
+		// offensive players
+		// defensive players
+		
+		// coach selects 11 from defensive
+		// coach selects 11 from offensive
+		// populates the starters list for the team with these 22 players
+		// all are uninjured
+		
+		starters.addAll(getRandomUninjured11FromList(offensivePlayersInRoster));
+		starters.addAll(getRandomUninjured11FromList(defensivePlayersInRoster));
+		
+		// the starters have been selected
+	}
+	
+	// helper method to select 11 random uniinjured palayers from a list of players
+	// returns null if the list that is passed does not have 11 players to select from
+	public ArrayList<Player> getRandomUninjured11FromList(ArrayList<Player> players)
+	{
+		if(players.size()>11)
+		{
+		// figure out how to select random players
+		// what is the distribution/criteria to be ued to determine which players to select.
+		ArrayList<Player> selectedPlayers = new ArrayList<Player>();
+		for(Player p: players)
+		{
+			if(!p.isInjured())
+			{
+				
+				int rand = // generate 1 or 0 randomly .. select player if its 1, dont select if 0
+				if(rand == 1)
+				{
+					players.add(p);
+				}
+				// select till the list has 11 players
+			}
+			if(selectedPlayers.size() == 11)
+			{
+				break;
+			}
+		}
+		return selectedPlayers;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	// the team selects a new player from the players remaining in the playerPool.
+	// gets the playerPool form the Main class
+	
+	// I need the player pool to complete the selection
+	ArrayList<Player> playerPool = Main.getPlayerPool();  //check if this is the correct class to get player pool from
 
+	public void pickNewRandomPlayerForRoster()
+	{
+		
+		// select a random player from the list of players in playerPool.
+		// add the player to the roster of "this" team
+		// remove that player from playerPool to avoid duplicates
+		
+	}
+	
+	// first get the pool of coaches in this class
+	
+	ArrayList<Coach> coaches = new ArrayList<>();
+	coaches = Main.getCoachesPool(); // check if this is the correct method to get the pool of coaches from
+	
+	// picks a coach radomly from the pool of coaches to complete the team
+	public void pickACoach()
+	{
+		// randomly select a coach from the list of coaches.
+		// set that coach to be the coach of "this" team
+		// remove the coach from the coach_Pool (coaches) - to avoid duplicates
+	}
+	
+	// calls for the entire roster of the team
+	// uses the Player class to check if the players is offensive of defensive type
+	// if the player is offensive - adds to the offensiveRoster
+	// if the player is defensive - adds to the defensiveRoster
+	public void divideRoster_OffensiveAndDefensive()
+	{
+		for(Player p: this.roster)
+		{
+			if(p.isOffensive())
+			{
+				this.offensiveRoster.add(p);
+			}
+			else
+			{
+				this.defensiveRoster.add(p);
+			}
+		}
+	}
+	
+	public ArrayList<Player> getOffensivePlayersInRoster()
+	{
+		return this.offensiveRoster;
+	}
+	
+	public ArrayList<Player> getDefensivePlayersInRoster()
+	{
+		return this.defensiveRoster;
+	}
 }
