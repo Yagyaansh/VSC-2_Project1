@@ -23,18 +23,19 @@ public class GeneralManager {
 		this.GMPickTeam=new ArrayList<Player>();
 
 	}
+	
+	// this is done in the Team class in method pickNewRandomPlayerForRoster
+	
+	// public void GeneralManagerPickPlayer(Player_Pool PlayerPool) { //General Manager choose from player pool
+	// 	Player player;
+	// 	Random ranIndex = new Random();
+	// 	int index = ranIndex.nextInt(PlayerPool.getSize());
+	// 	player = PlayerPool.getPlayerPool().get(index);
 
-	public Player GeneralManagerPickPlayers(Player_Pool PlayerPool) { //General Manager choose from player pool
-		Player player1;
-		Random ranIndex = new Random();
-		int index = ranIndex.nextInt(PlayerPool.getSize());
-		player1 = PlayerPool.getPlayerPool().get(index);
-
-		PlayerPool.getPlayerPool().remove(index);
-		// System.out.println(PlayerPool.getSize());
-		GMPickTeam.add(player1);
-		return player1;
-	}
+	// 	PlayerPool.getPlayerPool().remove(index);
+	// 	// System.out.println(PlayerPool.getSize());
+	// 	GMPickTeam.add(player);
+	// }
 
 	public void printGeneralManager() {
 
