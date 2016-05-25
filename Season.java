@@ -23,7 +23,7 @@ public class Season
   // starts the season
   public void startSeason()
   {
-    int numberOfGames = 12;// confirm how to calculate this from the number of teams
+    int numberOfGames = (teams.length())*(teams.length()-1); // confirm how to calculate this from the number of teams - n*(n-1)
     
     // iterating over the list of teaams such that each team plays each other twice
     for(int i=0; i<teams.size() - 1; i++)
