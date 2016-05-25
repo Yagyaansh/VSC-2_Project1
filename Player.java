@@ -82,16 +82,20 @@ public class Player {
 	{
 		// age is uniformly distributed between 21 to 30
 		// randomly assign a player a range from this range
+		return (int)(Math.random()*(30-21)+21);
 	}
 	
 	private boolean randomlyAssignOffensive()
 	{
-		random = // generate 0 or 1
+		/*random = // generate 0 or 1
 		if(random == 0)
 		{
 			return false;
 		}
-		return true;
+		return true;*/
+		Random rand = new Random();
+		//Randomly returns true or false
+		return rand.nextBoolean();
 	}
 	
 	public boolean isRookie()
@@ -115,7 +119,7 @@ public class Player {
 		this.fit = fit;
 	}
 
-	public int getSalary() {
+	public int getSalaryAmount() {
 		return salary;
 	}
 
