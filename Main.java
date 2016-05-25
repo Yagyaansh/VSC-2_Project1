@@ -3,76 +3,58 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		
+
 		// first use the createTeams method to create desired number of teams
 		// then start a simulation run
 		// each run will have 4 seasons
 		// What is supposed to happen at the end of 4 seasons ?
-		
+
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<>();
-		int numberOfSeasons = // hardcode the value here !
-		
+		int numberOfSeasons = 4; // hardcode the value here !
+
 		// after all the teams have been created
 		// run the simulation
 
-		for(int i=0; i<numberOfSeasons; i++)
-		{
-			seasons.add(new Seasons()); // create a list of all the seasons
-						    // have to add the correct parameters while creating each season
-						    
+		for (int i = 0; i < numberOfSeasons; i++) {
+			seasons.add(new Season()); // create a list of all the seasons
+			// have to add the correct parameters while creating each season
+
 		}
-		
-		for(Season s: seasons)
-		{
+
+		for (Season s : seasons) {
 			s.startSeason();
 			s.play();
 			results.add(s.seasonResult());
 		}
-		
-		// the ArrayList<Team> results now stores the final result of every season
-		
 
+		// the ArrayList<Team> results now stores the final result of every
+		// season
 
-
-		ArrayList<Player> RosterBears = new ArrayList<Player>();
-		ArrayList<Player> RosterCardinals = new ArrayList<Player>();
-
-		ArrayList<Player> GMPicksBears = new ArrayList<Player>();
-		ArrayList<Player> GMPicksCardinals = new ArrayList<Player>();
-
-		ArrayList<Player> CoachPicksBears = new ArrayList<Player>();
-		ArrayList<Player> CoachPicksCardinals = new ArrayList<Player>();
-
-		Player_Pool PlayerPool = new Player_Pool();
-		Coaches_Pool CoachPool = new Coaches_Pool();
-		GeneralManager_Pool GeneralManagerPool = new GeneralManager_Pool();
+		// Constructing the Pools
+		Player_Pool PlayerPool = new Player_Pool(10000);
+		Coaches_Pool CoachPool = new Coaches_Pool(100);
+		GeneralManager_Pool GeneralManagerPool = new GeneralManager_Pool(100);
 
 		double BearsSeasonScore;
 		double CardinalsSeasonScore;
 
 		Team seasonVictor;
 		boolean thirdGame = false;
-		
-		GeneralManager bearsGM=GeneralManagerPool.chooseGeneralManager();
-		GeneralManager cardinalsGM=GeneralManagerPool.chooseGeneralManager();
-		
-		Coach bearsCoach=CoachPool.chooseCoach();
-		Coach cardinalsCoach=CoachPool.chooseCoach();
 
-		PlayerPool.pickAlternator(GMPicksBears, GMPicksCardinals, PlayerPool, bearsGM, cardinalsGM);
-		RosterBears = GMPicksBears;
-		RosterCardinals = GMPicksCardinals;
-		CoachPicksBears = bearsCoach.coachPickStarters(GMPicksBears);
-		CoachPicksCardinals = cardinalsCoach.coachPickStarters(GMPicksCardinals);
+		// Constructing the teams
+		ArrayList<Team> teams = new ArrayList<Team>();
+		Team chicagoBears = new Team("Bears", "Chicago", GeneralManagerPool, CoachPool);
+		Team arizonaCardinals = new Team("Cardinals", "Phoenix", GeneralManagerPool, CoachPool);
+		Team pittsburghSteelers = new Team("Pittsburgh Steelers", "Pittsburgh", GeneralManagerPool, CoachPool);
+		Team bostonPatriots = new Team("Boston Patriots", "Boston", GeneralManagerPool, CoachPool);
+		teams.add(chicagoBears);
+		teams.add(arizonaCardinals);
 
-		Team chicagoBears = new Team("Bears", "Chicago", bearsGM, bearsCoach, RosterBears, CoachPicksBears);
-
-		Team arizonaCardinals = new Team("Cardinals", "Phoenix",
-				cardinalsGM, cardinalsCoach, RosterCardinals,
-				CoachPicksCardinals);
-
-		// chicagoBears.printTeam();
+		// Determining the players for each team
+		PlayerPool.pickAlternator(PlayerPool, teams);
+		chicagoBears.setPlayerList();
+		arizonaCardinals.setPlayerList();
 
 		Game game1 = new Game();
 		Game game2 = new Game();
@@ -96,49 +78,39 @@ public class Main {
 			thirdGame = true;
 		}
 		System.out.println("Game 1 Winner: " + game1.victor.getTeamName());
-		System.out.println("Bears: " + game1.team1Score + "  Cardinals: "
-				+ game1.team2Score);
+		System.out.println("Bears: " + game1.team1Score + "  Cardinals: " + game1.team2Score);
 		game1.subscorePrinter();
-		System.out
-				.println("----------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 
 		System.out.println("Game 2 Winner: " + game2.victor.getTeamName());
-		System.out.println("Bears: " + game2.team1Score + "  Cardinals: "
-				+ game2.team2Score);
+		System.out.println("Bears: " + game2.team1Score + "  Cardinals: " + game2.team2Score);
 		game2.subscorePrinter();
-		System.out
-				.println("----------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 
 		if (thirdGame) {
 			System.out.println("Game 3 Winner: " + game3.victor.getTeamName());
-			System.out.println("Bears: " + game3.team1Score + "  Cardinals: "
-					+ game3.team2Score);
+			System.out.println("Bears: " + game3.team1Score + "  Cardinals: " + game3.team2Score);
 			game3.subscorePrinter();
-			System.out
-					.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 
 		}
 
 		System.out.println("Season Winner: " + seasonVictor.getTeamName());
-		System.out.println("Season Score: Bears:"
-				+ (game1.team1Score + game2.team1Score) + "  Cardinals: "
+		System.out.println("Season Score: Bears:" + (game1.team1Score + game2.team1Score) + "  Cardinals: "
 				+ (game1.team2Score + game2.team2Score));
-		System.out
-				.println("----------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 
 		chicagoBears.profitCalculator();
 		arizonaCardinals.profitCalculator();
 		chicagoBears.profitPrinter();
 		arizonaCardinals.profitPrinter();
 
-		System.out
-				.println("----------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println("STARTING LINEUP:");
 		chicagoBears.printTeam();
-		System.out
-				.println("----------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 		arizonaCardinals.printTeam();
-
 		/*
 		 * 
 		 * for (int x = 0; x < GeneralManagerPool.getSize(); x++) {
@@ -189,23 +161,17 @@ public class Main {
 	/*
 	 * public static int readInPlayer(){
 	 * 
-	 * Scanner inputs = new Scanner(System.in);
-	 * System.out.println("Number of Players?"); //Player Num return
-	 * inputs.nextInt(); }
+	 * Scanner inputs = new Scanner(System.in); System.out.println(
+	 * "Number of Players?"); //Player Num return inputs.nextInt(); }
 	 * 
 	 * public static int readInCoach(){ Scanner inputs = new Scanner(System.in);
 	 * System.out.println("Number of Coaches?"); //Coaches Num return
 	 * inputs.nextInt(); }
 	 */
-	 
-	 
-	 
-	 
-	 
-	 
-	 // This method accepts an integer as a parameter and returns a list of 
-	 // the desired number of teams
-	 public ArrayList<Team> createTeams(int numberOfTeams, ArrayList<GeneralManager> randomListOfGM)
+
+	// This method accepts an integer as a parameter and returns a list of
+	// the desired number of teams
+	public ArrayList<Team> createTeams(int numberOfTeams, ArrayList<GeneralManager> randomListOfGM)
 	 {
 	 	ArrayList<Team> allTeams = new ArrayList<Team>():
 	 	String[] teamNames = new String[32];
@@ -247,16 +213,15 @@ public class Main {
 	 	
 	 	return allTeams;
 	 }
-	 
-	 // method takes a list of teams and sorts them in alpahbetical order of city names (hometowns)
-	 // return list of teams
-	 // used to sort teams while selecting coaches for each team
-	 public ArrayList<Team> sortByCityNames(ArrayList<Team> toSort)
-	 {
-	 	// figure out how to sort the teams by hometown
-	 	// compile sorted list in an arraylist<team> type
-	 	// return
-	 }
-	 
-	 
+
+	// method takes a list of teams and sorts them in alpahbetical order of city
+	// names (hometowns)
+	// return list of teams
+	// used to sort teams while selecting coaches for each team
+	public ArrayList<Team> sortByCityNames(ArrayList<Team> toSort) {
+		// figure out how to sort the teams by hometown
+		// compile sorted list in an arraylist<team> type
+		// return
+	}
+
 }
