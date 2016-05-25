@@ -22,20 +22,26 @@ public class Game {
 		this.team1 = team1;
 		this.team2 = team2;
 		this.city = team1.getHometown(); // since the team mentioned 1st is
-											// always the one playing at home
-		this.gameSimulation();
+						// always the one playing at home
 
 	}
 
-	public void gameSimulation() {
-		// first find the winner of the game.
-		// update the gross revenues of each team
 
-		Team victor = this.play();
+	// first select the starting team
+	// play the game
+	// find who the victor is
+	// update the injuries for players
+	// update the gross revenues for each team
+	// return the victor
+	public Team runGameSimulation() {
+		
+		// NEED TO IMPLEMENT ACCORDING TO ABOVE SKELETON
+		
+		Team victor = this.play(); 
 		updateBothTeamRevenues(victor);
 
 		// then update injuries and other relevant results
-
+		return victor;// returns the victor for every game
 	}
 
 	public void updateBothTeamRevenues(Team victor) {
