@@ -3,23 +3,38 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
+		
+		// create all the required pools
+		Player_Pool PlayerPool = new Player_Pool(10000);
+		Coaches_Pool CoachPool = new Coaches_Pool(100);
+		GeneralManager_Pool GeneralManagerPool = new GeneralManager_Pool(100);
 
-		// first use the createTeams method to create desired number of teams
+		//then use the  createTeams method to create desired number of teams
+		
+		ArrayList<Team> teams =  new ArrayList<>(); // list of all the teams for the simulation
+		ArrayList<GeneralManager> GMs = new ArrayList<>(); 
+		GMs = // assign a random list of GMs to this 
+		
+		teams = createTeams(4, GMs); // creates a list with 4 teams - name, hometown, GM, roster, coach and starters
+		
+		// all teams are available 
+		
 		// then start a simulation run
 		// each run will have 4 seasons
 		// What is supposed to happen at the end of 4 seasons ?
+		
+		// start seasons now 
 
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<>();
 		int numberOfSeasons = 4; // hardcode the value here !
 
-		// after all the teams have been created
 		// run the simulation
 
 		for (int i = 0; i < numberOfSeasons; i++) {
-			seasons.add(new Season()); // create a list of all the seasons
+			seasons.add(new Season(teams)); // create a list of all the seasons
+			// assuming that every season currently has the same teams - teams do not change from season to season
 			// have to add the correct parameters while creating each season
-
 		}
 
 		for (Season s : seasons) {
@@ -31,11 +46,10 @@ public class Main {
 		// the ArrayList<Team> results now stores the final result of every
 		// season
 
-		// Constructing the Pools
-		Player_Pool PlayerPool = new Player_Pool(10000);
-		Coaches_Pool CoachPool = new Coaches_Pool(100);
-		GeneralManager_Pool GeneralManagerPool = new GeneralManager_Pool(100);
-
+		// ----------------------------------------------------------------------------------
+	
+		// Have to go over everything in the main method after this point.
+		// We migth not need anything apart from the printing portion
 		double BearsSeasonScore;
 		double CardinalsSeasonScore;
 
@@ -43,6 +57,8 @@ public class Main {
 		boolean thirdGame = false;
 
 		// Constructing the teams
+		
+		// We are using the createTeams method to create the teams, right ?
 		ArrayList<Team> teams = new ArrayList<Team>();
 		Team chicagoBears = new Team("Bears", "Chicago", GeneralManagerPool, CoachPool);
 		Team arizonaCardinals = new Team("Cardinals", "Phoenix", GeneralManagerPool, CoachPool);
@@ -111,66 +127,15 @@ public class Main {
 		chicagoBears.printTeam();
 		System.out.println("----------------------------------------------------------------------------------------");
 		arizonaCardinals.printTeam();
-		/*
-		 * 
-		 * for (int x = 0; x < GeneralManagerPool.getSize(); x++) {
-		 * GeneralManagerPool.getGeneralManagerPool().get(x).printCoach(); }
-		 * 
-		 * for (int x = 0; x < CoachPool.getSize(); x++) {
-		 * CoachPool.getCoachesPool().get(x).printCoach();
-		 * 
-		 * }
-		 * 
-		 * for (int x = 0; x < PlayerPool.getSize(); x++) {
-		 * PlayerPool.getPlayerPool().get(x).printPlayer();
-		 * 
-		 * }
-		 */
-
-		/*
-		 * for (int x = 0; x < GMPicksBears.size(); x++) {
-		 * 
-		 * GMPicksBears.get(x).printPlayer();
-		 * 
-		 * }
-		 * 
-		 * 
-		 * for (int x = 0; x < GMPicksCardinals.size(); x++) {
-		 * 
-		 * GMPicksCardinals.get(x).printPlayer();
-		 * 
-		 * }
-		 */
-
-		/*
-		 * for (int x = 0; x < CoachPicksBears.size(); x++) {
-		 * 
-		 * CoachPicksBears.get(x).printPlayer();
-		 * 
-		 * }
-		 * 
-		 * for (int x = 0; x < CoachPicksCardinals.size(); x++) {
-		 * 
-		 * CoachPicksCardinals.get(x).printPlayer();
-		 * 
-		 * }
-		 */
-
 	}
-
-	/*
-	 * public static int readInPlayer(){
-	 * 
-	 * Scanner inputs = new Scanner(System.in); System.out.println(
-	 * "Number of Players?"); //Player Num return inputs.nextInt(); }
-	 * 
-	 * public static int readInCoach(){ Scanner inputs = new Scanner(System.in);
-	 * System.out.println("Number of Coaches?"); //Coaches Num return
-	 * inputs.nextInt(); }
-	 */
-
+	
 	// This method accepts an integer as a parameter and returns a list of
 	// the desired number of teams
+	
+	// I can probably make the method much smaller and more efficient
+	// right now just focusing on meeting all the requirements
+	// there are bound to be more changes in the future iterations so I thought let each function be as
+	// isolated and definitive as possible
 	public ArrayList<Team> createTeams(int numberOfTeams, ArrayList<GeneralManager> randomListOfGM)
 	 {
 	 	ArrayList<Team> allTeams = new ArrayList<Team>():
@@ -185,7 +150,7 @@ public class Main {
 	 	int c = 0;
 	 	for(Team t: allTeams)
 	 	{
-	 		t.setGM(randomListOfGM(c++));
+	 		t.setGM(randomListOfGM.get(c++));
 	 	}
 	 	// Let each of the general managers pick 50 players from the player pool. 
 	 	// GMs choosing the players will choose one at a time and it will go in rounds
@@ -193,17 +158,28 @@ public class Main {
 	 	{
 	 	for(Team t: allTeams)
 	 	{
-	 	t.pickNewRandomPlayerForRoster();	
+	 	t.pickNewRandomPlayerForRoster(playerPool); // get the pool of coaches here into playerPool
+	 					// the team class selects a random player from the pool
+	 					// removes the selected player from the roster
+	 					// then it adds the player to the roster
 	 	}
 	 	}
 	 	// From the Pool of coaches each GM will then choose a coach for the team
 	 	// Coach selection is in order of City name (alphabetical order)
 	 	for(Team t: sortByCityNames(allTeams))
 	 	{
-	 		t.pickACoach();
+	 		t.pickACoach(coachPool); // get the coaches pool here. Initialize the pool to variable coachPool
 	 	}
 	 	// Now the team is ready for the season
 	 	// the list of all the teams created is in allTeams
+	 	
+	 	
+	 	// divide the complete roster into offensive players and defensive players
+	 	// this will make it easier for the coach to select the 22 starters
+	 	for(Team t: allTeams)
+	 	{
+	 		t.divideRoster_OffensiveAndDefensive();
+	 	}
 	 	
 	 	// Now populate each team with 22 starters
 	 	for(Team t: allTeams)
