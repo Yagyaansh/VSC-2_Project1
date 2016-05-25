@@ -1,54 +1,72 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GeneralManager_Pool {
+public class GeneralManager {
 
-	private ArrayList<GeneralManager> GeneralManagerPool = new ArrayList<GeneralManager>();
-
-	public GeneralManager_Pool(int sizeOfGeneralManagerPool) {
-
-		try {
-			// creates the random name generator to generate last names for all
-			// the coaches
-			NameGenerator randomNames = new NameGenerator();
-
-			for (int i = 0; i < sizeOfGeneralManagerPool; i++) // sizeOfCoaches is used
-														// for code flexibility
-			{
-				// creates a coach and adds to the pool
-				GeneralManagerPool.add(new GeneralManager(randomNames.randomFirstName(), randomNames.randomLastName()));
-			}
-		} catch (Exception e) {
-			System.out.println("Error encountered in GeneralManager_Pool");
-			e.printStackTrace();
-			System.exit(0);
-		}
-	}
-	
-
-	public ArrayList<GeneralManager> getGeneralManagerPool() {
-		return GeneralManagerPool;
-	}
-
-	public void setGeneralManagerPool(
-			ArrayList<GeneralManager> GeneralManager_Pool) {
-		GeneralManagerPool = GeneralManager_Pool;
-	}
-	
+	// Player_Pool PlayerPool;
+	private int scoutingScore;
+	private int favor;
+	private int salary;
+	private String firstNameManager;
+	private String lastNameManager;
+	public ArrayList<Player> GMPickTeam;
 
 
-	public int getSize() {
+	// private Random ran = new Random();
 
-		return GeneralManagerPool.size();
+	public GeneralManager(String firstName, String lastName){
+		this.firstNameManager=firstName;
+		this.lastNameManager=lastName;
+		this.setscoutingScore(50);
+		// this.setFavor(50);
+		this.setSalary(500000);
+		this.GMPickTeam=new ArrayList<Player>();
 
 	}
-	
-	public GeneralManager chooseGeneralManager(){ //Selects the general manager to assign to team
-		Random rand= new Random();
-		int index = rand.nextInt(GeneralManagerPool.size());
-		GeneralManager person=GeneralManagerPool.get(index);
-		GeneralManagerPool.remove(index);
-		return person;
+
+	public Player GeneralManagerPickPlayers(Player_Pool PlayerPool) { //General Manager choose from player pool
+		Player player1;
+		Random ranIndex = new Random();
+		int index = ranIndex.nextInt(PlayerPool.getSize());
+		player1 = PlayerPool.getPlayerPool().get(index);
+
+		PlayerPool.getPlayerPool().remove(index);
+		// System.out.println(PlayerPool.getSize());
+		GMPickTeam.add(player1);
+		return player1;
+	}
+
+	public void printGeneralManager() {
+
+		System.out.print("General Manager: " + firstNameManager + " " + lastNameManager + " , ");
+		System.out.print("Scouting Score: " + this.scoutingScore + " , ");
+		// System.out.print("Favor: " + this.favor+" , ");
+		System.out.println("Salary: $" + this.salary + ". ");
+
+	}
+
+	public int getscoutingScore() {
+		return scoutingScore;
+	}
+
+	public void setscoutingScore(int scoutingScore) {
+		this.scoutingScore = scoutingScore;
+	}
+
+	public int getFavor() {
+		return favor;
+	}
+
+	public void setFavor(int favor) {
+		this.favor = favor;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
 
 }
