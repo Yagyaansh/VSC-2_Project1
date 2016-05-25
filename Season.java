@@ -13,6 +13,13 @@ public class Season
     this.victors = new ArrayList<Team>();
   }
   
+  public Season(ArrayList<Team> teams)
+  {
+    this.teams = teams;
+    this.games = new ArrayList<>();
+    this.victors = new ArrayList<>();
+  }
+  
   public Season(ArrayList<Team> teams, ArrayList<Game> games)
   {
     this.teams = teams;
@@ -21,6 +28,8 @@ public class Season
   }
   
   // starts the season
+  // sets up every game that has to be played in the seasons
+  // at the end of the method the games list has all the games for the season
   public void startSeason()
   {
     int numberOfGames = (teams.length())*(teams.length()-1); // confirm how to calculate this from the number of teams - n*(n-1)
@@ -46,7 +55,7 @@ public class Season
   {
     for(Game g: this.games)
     {
-      Team victor = g.play(); // method <Game>.play() plays the game and returns the victor of the game
+      Team victor = g.runGameSimulation(); // method <Game>.play() plays the game and returns the victor of the game
       victors.add(victor);
     }
   }
