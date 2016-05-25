@@ -7,20 +7,19 @@ public class Coaches_Pool {
 	private ArrayList<Coach> CoachesPool = new ArrayList<Coach>();
 
 	public Coaches_Pool(int sizeOfCoachesPool) {
-		
-		try
-		{
-		// creates the random name generator to generate last names for all the coaches
-		NameGenerator randomNames = new NameGenerator();
-		
-		for(int i=0; i<sizeOfCoachesPool; i++) //sizeOfCoaches is used for code flexibility
-		{
-			// creates a coach and adds to the pool
-			CoachesPool.add(new Coach("Coach", randomNames.randomLastName()));
-		}
-		}
-		catch(Exception e)
-		{
+
+		try {
+			// creates the random name generator to generate last names for all
+			// the coaches
+			NameGenerator randomNames = new NameGenerator();
+
+			for (int i = 0; i < sizeOfCoachesPool; i++) // sizeOfCoaches is used
+														// for code flexibility
+			{
+				// creates a coach and adds to the pool
+				CoachesPool.add(new Coach("Coach", randomNames.randomLastName()));
+			}
+		} catch (Exception e) {
 			System.out.println("Error encountered in Coach_Pool");
 			e.printStackTrace();
 			System.exit(0);
