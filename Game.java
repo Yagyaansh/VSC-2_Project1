@@ -36,6 +36,9 @@ public class Game {
 	public Team runGameSimulation() {
 		
 		// NEED TO IMPLEMENT ACCORDING TO ABOVE SKELETON
+		// all methods are already there - we just need to use them correctly here
+		// injuries method is not yet set up !
+		
 		
 		Team victor = this.play(); 
 		updateBothTeamRevenues(victor);
