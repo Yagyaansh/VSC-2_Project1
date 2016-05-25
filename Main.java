@@ -181,11 +181,19 @@ public class Main {
 	 		t.divideRoster_OffensiveAndDefensive();
 	 	}
 	 	
-	 	// Now populate each team with 22 starters
-	 	for(Team t: allTeams)
-	 	{
-	 		t.selectStarters(t.getOffensivePlayersInRoster(),t.getDefensivePlayersInRoster());
-	 	}
+	 	// --------------------------------------------------------------
+	 	
+	 	// ** the code selects 22 starters at the beginning of each game
+	 	// Hence there is no need to populate startes here 
+	 	// Part of code is redundant
+	 	
+	 	// // Now populate each team with 22 starters
+	 	// for(Team t: allTeams)
+	 	// {
+	 	// 	t.selectStarters(t.getOffensivePlayersInRoster(),t.getDefensivePlayersInRoster());
+	 	// }
+	 	
+	 	// ---------------------------------------------------------------
 	 	
 	 	return allTeams;
 	 }
