@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GeneralManager {
@@ -8,6 +9,7 @@ public class GeneralManager {
 	private int salary;
 	private String firstNameManager;
 	private String lastNameManager;
+	public ArrayList<Player> GMPickTeam;
 
 	// private Random ran = new Random();
 
@@ -17,18 +19,18 @@ public class GeneralManager {
 		this.setscoutingScore(50);
 		// this.setFavor(50);
 		this.setSalary(500000);
+		this.GMPickTeam=new ArrayList<Player>();
 	}
 
-	public Player GeneralManagerPick(Player_Pool PlayerPool) { //General Manager choose from player pool
+	public void GeneralManagerPick(Player_Pool PlayerPool) { //General Manager choose from player pool
 		Player player1;
-
 		Random ranIndex = new Random();
 		int index = ranIndex.nextInt(PlayerPool.getSize());
 		player1 = PlayerPool.getPlayerPool().get(index);
 
 		PlayerPool.getPlayerPool().remove(index);
 		// System.out.println(PlayerPool.getSize());
-		return player1;
+		GMPickTeam.add(player1);
 	}
 
 	public void printGeneralManager() {

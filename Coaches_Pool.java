@@ -3,28 +3,25 @@ import java.util.Random;
 
 public class Coaches_Pool {
 
-	// list of coaches that make up the coach pool
 	private ArrayList<Coach> CoachesPool = new ArrayList<Coach>();
 
-	public Coaches_Pool(int sizeOfCoachesPool) {
-		
-		try
-		{
-		// creates the random name generator to generate last names for all the coaches
+	public Coaches_Pool() throws Exception {
 		NameGenerator randomNames = new NameGenerator();
-		
-		for(int i=0; i<sizeOfCoachesPool; i++) //sizeOfCoaches is used for code flexibility
-		{
-			// creates a coach and adds to the pool
-			CoachesPool.add(new Coach("Coach", randomNames.randomLastName()));
-		}
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error encountered in Coach_Pool");
-			e.printStackTrace();
-			System.exit(0);
-		}
+		Coach bearsCoach = new Coach(randomNames.randomFirstName(), randomNames.randomLastName(), 25);
+		Coach cardinalsCoach = new Coach(randomNames.randomFirstName(), randomNames.randomLastName(), 75);
+		this.CoachesPool.add(bearsCoach);
+		this.CoachesPool.add(cardinalsCoach);
+
+		/*
+		 * for(int x = 0; x < 2; x++){
+		 * 
+		 * Coach e = new Coach(x);
+		 * 
+		 * this.CoachesPool.add(e);
+		 * 
+		 * }
+		 */
+
 	}
 
 	public ArrayList<Coach> getCoachesPool() {
