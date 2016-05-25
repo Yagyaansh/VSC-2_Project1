@@ -8,9 +8,9 @@ public class Season
   
   public Season()
   {
-    this.teams = new ArrayList<>();
-    this.games = new ArrayList<>();
-    this.victors = new ArrayList<>();
+    this.teams = new ArrayList<Team>();
+    this.games = new ArrayList<Game>();
+    this.victors = new ArrayList<Team>();
   }
   
   public Season(ArrayList<Team> teams, ArrayList<Game> games)
@@ -23,12 +23,12 @@ public class Season
   // starts the season
   public void startSeason()
   {
-    int numberOfGames = // confirm how to calculate this from the number of teams
+    int numberOfGames = 12;// confirm how to calculate this from the number of teams
     
     // iterating over the list of teaams such that each team plays each other twice
-    for(int i=0; i<teams.length() - 1; i++)
+    for(int i=0; i<teams.size() - 1; i++)
     {
-      for(int j=i+1; j<teams.length; j++)
+      for(int j=i+1; j<teams.size(); j++)
       {
         Team team1 = teams.get(i);
         Team team2 = teams.get(j);
@@ -57,6 +57,7 @@ public class Season
   {
     // tell me how to calculate in the case of ties and all that 
     // then I can complete the method
+  }
     
     
     // first find the team with the best Won-Loss Record
@@ -64,4 +65,4 @@ public class Season
     
   }
 
-}
+
