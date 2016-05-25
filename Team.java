@@ -31,6 +31,7 @@ public class Team {
 
 		if (hometown == "Chicago") {
 			population = 2695598;
+			
 		} else if (hometown == "Phoenix") {
 			population = 1445632;
 		}
@@ -204,8 +205,14 @@ public class Team {
 		// select a random player from the list of players in playerPool.
 		// add the player to the roster of "this" team
 		// remove that player from playerPool to avoid duplicates
-		GM.GeneralManagerPickPlayers(pool);
 		
+		Player player;
+		Random ranIndex = new Random();
+		int index = ranIndex.nextInt(pool.getSize());
+		player = pool.getPlayerPool().get(index);
+
+		pool.getPlayerPool().remove(index);
+		this.roster.add(player);
 	}
 	
 	// first get the pool of coaches in this class
@@ -214,12 +221,24 @@ public class Team {
 	coaches = Main.getCoachesPool(); // check if this is the correct method to get the pool of coaches from
 	*/
 	// picks a coach radomly from the pool of coaches to complete the team
-	public void pickACoach(Coaches_Pool pool)
+	public void pickACoach(Coaches_Pool coaches)
 	{
 		// randomly select a coach from the list of coaches.
-		// set that coach to be the coach of "this" team
+		Random rand = new Random();
+		int index = rand.nextInt(coaches.size());
+		Coach person = coaches.get(index);
+		
 		// remove the coach from the coach_Pool (coaches) - to avoid duplicates
-		pool.chooseCoach();
+		coaches.remove(index);
+		
+		// set that coach to be the coach of "this" team
+		this.coach = person;
+	}
+	
+	// a method that sets the passed in GM to the team
+	public void setGM(GeneralManager gm)
+	{
+		this.GM = gm;
 	}
 	
 	// calls for the entire roster of the team
