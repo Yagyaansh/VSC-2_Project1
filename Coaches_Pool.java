@@ -1,22 +1,26 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Coaches_Pool {
+public class Coach_Pool {
 
-	// list of coaches that make up the coach pool
+	/*
+	 * All the coaches in list form
+	 * See if we should use a better data structure
+	 * The array list is too inefficient for search
+	 */
 	private ArrayList<Coach> CoachesPool = new ArrayList<Coach>();
 
-	public Coaches_Pool(int sizeOfCoachesPool) {
-
-		try {
-			// creates the random name generator to generate last names for all
-			// the coaches
+	/*
+	 * Initializes the pool given the size of the pool as input 
+	 * Name generator is used to assign last names
+	 * 1st name is always "Coach"
+	 */
+	public Coach_Pool(int sizeOfCoachesPool) {
+		try 
+		{
 			NameGenerator randomNames = new NameGenerator();
-
-			for (int i = 0; i < sizeOfCoachesPool; i++) // sizeOfCoaches is used
-														// for code flexibility
+			for (int i = 0; i < sizeOfCoachesPool; i++) 
 			{
-				// creates a coach and adds to the pool
 				CoachesPool.add(new Coach("Coach", randomNames.randomLastName()));
 			}
 		} catch (Exception e) {
@@ -26,6 +30,11 @@ public class Coaches_Pool {
 		}
 	}
 
+	
+	/*
+	 * Getters and setters for the fields in the class
+	 * -------------------------------------------------------------------------------------------------
+	 */
 	public ArrayList<Coach> getCoachesPool() {
 		return CoachesPool;
 	}
@@ -35,20 +44,14 @@ public class Coaches_Pool {
 	}
 
 	public int getSize() {
-
 		return CoachesPool.size();
-
 	}
 	
-	// Implemented in the team class, no need for so many levels of methods
+	/*
+	 * End of Getters and Setters
+	 * -------------------------------------------------------------------------------------------------
+	 */
 	
-	// public Coach chooseCoach() {
-	// 	// Chooses the coach for the team from the player pool
-	// 	Random rand = new Random();
-	// 	int index = rand.nextInt(CoachesPool.size());
-	// 	Coach person = CoachesPool.get(index);
-	// 	CoachesPool.remove(index);
-	// 	return person;
-	// }
+	
 
 }
