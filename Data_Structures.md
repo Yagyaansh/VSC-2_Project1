@@ -35,5 +35,11 @@ List of Teams requirements :
 At the beginnig of the simulation a fixed number of teams will be created and added to the chosen data structure
 Then random access to the teams is needed as the games are played
 Teams are NOT deleted or added once the simulation starts
+Might be a good idea to use a PQ with the PQ being ordered according to the win-loss ratio
+This way we wont need to sort at the end of the season
+The PQ will order for us automatically and we can poll and add as desired
+GM also picks coaches in alphabeetical order of city names so we might need 2 data structures to make it efficient
 
 --> Major requirement is only efficiency in retrieving information, a fixed size of teams
+
+-----------------------------------------------------------------------------------------------------------------------------------------
