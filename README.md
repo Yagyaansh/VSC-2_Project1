@@ -1,4 +1,5 @@
 # VSC-2_Project1
-Setear NFL for Law professor
+NFL simulation for John Setear - law professor.
 
-WORKING ON 2nd ITERATION !!
+2nd iteration almost completed. Need to test and improve efficiency.
+
