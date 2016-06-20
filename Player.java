@@ -356,6 +356,11 @@ public class Player {
 	{
 		return this.isInATeam;
 	}
+	
+	public void setIsInATeam(boolean val)
+	{
+		this.isInATeam = val;
+	}
 
 	
 	/*
