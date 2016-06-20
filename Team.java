@@ -44,14 +44,42 @@ public class Team {
 		/*
 		 * Hard coded population value depending on the hometown
 		 */
-		if (hometown == "Chicago") {
-			this.population = 2695598;
-		} else if (hometown == "Phoenix") {
-			this.population = 1445632;
+		if (hometown == "Baltimore"){
+			this.population = 621849;
+		} else if (hometown == "Cincinnati") {
+			this.population = 296943;
+		} else if (hometown == "Cleveland") {
+			this.population = 396815;
 		} else if (hometown == "Pittsburgh") {
-			this.population = 305841;
+			this.population = 305704 ;
+		} else if (hometown == "Chicago") {
+			this.population = 2695598 ;
+		} else if (hometown == "Detroit") {
+			this.population = 711299 ;
+		} else if (hometown == "Green Bay") {
+			this.population = 104057  ;
+		} else if (hometown == "Minneapolis") {
+			this.population = 382578;
+		} else if (hometown == "Houston") {
+			this.population = 2099451;
+		} else if (hometown == "Indianapolis") {
+			this.population = 6484229;
+		} else if (hometown == "Jacksonville") {
+			this.population = 821784;
+		} else if (hometown == "Nashville") {
+			this.population = 601222;
+		} else if (hometown == "Atlanta") {
+			this.population = 420003;
+		} else if (hometown == "Charlotte") {
+			this.population = 731424;
+		} else if (hometown == "New Orleans") {
+			this.population = 343829;
+		} else if (hometown == "Tampa") {
+			this.population = 335715;
+		} else if (hometown == "Phoenix") {
+			this.population = 1447624;
 		} else if (hometown == "Boston") {
-			this.population = 645966;
+			this.population = 617680;
 		}
 	}
 
@@ -241,7 +269,7 @@ public class Team {
 	public double profitCalculator() {
 
 		for (int i = 0; i < starters.size(); i++) {
-			expenses += starters.get(i).getSalaryAmount();
+			expenses += starters.get(i).getSalaryAmount(this.coach);
 		}
 		expenses += GM.getSalary();
 		expenses += coach.getSalary();
