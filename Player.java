@@ -40,6 +40,7 @@ public class Player {
 		}
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.position = "";
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -68,6 +69,7 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.position = "";
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -95,6 +97,7 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;	
+		this.position = "";
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -125,6 +128,7 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.position = "";
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -147,6 +151,7 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;	
+		this.position = "";
 		this.isInATeam = false;
 		this.team = null;
 	}
