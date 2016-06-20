@@ -200,7 +200,7 @@ public class Player {
 	 * Follows a uniform distribution between 21 and 30
 	 */
 	private int getRandomAge() {
-		return (int) (Math.random() * (30 - 21) + 21);
+		return (int) (Math.random() * (35 - 21) + 21);
 	}
 
 	/*
@@ -243,7 +243,9 @@ public class Player {
 		this.fit = fit;
 	}
 
-	public int getSalaryAmount() {
+	public int getSalaryAmount(Coach c) {
+		int salary= (this.age+(100-Math.abs(this.fit-c.getScheme()) + this.athleticism)*100000);
+		this.salary=salary;
 		return salary;
 	}
 
@@ -286,6 +288,7 @@ public class Player {
 
 	public void increaseAge() {
 		this.age++;
+		this.athleticism=this.athleticism-2;
 		if(this.age>21){
 			this.rookie=false;
 		}
