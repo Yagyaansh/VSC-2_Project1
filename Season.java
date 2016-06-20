@@ -241,6 +241,10 @@ public class Season {
 			
 			// ----------- END -------------
 			
+			// The rookies have to re-drafted
+			// If a team needs to have defensiv
+			
+			
 			while (players.getPlayerPool().size() < Main.getPlayerPoolSize()) {
 				try {
 					NameGenerator randomNames = new NameGenerator();
