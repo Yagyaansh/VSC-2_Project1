@@ -131,6 +131,14 @@ public class Team {
 	public int getLosses() {
 		return this.losses;
 	}
+	
+	public Owner getOwner() {
+		return this.owner;
+	}
+	
+	public void setOwner(Owner o) {
+		this.owner = o;
+	}
 
 	public void setGM(GeneralManager gm) {
 		this.GM = gm;
