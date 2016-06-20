@@ -1,6 +1,17 @@
 import java.util.Random;
 
 public class Player {
+	
+	/*
+	* ACTUALLY WE MIGHT NOT NEED THE POSITION FIELD
+	* THE PLAYERS POSITION WILL KEEP CHANGING
+	* THE POSITION SCORES ARRAY WILL HAVE A DISTRIBUTION AND CAN BE USED TO DECIDE WHERE THE PLAYER WILL BE PLAYING
+	* MAKES MORE SENSE TO HAVE A FIELD CALLED currentPosition
+	* do not give it a value here since this will change from game to game
+	* null if the player is not in the starting line-up
+	* implement this
+	* TODO : By Yagyaansh. Since I have started on this already I will complete this. 
+	*/ 
 
 	private String firstName;
 	private String lastName;
@@ -12,7 +23,7 @@ public class Player {
 	private boolean offensive;
 	private int age;
 	private boolean careerEndingInjury;
-	private int positionScores[];
+	private int[] positionScores;
 	private int wonderlic;
 	private String position;
 	private boolean isInATeam;
@@ -38,8 +49,10 @@ public class Player {
 		} else {
 			rookie = false;
 		}
-		this.positionScores = new int[6];
+		
 		wonderlic = 0;
+		this.position = generateRandomPosition();
+		this.positionScores = assignPositionScores();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -66,8 +79,9 @@ public class Player {
 			rookie = false;
 		}
 		
-		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.position = generateRandomPosition();
+		this.positionScores = assignPositionScores();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -93,8 +107,9 @@ public class Player {
 			rookie = false;
 		}
 		
-		this.positionScores = new int[6];
 		wonderlic = 0;	
+		this.position = generateRandomPosition();
+		this.positionScores = assignPositionScores();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -123,8 +138,9 @@ public class Player {
 			rookie = false;
 		}
 		
-		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.position = generateRandomPosition();
+		this.positionScores = assignPositionScores();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -145,8 +161,9 @@ public class Player {
 			rookie = false;
 		}
 		
-		this.positionScores = new int[6];
 		wonderlic = 0;	
+		this.position = generateRandomPosition();
+		this.positionScores = assignPositionScores();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -221,6 +238,29 @@ public class Player {
 	private boolean randomlyAssignOffensive() {
 		Random rand = new Random();
 		return rand.nextBoolean();
+	}
+	
+	public String generateRandomPosition()
+	{
+		// Depending on whether the player has been assigned offensive or defensive type
+		// assign the player any one of the 3 available positions in that type
+		// assign the player that position as a string
+		// the standard is to use all lower case letters in the string (no spaces), and the positions are : 
+		// Defensive - secondary, linebacker, defensiveline
+		// Offensive - offensiveline, receiver, runningback
+		
+		// generate a random number between (and including 0-2)
+		// check whether player is offensive or defensive type
+		// assign as follows : 
+		// Defensive - secondary (0), linebacker (1), defensiveline (2)
+		// Offensive - offensiveline (0), receiver (1), runningback (2)
+	}
+	
+	public int[] assignPositionScores()
+	{
+		// check the position that the player has been assigned
+		// if offensive then all defensive have to be 0 and vice-versa
+		// 
 	}
 	
 	/*

@@ -45,7 +45,6 @@ public class Main {
 		this.generalManagerPool = new GeneralManager_Pool(getGMPoolSize());
 		this.coachPool = new Coach_Pool(getCoachPoolSize());
 		this.playerPool = new Player_Pool(getPlayerPoolSize());
-
 	}
 
 	/*

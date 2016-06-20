@@ -21,6 +21,7 @@ public class Team {
 	private ArrayList<Player> defensiveRoster;
 	private int wins;
 	private int losses;
+	private Owner owner;
 
 	/*
 	 * Constructor to initialize a Team with NAME, HOMETOWN and GM population is
@@ -53,6 +54,7 @@ public class Team {
 		} else if (hometown == "Boston") {
 			this.population = 645966;
 		}
+		this.owner = new Owner(this);
 	}
 
 	/*
@@ -73,6 +75,7 @@ public class Team {
 		this.wins = 0;
 		this.losses = 0;
 		this.population = 0;
+		this.owner = new Owner(this);
 	}
 
 	/*
@@ -127,6 +130,14 @@ public class Team {
 
 	public int getLosses() {
 		return this.losses;
+	}
+	
+	public Owner getOwner() {
+		return this.owner;
+	}
+	
+	public void setOwner(Owner o) {
+		this.owner = o;
 	}
 
 	public void setGM(GeneralManager gm) {
