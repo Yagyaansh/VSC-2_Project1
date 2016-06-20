@@ -15,6 +15,7 @@ public class Player {
 	private int positionScores[];
 	private int wonderlic;
 	private String position;
+	private boolean isInATeam;
 
 	/*
 	 * Default constructor to initialize a player
@@ -38,6 +39,7 @@ public class Player {
 		}
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.isInATeam = false;
 	}
 
 	/*
@@ -64,6 +66,7 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.isInATeam = false;
 	}
 	
 	/*
@@ -88,7 +91,8 @@ public class Player {
 		}
 		
 		this.positionScores = new int[6];
-		wonderlic = 0;
+		wonderlic = 0;	
+		this.isInATeam = false;
 	}
 	
 	/*
@@ -117,6 +121,7 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.isInATeam = false;
 	}
 	
 	public Player(String firstName, String lastName, int age, boolean offensive) {
@@ -136,7 +141,8 @@ public class Player {
 		}
 		
 		this.positionScores = new int[6];
-		wonderlic = 0;
+		wonderlic = 0;	
+		this.isInATeam = false;
 	}
 	
 
@@ -344,6 +350,11 @@ public class Player {
 
 	public void setWonderlic(int wonderlic) {
 		this.wonderlic = wonderlic;
+	}
+	
+	public boolean isInATeam()
+	{
+		return this.isInATeam;
 	}
 
 	
