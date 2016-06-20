@@ -188,20 +188,63 @@ public class Season {
 	 */
 
 	public void offSeason(Player_Pool players, Coach_Pool coachPool) {
-		MinPQ_Athleticism<Wrapper_DataKey<Player, Integer>> rookies = new MinPQ_Athleticism<>();
+		// MinPQ_Athleticism<Wrapper_DataKey<Player, Integer>> rookies = new MinPQ_Athleticism<>();
 
+		/*
+		* New algorithm to age and remove players : 
+		* Iterate over the player pool and age all the players
+		* Create a new field in players called isSelected (in roster)
+		* this way you know if a player belongs to some team 
+		* Iterate over the player pool again
+		* If the player isSelected in roster then remove him from player pool and team roster 
+		* No need to remove from starting line up because the starters are re-picked
+		* 
+		* If the player is not in any team then just remove from the player pool
+		* players can be removed from the player pool and not team roster only due to old age
+		* players not on a team roster cannot be injured
+		* 
+		* So these two actions must be seperated
+		*/
+		
+		for(Player player: players.getPlayerPool())
+		{
+			player.increaseAge();
+			if(player.getAge() == 40)
+			{
+				// remove the player from the player pool
+				if(player.isInATeam())
+				{
+					// if the player belongs to a team roster
+					// remove the player from the team roster too
+				}
+			continue; // if the player has been removed - no need to update his fit score
+			}
+			// we dont have the teams coach here
+			// for players that belong to a team roster
+			// there should be some way to retrieve coach information for the player
+			// that is the player should point to his team somehow
+			player.updateFit(coach.getScheme()); // update the player fit scores 
+			// the update fit score method will have to change
+			// it will have to check if the player belongs to some team 
+			// if the player belongs to a team then update fit score accordingly
+			// or else fit score is unchanged
+			
+			// we can also update fit score as we were doing before instead of adding it here.
+		}
+		
 		for (int i = 0; i < teams.size(); i++) {
 			Team team = teams.get(i);
 			for (int j = 0; j < team.getRoster().size(); j++) {
 				Coach coach = team.getCoach();
 				Player player = team.getRoster().get(j);
-				player.increaseAge();
-				player.updateFit(coach.getScheme());
+				// player.increaseAge(); // this is wrong ! All the players must age not just those in team rosters !!
+				player.updateFit(coach.getScheme()); // this is fine because players not in any team roster dont have a coach
 			}
+			
 			
 			// ITERATION 3 CHANGES 
 
-			teams.get(i).removeOldPlayers(players);
+			// teams.get(i).removeOldPlayers(players); // have to remove old players not in any team roster too !!
 			teams.get(i).removeCareerEndingInjuredPlayers(players);
 			
 
@@ -241,33 +284,33 @@ public class Season {
 			
 			// ----------- END -------------
 			
-			while (players.getPlayerPool().size() < Main.getPlayerPoolSize()) {
-				try {
-					NameGenerator randomNames = new NameGenerator();
-					
-
-					
-					
-					Player player = new Player(randomNames.randomFirstName(), randomNames.randomLastName(), 21);
-					
-					
-					
-					
-					players.getPlayerPool().add(player);
-					Wrapper_DataKey<Player, Integer> w = new Wrapper_DataKey<Player, Integer>(player,
-							player.getAthleticism());
-					rookies.insert(w);
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.exit(0);
+			// The rookies have to re-drafted
+			// If a team needs to have defensive type then we choose the defensive player with 
+			// highest athleticisim score - (same for offensive type)
+			// or else we just choose the player with highest athleticism score overall
+			
+			
+			
+			for (Player p: players.getPlayerPool())
+			{
+				if(p.getRookie() == true)
+				{
+					if(p.isOffensive())
+					{
+						// add to minPQ of Offensive rookie players
+						// pqOffensive is the PQ
+					}
+					else
+					{
+						// add to minPQ of defensive rookie players
+						// pqDefensive is the PQ
+					}
 				}
 			}
-
+			// now offensive PQ and defensive PQ have been set up
 		}
 		
-		
 		// ITERATION 3 CHANGES 
-		
 		
 		ArrayList<Team> teamLosstoWinOrder = new ArrayList<Team>();
 		teamLosstoWinOrder = determineLosertoWinner();
@@ -275,16 +318,26 @@ public class Season {
 		Team worstTeam = teamLosstoWinOrder.get(0);
 		Coach newCoach = worstTeam.getGM().pickACoach(coachPool);
 		worstTeam.setCoach(newCoach);
-		int count = 1;
-		while (count != 0) {
-			count = 0;
-			for (Team t : teamLosstoWinOrder) {
-				if (t.getRoster().size() == 50)
-					continue;
-				count++;
-				t.addToRoster((Player) rookies.delMin().getData());
-			}
-		}
+		
+		
+		// till here the new coach has been assigned to the worst team and the 2 PQs are ready
+		// we have to just re-draft all the rookies till the team rosters
+		// are complete and have a 50/50 ratio.
+		
+		redraftPlayers(pqOffensive, pqDefensive, teamLosstoWinOrder);
+		
+		// redrafting of all the players is complete now
+		
+		// int count = 1;
+		// while (count != 0) {
+		// 	count = 0;
+		// 	for (Team t : teamLosstoWinOrder) {
+		// 		if (t.getRoster().size() == 50)
+		// 			continue;
+		// 		count++;
+		// 		t.addToRoster((Player) rookies.delMin().getData());
+		// 	}
+		// }
 
 		// Reset wins and losses to prepare for next season
 		// Reset revenue info
@@ -293,6 +346,53 @@ public class Season {
 			t.resetRevenue();
 		}
 
+	}
+	
+	/*
+	* This method is used to redraft the rookies that replace the players removed from all pools
+	* passes in a PQ of offensive type rookies and a PQ of defensive type rookies
+	* the PQs are ordered by athleticism score
+	* the 3rd parameter is the order in which teams redraft the players
+	*/
+	
+	public void redraftPlayers(PQ pqOffensive, PQ pqDefensive, ArrayList<Team> teamLosstoWinOrder)
+	{
+		int rosterSize = 0;
+		int offensiveSize = 0;
+		int defensiveSize = 0;
+		
+		while // all teams do not have 50 players we keep drafting
+		
+		for (Team t: teamLosstoWinOrder)
+		{
+			rosterSize = t.getRoster().getSize();
+			offensiveSize = t.getOffensiveRoster().size();
+			defensiveSize = t.getDefensiveRoster().size();
+			
+			if(rosterSize > 50)
+			{
+				System.out.println("Error : Roster size has exceeded 50");
+				System.exit(0);
+			}
+			else if(rosterSize == 50)
+			{
+				continue;
+			}
+			else if(offensiveSize == 25)
+			{
+				// pick the defensive player with the highest athleticism score
+			}
+			else if(defensiveSize == 25)
+			{
+				// pick the offesnive player with the highest athleticism score
+			}
+			else {
+				// when the team needs both offensive and defensive type
+				// compare the best (highest athleticism score) offensive player
+				// to the best defensive player
+				// add the one with the higher athleticism score to the team
+			}
+		}
 	}
 
 	/*
