@@ -341,6 +341,7 @@ public class Team {
 		for (Player player : playerPool) {
 			if (player.isEndedCareer()) {
 				this.roster.remove(player);
+				player.setIsInATeam(false);
 				playerPool.remove(player);
 			}
 		}
