@@ -112,6 +112,7 @@ public class Main {
 				Player player = t.getGM().pickAPlayer(playerPool);
 				t.addToRoster(player);
 				player.setIsInATeam(true);
+				player.setTeam(t);
 			}
 		}
 
