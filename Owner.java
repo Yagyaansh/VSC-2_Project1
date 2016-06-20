@@ -15,7 +15,7 @@ public class Owner
 	 * Constructors for the Owner class
 	 */
 	
-	public Owner()
+	public Owner(Team team)
 	{
 		this.happyValue = generateHappyValue();
 		this.unhappyValue = generateUnhappyValue();
@@ -23,7 +23,7 @@ public class Owner
 		NameGenerator randomNames = new NameGenerator();
 		this.firstName = randomNames.randomFirstName();
 		this.lastName = randomNames.randomLastName();
-		this.team = new Team();
+		this.team = team;
 	}
 	
 	/*
@@ -74,6 +74,14 @@ public class Owner
 	}
 	public void setPatience(int patience) {
 		this.patience = patience;
+	}
+	public void setTeam(Team t)
+	{
+		this.team = t;
+	}
+	public Team getTeam()
+	{
+		return this.team;
 	}
 	
 	/*
