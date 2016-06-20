@@ -69,7 +69,8 @@ public class Main {
 
 		ArrayList<Team> teams = new ArrayList<Team>();
 
-		teams = createTeams(4, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
+		int numberOfTeams = 16;
+		teams = createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
 
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<Team>();
@@ -85,6 +86,7 @@ public class Main {
 			results.add(s.seasonResult());
 			s.offSeason(this.getPlayerPool(), this.getCoachPool());
 		}
+		printInputs(numberOfTeams, numberOfSeasons);
 		printEverything(seasons);
 	}
 
@@ -97,8 +99,13 @@ public class Main {
 	public static ArrayList<Team> createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
 			Coach_Pool coachPool, Player_Pool playerPool) {
 		ArrayList<Team> allTeams = new ArrayList<Team>();
-		String[] teamNames = { "Bears", "Boston Patriots", "Cardinals", "Pittsburgh Steelers" };
-		String[] teamHometowns = { "Chicago" , "Boston", "Phoenix", "Pittsburgh" };
+		String[] teamNames = { "Atlanta Falcons", "Baltimore Ravens", "Carolina Panthers", "Chicago Bears",
+				"Cincinnati Bengals", "Cleveland Browns", "Detroit Lions", "Green Bay Packers", "Houston Texans",
+				"Indianapolis Colts", "Jacksonville Jaguars", "Minnesota Vikings", "Tennessee Titans",
+				"New Orleans Saints", "Pittsburgh Steelers", "Tampa Bay Buccaneers", "T" };
+		String[] teamHometowns = { "Atlanta", "Baltimore", "Charlotte", "Chicago", "Cincinnati", "Cleveland", "Detroit",
+				"Green Bay", "Houston", "Indianapolis", "Jacksonville", "Minneapolis", "Nashville", "New Orleans",
+				"Pittsburgh", "Tampa" };
 
 		for (int i = 0; i < numberOfTeams; i++) {
 			Team t = new Team(teamNames[i], teamHometowns[i], generalManagerPool.getRandomGM());
@@ -179,7 +186,15 @@ public class Main {
 	 * -------------------------------------------------------------------------
 	 * ----------------------------
 	 */
+	public static void printInputs(int numberOfTeams, int numberOfSeasons){
+		System.out.println("***************************************");
+		System.out.println("INPUTS");
+		System.out.println("Number of Teams: " + numberOfTeams);
+		System.out.println("Number of Seasons: " + numberOfSeasons);
+		System.out.println("***************************************");
 
+	}
+	
 	public static void printEverything(ArrayList<Season> seasons) {
 		while (true) {
 			System.out.println("Option 1: Print out game statistics");
