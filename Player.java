@@ -15,6 +15,8 @@ public class Player {
 	private int positionScores[];
 	private int wonderlic;
 	private String position;
+	private boolean isInATeam;
+	private Team team; // make the player reference back to the team. If the player is not in a team then set team to null
 
 	/*
 	 * Default constructor to initialize a player
@@ -38,6 +40,8 @@ public class Player {
 		}
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.isInATeam = false;
+		this.team = null;
 	}
 
 	/*
@@ -64,6 +68,8 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.isInATeam = false;
+		this.team = null;
 	}
 	
 	/*
@@ -88,7 +94,9 @@ public class Player {
 		}
 		
 		this.positionScores = new int[6];
-		wonderlic = 0;
+		wonderlic = 0;	
+		this.isInATeam = false;
+		this.team = null;
 	}
 	
 	/*
@@ -117,6 +125,8 @@ public class Player {
 		
 		this.positionScores = new int[6];
 		wonderlic = 0;
+		this.isInATeam = false;
+		this.team = null;
 	}
 	
 	public Player(String firstName, String lastName, int age, boolean offensive) {
@@ -136,7 +146,9 @@ public class Player {
 		}
 		
 		this.positionScores = new int[6];
-		wonderlic = 0;
+		wonderlic = 0;	
+		this.isInATeam = false;
+		this.team = null;
 	}
 	
 
@@ -344,6 +356,37 @@ public class Player {
 
 	public void setWonderlic(int wonderlic) {
 		this.wonderlic = wonderlic;
+	}
+	
+	public boolean isInATeam()
+	{
+		return this.isInATeam;
+	}
+	
+	public void setIsInATeam(boolean val)
+	{
+		this.isInATeam = val;
+	}
+	
+	/*
+	* Sets the player to a particular team
+	* A way of referencing the team from the Player object
+	*/
+	
+	public void setTeam(Team t)
+	{
+		this.team = t;
+	}
+	
+	/*
+	* Returns the team to which the player belongs
+	* If the player does not belong to a team then 
+	* method returns null
+	*/
+	
+	public Team getTeam()
+	{
+		return this.team;
 	}
 
 	

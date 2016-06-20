@@ -216,14 +216,22 @@ public class Season {
 				{
 					// if the player belongs to a team roster
 					// remove the player from the team roster too
+					
+					// remove player from the roster list
+					// THE PLAYER SHOULD SOMEHOW POINT TO THE TEAM !!!
+					// then get the team -> get the roster -> remove player from the roster
+					
+					// AND
+					player.setIsInATeam(false);
+					player.setTeam(null);
 				}
-			continue; // if the player has been removed - no need to update his fit score
+			// continue; // if the player has been removed - no need to update his fit score
 			}
 			// we dont have the teams coach here
 			// for players that belong to a team roster
 			// there should be some way to retrieve coach information for the player
 			// that is the player should point to his team somehow
-			player.updateFit(coach.getScheme()); // update the player fit scores 
+		//	player.updateFit(coach.getScheme()); // update the player fit scores 
 			// the update fit score method will have to change
 			// it will have to check if the player belongs to some team 
 			// if the player belongs to a team then update fit score accordingly
@@ -247,7 +255,7 @@ public class Season {
 			// teams.get(i).removeOldPlayers(players); // have to remove old players not in any team roster too !!
 			teams.get(i).removeCareerEndingInjuredPlayers(players);
 			
-
+		}
 			/*
 			 * We are removing Old players and then adding rookies using the while below
 			 * If career ending players are also to be replaced in the pool then 
@@ -308,7 +316,6 @@ public class Season {
 				}
 			}
 			// now offensive PQ and defensive PQ have been set up
-		}
 		
 		// ITERATION 3 CHANGES 
 		
@@ -381,16 +388,27 @@ public class Season {
 			else if(offensiveSize == 25)
 			{
 				// pick the defensive player with the highest athleticism score
+				// For the player that is added to the roster - set isInATeam to true !
+				// player.setIsInATeam(true);
+				// player.setTeam(t);
 			}
 			else if(defensiveSize == 25)
 			{
 				// pick the offesnive player with the highest athleticism score
+				// For the player that is added to the roster - set isInATeam to true !
+				// player.setIsInATeam(true);
+				// player.setTeam(t);
 			}
 			else {
 				// when the team needs both offensive and defensive type
 				// compare the best (highest athleticism score) offensive player
 				// to the best defensive player
 				// add the one with the higher athleticism score to the team
+				
+				// For the player that is added to the roster - set isInATeam to true !
+				// player.setIsInATeam(true);
+				// player.setTeam(t);
+
 			}
 		}
 	}

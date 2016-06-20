@@ -318,15 +318,20 @@ public class Team {
 	 * They are replaced by rookie players (not implemented in this method)
 	 * 
 	 */
-	public void removeOldPlayers(Player_Pool players) {
-		ArrayList<Player> playerPool = players.getPlayerPool();
-		for (Player player : playerPool) {
-			if (player.getAge() == 31) {
-				this.roster.remove(player);
-				playerPool.remove(player);
-			}
-		}
-	}
+	 
+	 /*
+	 * This method might not be needed anymore
+	 */
+	 
+	// public void removeOldPlayers(Player_Pool players) {
+	// 	ArrayList<Player> playerPool = players.getPlayerPool();
+	// 	for (Player player : playerPool) {
+	// 		if (player.getAge() == 31) {
+	// 			this.roster.remove(player);
+	// 			playerPool.remove(player);
+	// 		}
+	// 	}
+	// }
 
 	/*
 	 * Removes all the players who have suffered career ending injuries for
@@ -341,6 +346,8 @@ public class Team {
 		for (Player player : playerPool) {
 			if (player.isEndedCareer()) {
 				this.roster.remove(player);
+				player.setIsInATeam(false);
+				player.setTeam(null);
 				playerPool.remove(player);
 			}
 		}
