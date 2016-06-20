@@ -217,13 +217,13 @@ public class Season {
 					// if the player belongs to a team roster
 					// remove the player from the team roster too
 				}
-			continue; // if the player has been removed - no need to update his fit score
+			// continue; // if the player has been removed - no need to update his fit score
 			}
 			// we dont have the teams coach here
 			// for players that belong to a team roster
 			// there should be some way to retrieve coach information for the player
 			// that is the player should point to his team somehow
-			player.updateFit(coach.getScheme()); // update the player fit scores 
+		//	player.updateFit(coach.getScheme()); // update the player fit scores 
 			// the update fit score method will have to change
 			// it will have to check if the player belongs to some team 
 			// if the player belongs to a team then update fit score accordingly
@@ -247,7 +247,7 @@ public class Season {
 			// teams.get(i).removeOldPlayers(players); // have to remove old players not in any team roster too !!
 			teams.get(i).removeCareerEndingInjuredPlayers(players);
 			
-
+		}
 			/*
 			 * We are removing Old players and then adding rookies using the while below
 			 * If career ending players are also to be replaced in the pool then 
@@ -308,7 +308,6 @@ public class Season {
 				}
 			}
 			// now offensive PQ and defensive PQ have been set up
-		}
 		
 		// ITERATION 3 CHANGES 
 		
