@@ -28,8 +28,8 @@ public class Main {
 	 * simulation
 	 * 
 	 * 
-	 * Hardcode the pool sizes in the getters
-	 * This value is called numerous times throughout the code (not just this class)
+	 * Hardcode the pool sizes in the getters This value is called numerous
+	 * times throughout the code (not just this class)
 	 * 
 	 */
 	private GeneralManager_Pool generalManagerPool;
@@ -69,7 +69,8 @@ public class Main {
 
 		ArrayList<Team> teams = new ArrayList<Team>();
 
-		teams = createTeams(4, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
+		int numberOfTeams = 16;
+		teams = createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
 
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<Team>();
@@ -85,7 +86,9 @@ public class Main {
 			results.add(s.seasonResult());
 			s.offSeason(this.getPlayerPool(), this.getCoachPool());
 		}
-		printEverything(seasons);
+		
+		printInputs(numberOfTeams, numberOfSeasons);
+		printOutputs(seasons);
 	}
 
 	/*
@@ -97,8 +100,13 @@ public class Main {
 	public static ArrayList<Team> createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
 			Coach_Pool coachPool, Player_Pool playerPool) {
 		ArrayList<Team> allTeams = new ArrayList<Team>();
-		String[] teamNames = { "Bears", "Boston Patriots", "Cardinals", "Pittsburgh Steelers" };
-		String[] teamHometowns = { "Chicago" , "Boston", "Phoenix", "Pittsburgh" };
+		String[] teamNames = { "Atlanta Falcons", "Baltimore Ravens", "Carolina Panthers", "Chicago Bears",
+				"Cincinnati Bengals", "Cleveland Browns", "Detroit Lions", "Green Bay Packers", "Houston Texans",
+				"Indianapolis Colts", "Jacksonville Jaguars", "Minnesota Vikings", "Tennessee Titans",
+				"New Orleans Saints", "Pittsburgh Steelers", "Tampa Bay Buccaneers", "T" };
+		String[] teamHometowns = { "Atlanta", "Baltimore", "Charlotte", "Chicago", "Cincinnati", "Cleveland", "Detroit",
+				"Green Bay", "Houston", "Indianapolis", "Jacksonville", "Minneapolis", "Nashville", "New Orleans",
+				"Pittsburgh", "Tampa" };
 
 		for (int i = 0; i < numberOfTeams; i++) {
 			Team t = new Team(teamNames[i], teamHometowns[i], generalManagerPool.getRandomGM());
@@ -150,19 +158,16 @@ public class Main {
 	public Coach_Pool getCoachPool() {
 		return coachPool;
 	}
-	
-	public static int getPlayerPoolSize()
-	{
+
+	public static int getPlayerPoolSize() {
 		return 10000;
 	}
-	
-	public static int getCoachPoolSize()
-	{
+
+	public static int getCoachPoolSize() {
 		return 100;
 	}
-	
-	public static int getGMPoolSize()
-	{
+
+	public static int getGMPoolSize() {
 		return 100;
 	}
 
@@ -177,8 +182,17 @@ public class Main {
 	 * -------------------------------------------------------------------------
 	 * ----------------------------
 	 */
+	
+	public static void printInputs(int numberOfTeams, int numberOfSeasons){
+		System.out.println("***************************************");
+		System.out.println("INPUTS");
+		System.out.println("Number of Teams: " + numberOfTeams);
+		System.out.println("Number of Seasons: " + numberOfSeasons);
+		System.out.println("***************************************");
 
-	public static void printEverything(ArrayList<Season> seasons) {
+	}
+
+	public static void printOutputs(ArrayList<Season> seasons) {
 		while (true) {
 			System.out.println("Option 1: Print out game statistics");
 			System.out.println("Option 2: Print out win loss records");
