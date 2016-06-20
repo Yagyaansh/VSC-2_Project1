@@ -16,6 +16,7 @@ public class Player {
 	private int wonderlic;
 	private String position;
 	private boolean isInATeam;
+	private Team team; // make the player reference back to the team. If the player is not in a team then set team to null
 
 	/*
 	 * Default constructor to initialize a player
