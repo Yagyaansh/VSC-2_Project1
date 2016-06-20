@@ -223,6 +223,7 @@ public class Season {
 					
 					// AND
 					player.setIsInATeam(false);
+					player.setTeam(null);
 				}
 			// continue; // if the player has been removed - no need to update his fit score
 			}
@@ -389,12 +390,14 @@ public class Season {
 				// pick the defensive player with the highest athleticism score
 				// For the player that is added to the roster - set isInATeam to true !
 				// player.setIsInATeam(true);
+				// player.setTeam(t);
 			}
 			else if(defensiveSize == 25)
 			{
 				// pick the offesnive player with the highest athleticism score
 				// For the player that is added to the roster - set isInATeam to true !
 				// player.setIsInATeam(true);
+				// player.setTeam(t);
 			}
 			else {
 				// when the team needs both offensive and defensive type
@@ -404,6 +407,8 @@ public class Season {
 				
 				// For the player that is added to the roster - set isInATeam to true !
 				// player.setIsInATeam(true);
+				// player.setTeam(t);
+
 			}
 		}
 	}
