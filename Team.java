@@ -191,6 +191,7 @@ public class Team {
 	public void printTeam() {
 		System.out.println("Team Name: " + name);
 		System.out.println("Hometown: " + hometown);
+		owner.printOwner();
 		GM.printGeneralManager();
 		coach.printCoach();
 		System.out.println("----------------------------------------------------------------------------------------");
@@ -269,7 +270,7 @@ public class Team {
 		for (int i = 0; i < 22; i++) {
 			Player member = starters.get(i);
 			int determinate;
-			determinate = (member.getAthleticism() - Math.abs(coach.getScheme() - member.getFit()));
+			determinate = (int)(member.getAthleticism() - Math.abs(coach.getScheme() - member.getFit()));
 			if (determinate > 0) {
 				sum = sum + determinate;
 			}
@@ -410,6 +411,7 @@ public class Team {
 		Team t = new Team();
 		t.name = this.getTeamName();
 		t.hometown = this.getHometown();
+		t.owner = this.getOwner().deepCopy();
 		t.GM = this.getGM().deepCopy();
 		t.coach = this.coach.deepCopy();
 		t.grossRevenue = this.grossRevenue;

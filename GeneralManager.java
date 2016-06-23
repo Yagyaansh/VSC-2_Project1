@@ -13,22 +13,23 @@ public class GeneralManager {
 	/*
 	 * Initialize a GM with first name and last name
 	 */
-	public GeneralManager(String firstName, String lastName){
-		this.firstNameManager=firstName;
-		this.lastNameManager=lastName;
+	public GeneralManager(String firstName, String lastName) {
+		this.firstNameManager = firstName;
+		this.lastNameManager = lastName;
 		this.setscoutingScore(50);
 		this.setSalary(500000);
-		this.GMPickTeam=new ArrayList<Player>();
+		this.GMPickTeam = new ArrayList<Player>();
 
 	}
-	
+
 	public GeneralManager() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/*
 	 * Printing methods
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
 
 	public void printGeneralManager() {
@@ -36,21 +37,23 @@ public class GeneralManager {
 		System.out.print("Scouting Score: " + this.scoutingScore + " , ");
 		System.out.println("Salary: $" + this.salary + ". ");
 	}
-	
+
 	/*
 	 * End of printing methods
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
-	
+
 	/*
 	 * Getters and setters for the fields in the class
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
 
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
-	
+
 	public void setscoutingScore(int scoutingScore) {
 		this.scoutingScore = scoutingScore;
 	}
@@ -71,16 +74,15 @@ public class GeneralManager {
 		return scoutingScore;
 	}
 
-	
 	/*
 	 * End of Getters and Setters
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
-	
-	
+
 	/*
-	 * Returns a randomly selected coach from the coach pool (passed as a parameter)
-	 * the coach after being selected is removed from the coach pool
+	 * Returns a randomly selected coach from the coach pool (passed as a
+	 * parameter) the coach after being selected is removed from the coach pool
 	 */
 	public Coach pickACoach(Coach_Pool coachPool) {
 		Random rand = new Random();
@@ -89,33 +91,74 @@ public class GeneralManager {
 		coachPool.getCoachesPool().remove(index);
 		return coach;
 	}
-	
+
 	/*
-	 * Returns a randomly selected player from the player pool (passed as a parameter)
-	 * the player after being selected is removed from the player pool
+	 * Returns a randomly selected player from the player pool (passed as a
+	 * parameter) the player after being selected is removed from the player
+	 * pool
 	 */
-	public Player pickAPlayer(Player_Pool playerPool) {
-		Random rand = new Random();
-		int index = rand.nextInt(playerPool.getSize());
-		Player player = playerPool.getPlayerPool().get(index);
-		playerPool.getPlayerPool().remove(index);
-		return player;
-	}
-	
-	public GeneralManager deepCopy(){
-		GeneralManager g = new GeneralManager();
-		g.scoutingScore=this.scoutingScore;
-		g.favor=this.favor;
-		g.salary=this.salary;
-		g.firstNameManager=this.firstNameManager;
-		g.lastNameManager=this.lastNameManager;
-		ArrayList<Player> GMPickTeam= new ArrayList<Player>();
-		for(Player p: this.GMPickTeam){
-			GMPickTeam.add(p.deepCopy());
+	public Player pickAPlayer(Player_Pool playerPool, int optionNumber) {
+		// Random rand = new Random();
+		// int index = rand.nextInt(playerPool.getSize());
+		// Player player = playerPool.getPlayerPool().get(index);
+		// playerPool.getPlayerPool().remove(index);
+		// return player;
+
+		switch (optionNumber) {
+		case 0:
+			return pickARunningBack(playerPool);
+		case 1:
+			return pickAReciever(playerPool);
+		case 2:
+			return pickAOffensiveLine(playerPool);
+		case 3:
+			return pickASecondary(playerPool);
+		case 4:
+			return pickALinebacker(playerPool);
+		case 5:
+			return pickASecondary(playerPool);
+		default:
+			return null;
 		}
-		g.GMPickTeam=GMPickTeam;
-		return g;
 	}
 
+	public Player pickARunningBack(Player_Pool playerPool) {
+
+	}
+
+	public Player pickAReciever(Player_Pool playerPool) {
+
+	}
+
+	public Player pickAOffensiveLine(Player_Pool playerPool) {
+
+	}
+
+	public Player pickASecondary(Player_Pool playerPool) {
+
+	}
+
+	public Player pickALinebacker(Player_Pool playerPool) {
+
+	}
+
+	public Player pickADefensiveLine(Player_Pool playerPool) {
+
+	}
+
+	public GeneralManager deepCopy() {
+		GeneralManager g = new GeneralManager();
+		g.scoutingScore = this.scoutingScore;
+		g.favor = this.favor;
+		g.salary = this.salary;
+		g.firstNameManager = this.firstNameManager;
+		g.lastNameManager = this.lastNameManager;
+		ArrayList<Player> GMPickTeam = new ArrayList<Player>();
+		for (Player p : this.GMPickTeam) {
+			GMPickTeam.add(p.deepCopy());
+		}
+		g.GMPickTeam = GMPickTeam;
+		return g;
+	}
 
 }

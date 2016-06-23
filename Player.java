@@ -16,7 +16,7 @@ public class Player {
 	private String firstName;
 	private String lastName;
 	private int athleticism;
-	private int fit;
+	private double fit;
 	private int salary;
 	private boolean rookie;
 	private boolean injured;
@@ -208,7 +208,7 @@ public class Player {
 	/*
 	 * Fit score is determined using a uniform distribution form 0 to 100
 	 */
-	private int getRandomFitScore() {
+	private double getRandomFitScore() {
 		Random rand = new Random ();
 		fit = rand.nextInt(100);
 		return fit;
@@ -287,7 +287,7 @@ public class Player {
 		this.athleticism = athleticism;
 	}
 
-	public int getFit() {
+	public double getFit() {
 		return fit;
 	}
 
@@ -296,7 +296,7 @@ public class Player {
 	}
 
 	public int getSalaryAmount(Coach c) {
-		int salary= (this.age+(100-Math.abs(this.fit-c.getScheme()) + this.athleticism)*100000);
+		int salary= (int)(this.age+(100-Math.abs(this.fit-c.getScheme()) + this.athleticism)*100000);
 		this.salary=salary;
 		return salary;
 	}
@@ -346,24 +346,35 @@ public class Player {
 		}
 	}
 	
-	public void updateFit(int coachScheme) {
+	public void updateFit(Coach c) {
+		double playerFit = this.getFit();
+		int coachScheme = c.getScheme();
+		double teachingFactor = c.getTeachingFactor();
 		
-		int playerFit = this.getFit();
-		
-		if(Math.abs(playerFit - coachScheme) <= 5)
-		{
-			playerFit = coachScheme;
+		if(Math.abs(playerFit - coachScheme) <= teachingFactor) {
+			this.fit = coachScheme;
 		}
-		else if(playerFit > coachScheme)
-		{
-			playerFit -= 5;
+		else if(playerFit > coachScheme) {
+			this.fit = this.fit - teachingFactor;
 		}
-		else
-		{
-			playerFit += 5;
+		else {
+			this.fit = this.fit + teachingFactor;
 		}
 		
-		this.fit = playerFit;
+	
+		// if(Math.abs(playerFit - coachScheme) <= 5)
+		// {
+		// playerFit = coachScheme;
+		// }
+		// else if(playerFit > coachScheme)
+		// {
+		// playerFit -= 5;
+		// }
+		// else
+		// {
+		// playerFit += 5;
+		// }
+		//this.fit = playerFit;
 
 		}
 

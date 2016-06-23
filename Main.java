@@ -28,8 +28,8 @@ public class Main {
 	 * simulation
 	 * 
 	 * 
-	 * Hardcode the pool sizes in the getters
-	 * This value is called numerous times throughout the code (not just this class)
+	 * Hardcode the pool sizes in the getters This value is called numerous
+	 * times throughout the code (not just this class)
 	 * 
 	 */
 	private GeneralManager_Pool generalManagerPool;
@@ -86,7 +86,7 @@ public class Main {
 			s.offSeason(this.getPlayerPool(), this.getCoachPool());
 		}
 		printInputs(numberOfTeams, numberOfSeasons);
-		printEverything(seasons);
+		printOutputs(seasons);
 	}
 
 	/*
@@ -113,12 +113,18 @@ public class Main {
 			allTeams.add(t);
 		}
 
+		int optionNumber = 0;
 		for (int i = 0; i < 50; i++) {
 			for (Team t : allTeams) {
-				Player player = t.getGM().pickAPlayer(playerPool);
+				Player player = t.getGM().pickAPlayer(playerPool, optionNumber);
 				t.addToRoster(player);
 				player.setIsInATeam(true);
 				player.setTeam(t);
+			}
+			if (optionNumber == 5) {
+				optionNumber = 0;
+			} else {
+				optionNumber++;
 			}
 		}
 
@@ -158,19 +164,16 @@ public class Main {
 	public Coach_Pool getCoachPool() {
 		return coachPool;
 	}
-	
-	public static int getPlayerPoolSize()
-	{
+
+	public static int getPlayerPoolSize() {
 		return 10000;
 	}
-	
-	public static int getCoachPoolSize()
-	{
+
+	public static int getCoachPoolSize() {
 		return 100;
 	}
-	
-	public static int getGMPoolSize()
-	{
+
+	public static int getGMPoolSize() {
 		return 100;
 	}
 
@@ -185,7 +188,7 @@ public class Main {
 	 * -------------------------------------------------------------------------
 	 * ----------------------------
 	 */
-	public static void printInputs(int numberOfTeams, int numberOfSeasons){
+	public static void printInputs(int numberOfTeams, int numberOfSeasons) {
 		System.out.println("***************************************");
 		System.out.println("INPUTS");
 		System.out.println("Number of Teams: " + numberOfTeams);
@@ -193,8 +196,8 @@ public class Main {
 		System.out.println("***************************************");
 
 	}
-	
-	public static void printEverything(ArrayList<Season> seasons) {
+
+	public static void printOutputs(ArrayList<Season> seasons) {
 		while (true) {
 			System.out.println("Option 1: Print out game statistics");
 			System.out.println("Option 2: Print out win loss records");
