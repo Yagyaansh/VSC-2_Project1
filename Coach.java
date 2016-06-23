@@ -7,6 +7,7 @@ public class Coach {
 
 	private int scheme;
 	private int salary;
+	private double teachingFactor;
 	private String firstName;
 	private String lastName;
 
@@ -15,59 +16,77 @@ public class Coach {
 	 * Scheme is determined in the constructor
 	 */
 	public Coach(String firstName, String lastName) {
-		this.firstName = firstName; 
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.setScheme(getRandomScheme());
-		this.setSalary(1000000);
+		this.setSalary(600000);
+		this.setTeachingFactor(getRandomTeachingFactor());
 	}
-	
+
 	/*
-	 * Initializes a constructor without parameters
-	 * Scheme is determined in the constructor
+	 * Initializes a constructor without parameters Scheme is determined in the
+	 * constructor
 	 */
 	public Coach() {
-		this.firstName = ""; 
+		this.firstName = "";
 		this.lastName = "";
 		this.setScheme(getRandomScheme());
 		this.setSalary(0);
+		this.setTeachingFactor(0);
 	}
 
 	/*
-	 * Randomly generates a Scheme value for the Coach
-	 * Follows a uniform distribution between 25 and 75
+	 * Randomly generates a Scheme value for the Coach Follows a uniform
+	 * distribution between 25 and 75
 	 */
-	public int getRandomScheme()
-	{
-		return (int)(Math.random()*(75-25))+25;
+	public int getRandomScheme() {
+		return (int) (Math.random() * (75 - 25)) + 25;
+	}
+
+	/*
+	 * Randomly generates a teaching factor value for the Coach Follows a
+	 * uniform distribution with a mean of 5 and a standard deviation of 0.5
+	 */
+
+	public double getRandomTeachingFactor() {
+		Random rand = new Random();
+		return (double) (rand.nextGaussian() * 0.5 + 5);
+	}
+
+	/*
+	 * Increase salary for the coaches by 100000
+	 */
+	
+	public void increaseSalary() {
+		this.salary = this.salary + 100000;
 	}
 	
-
 	/*
+	 * 
 	 * Printing methods
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
-	
 
 	public void printCoach() {
 
-		System.out.print("Coach: Coach" /* + firstNameCoach + */+ " "
-				+ lastName + " , ");
+		System.out.print("Coach: Coach" /* + firstNameCoach + */ + " " + lastName + " , ");
 		System.out.print("Scheme: " + this.scheme + " , ");
-		// System.out.print("Favor: " + this.favor+" , ");
+		System.out.print("Teaching Factor: " + this.teachingFactor+" , ");
 		System.out.println("Salary: $" + this.salary + ". ");
 
 	}
-	
 
 	/*
 	 * End of printing methods
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
-	
-	
+
 	/*
 	 * Getters and setters for the fields in the class
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
 
 	public int getScheme() {
@@ -86,18 +105,26 @@ public class Coach {
 		this.salary = salary;
 	}
 
-	
+	public double getTeachingFactor() {
+		return teachingFactor;
+	}
+
+	public void setTeachingFactor(double teachingFactor) {
+		this.teachingFactor = teachingFactor;
+	}
+
 	/*
 	 * End of Getters and Setters
-	 * -------------------------------------------------------------------------------------------------
+	 * -------------------------------------------------------------------------
+	 * ------------------------
 	 */
 
-	public Coach deepCopy(){
+	public Coach deepCopy() {
 		Coach c = new Coach();
-		c.scheme=this.scheme;
-		c.salary=this.salary;
-		c.firstName=this.firstName;
-		c.lastName=this.lastName;
+		c.scheme = this.scheme;
+		c.salary = this.salary;
+		c.firstName = this.firstName;
+		c.lastName = this.lastName;
 		return c;
 	}
 

@@ -246,7 +246,7 @@ public class Season {
 				Coach coach = team.getCoach();
 				Player player = team.getRoster().get(j);
 				// player.increaseAge(); // this is wrong ! All the players must age not just those in team rosters !!
-				player.updateFit(coach.getScheme()); // this is fine because players not in any team roster dont have a coach
+				player.updateFit(coach); // this is fine because players not in any team roster dont have a coach
 			}
 			
 			
