@@ -76,6 +76,7 @@ public class Season {
 		for (Game g : this.games) {
 			Team victor = g.runGameSimulation();
 			victors.add(victor);
+			
 		}
 	}
 
@@ -351,6 +352,8 @@ public class Season {
 		for (Team t : this.teams) {
 			t.resetScores();
 			t.resetRevenue();
+			t.saveResultToList();
+			t.clearResult();
 		}
 
 	}
