@@ -323,9 +323,24 @@ public class Season {
 		ArrayList<Team> teamLosstoWinOrder = new ArrayList<Team>();
 		teamLosstoWinOrder = determineLosertoWinner();
 
-		Team worstTeam = teamLosstoWinOrder.get(0);
-		Coach newCoach = worstTeam.getGM().pickACoach(coachPool);
-		worstTeam.setCoach(newCoach);
+		// worst team does not fire the coach now.
+		// coach firing depends on the Owner
+		
+		// Team worstTeam = teamLosstoWinOrder.get(0); 
+		// Coach newCoach = worstTeam.getGM().pickACoach(coachPool);
+		// worstTeam.setCoach(newCoach);
+		
+		// this should be done before saveResult and clear Result for the team
+		
+		for(Team t: this.teams)
+		{
+			if(t.getOwner().fireCoach())
+			{
+				Coach replacementCoach = t.getGM().pickACoach(coachPool);
+				t.setCoach(replacementCoach);
+			}
+		}
+		
 		
 		
 		// till here the new coach has been assigned to the worst team and the 2 PQs are ready
