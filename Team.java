@@ -191,6 +191,26 @@ public class Team {
 	{
 		return this.results;
 	}
+	
+	// offseason for this "current season" has just started
+	public Result getCurrentSeasonResult()
+	{
+		return this.result;
+	}
+	
+	// this is the season before the current season
+	// if the offseason has been called then this past season should return null
+	// since there is no prior season
+	// to ensure that this works the owner must call this before the season result is saved to the list
+	// the season result is saved to the list as the final action in the offseason method of the season class
+	
+	// If this returns null means the 1st season has just ended
+	public Result getPastSeasonResult()
+	{
+		if(this.results.size() == 0)
+			return null;
+		return this.results.get(this.results.size() - 1);
+	}
 
 	/*
 	 * End of Getters and Setters
