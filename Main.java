@@ -254,10 +254,17 @@ public class Main {
 	}
 
 	public static void printTeamDetails(ArrayList<Season> seasons) {
+		for(int i=0; i<seasons.get(0).teams.size(); i++) {
+			System.out.println(seasons.get(0).teams.get(i).getTeamName());
+		}
+		System.out.println("");
+		System.out.print("Please select a team: ");
+		Scanner scan = new Scanner(System.in);
+		String input = scan.nextLine();
 		for (int i = 0; i < seasons.size(); i++) {
 			Season s = seasons.get(i);
 			System.out.println("SEASON #" + (i + 1));
-			s.printRosterDetails();
+			s.printRosterDetails(input);
 			System.out.println("");
 		}
 	}
