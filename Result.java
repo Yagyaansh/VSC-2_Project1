@@ -61,4 +61,17 @@ public class Result {
 		this.draws++;
 	}
 	
+	/*
+	* Creating a deep copy of Result and returning it to the calling method
+	*/
+	
+	public Result getDeepCopy()
+	{
+		Result copy = new Result();
+		copy.setWins(this.getWins());
+		copy.setLosses(this.getLosses());
+		copy.setDraws(this.getDraws());
+		return copy;
+	}
+	
 }
