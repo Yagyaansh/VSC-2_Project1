@@ -262,11 +262,17 @@ public class Team {
 	 */
 
 	public void incrementLosses() {
-		this.losses++;
+		this.losses++; // once I have sure that the Result class is working I will get rid of losses
+		this.result.incrementLosses();
 	}
 
 	public void incrementWins() {
-		this.wins++;
+		this.wins++; // once I have sure that the Result class is working I will get rid of wins
+		this.result.incrementWins();
+	}
+	
+	public void incrementDraws() {
+		this.result.incrementDraws();
 	}
 
 	public void updateHomeTeamRevenue() {
@@ -408,6 +414,28 @@ public class Team {
 			}
 		}
 
+	}
+	
+	/*
+	* The offseason has started and current seasons result has to stored in the record 
+	* The results array list stores the current results
+	* make sure to store the deep copy of the result in the array list
+	*/
+	
+	public void saveResultToList()
+	{
+		this.results.add(this.result.getDeepCopy());
+	}
+	
+	/*
+	* Clear the result field so that the result of the next season can be recorded here.
+	*/
+	
+	public void clearResult()
+	{
+		this.setWins(0);
+		this.setDraws(0);
+		this.setLosses(0);
 	}
 	
 	// Win and loss record must be reset after each season
