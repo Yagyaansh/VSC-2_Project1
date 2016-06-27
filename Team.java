@@ -205,7 +205,7 @@ public class Team {
 	// the season result is saved to the list as the final action in the offseason method of the season class
 	
 	// If this returns null means the 1st season has just ended
-	public Result getPastSeasonResult()
+	public Result getPreviousSeasonResult()
 	{
 		if(this.results.size() == 0)
 			return null;
