@@ -159,11 +159,11 @@ public class Team {
 	}
 
 	public int getWins() {
-		return this.wins;
+		return this.result.getWins();
 	}
 
 	public int getLosses() {
-		return this.losses;
+		return this.result.getLosses();
 	}
 	
 	public Owner getOwner() {
@@ -483,6 +483,11 @@ public class Team {
 		t.defensiveRoster = defensiveRoster;
 		t.wins = this.wins;
 		t.losses = this.losses;
+		
+		// Need to add deep copy for the 2 new fields that I have created
+		// results - ArrayList of results - history of results (each result stores W-D-L for every seasosn)
+		// result - type Result
+		
 		return t;
 	}
 
