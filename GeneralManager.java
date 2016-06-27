@@ -23,7 +23,12 @@ public class GeneralManager {
 	}
 
 	public GeneralManager() {
-		// TODO Auto-generated constructor stub
+		this.scoutingScore = 0;
+		this.favor = 0;
+		this.salary = 0;
+		firstNameManager = null;
+		lastNameManager = null;
+		GMPickTeam = null;
 	}
 
 	/*

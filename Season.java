@@ -431,15 +431,41 @@ public class Season {
 	
 	
 
-	public void printRosterDetails() {
+	public void printRosterDetails(String input) {
+		// for (int i = 0; i < games.size(); i++) {
+		// Game g = this.games.get(i);
+		// System.out.println("Game #" + (i + 1));
+		// g.getTempTeam1().printTeam();
+		// g.getTempTeam2().printTeam();
+		// System.out.println(
+		// "----------------------------------------------------------------------------------------");
+		// }
+		boolean printTempTeam1 = false;
 		for (int i = 0; i < games.size(); i++) {
 			Game g = this.games.get(i);
-			System.out.println("Game #" + (i + 1));
-			g.getTempTeam1().printTeam();
-			g.getTempTeam2().printTeam();
-			System.out.println(
-					"----------------------------------------------------------------------------------------");
+			if (g.getTempTeam1().getTeamName().equals(input) || g.getTeam2().getTeamName().equals(input)) {
+				if (g.getTempTeam1().getTeamName().equals(input)) {
+					printTempTeam1 = true;
+
+				} else {
+					printTempTeam1 = false;
+				}
+				if (printTempTeam1) {
+					System.out.println("Game #" + (i + 1));
+					g.getTempTeam1().printTeam();
+					System.out.println(
+							"----------------------------------------------------------------------------------------");
+				}
+				else{
+					System.out.println("Game #" + (i + 1));
+					g.getTempTeam2().printTeam();
+					System.out.println(
+							"----------------------------------------------------------------------------------------");
+			
+				}
+			}
 		}
+
 	}
 
 	/*
