@@ -23,6 +23,7 @@ public class Team {
 	private int losses;
 	private Owner owner;
 	private ArrayList<Result> results;
+	private Result result;
 
 	/*
 	 * Constructor to initialize a Team with NAME, HOMETOWN and GM population is
@@ -85,6 +86,7 @@ public class Team {
 		}
 		this.owner = new Owner(this);
 		this.results = new ArrayList<>();
+		this.result = new Result();
 	}
 
 	/*
@@ -107,6 +109,7 @@ public class Team {
 		this.population = 0;
 		this.owner = new Owner(this);
 		this.results = new ArrayList<>();
+		this.result = new Result();
 	}
 
 	/*
