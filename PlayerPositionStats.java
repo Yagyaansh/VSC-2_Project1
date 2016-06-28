@@ -7,6 +7,9 @@ public class PlayerPositionStats {
   private int receiverScore;
   private int runningbackScore;
   
+  // Is it a good idea to maintain a PQ with all the scores. We will always want them in 
+  // descending order. But it will not be very easy to implement this.
+  
   public PlayerPositionStats()
   {
 	  this.secondaryScore = 0;
