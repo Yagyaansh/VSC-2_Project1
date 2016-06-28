@@ -23,9 +23,9 @@ public class Player {
 	private boolean offensive;
 	private int age;
 	private boolean careerEndingInjury;
-	private int[] positionScores;
+	private PlayerPositionStats positionScores;
 	private int wonderlic;
-	private String position;
+	private String bestPosition;
 	private boolean isInATeam;
 	private Team team; // make the player reference back to the team. If the player is not in a team then set team to null
 
@@ -51,8 +51,8 @@ public class Player {
 		}
 		
 		wonderlic = 0;
-		this.position = generateRandomPosition();
 		this.positionScores = assignPositionScores();
+		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -80,8 +80,8 @@ public class Player {
 		}
 		
 		wonderlic = 0;
-		this.position = generateRandomPosition();
 		this.positionScores = assignPositionScores();
+		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -108,8 +108,8 @@ public class Player {
 		}
 		
 		wonderlic = 0;	
-		this.position = generateRandomPosition();
 		this.positionScores = assignPositionScores();
+		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -139,8 +139,8 @@ public class Player {
 		}
 		
 		wonderlic = 0;
-		this.position = generateRandomPosition();
 		this.positionScores = assignPositionScores();
+		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -162,8 +162,8 @@ public class Player {
 		}
 		
 		wonderlic = 0;	
-		this.position = generateRandomPosition();
 		this.positionScores = assignPositionScores();
+		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -240,27 +240,63 @@ public class Player {
 		return rand.nextBoolean();
 	}
 	
-	public String generateRandomPosition()
-	{
-		// Depending on whether the player has been assigned offensive or defensive type
-		// assign the player any one of the 3 available positions in that type
-		// assign the player that position as a string
-		// the standard is to use all lower case letters in the string (no spaces), and the positions are : 
-		// Defensive - secondary, linebacker, defensiveline
-		// Offensive - offensiveline, receiver, runningback
+	// public String generateRandomPosition()
+	// {
+	// 	// Depending on whether the player has been assigned offensive or defensive type
+	// 	// assign the player any one of the 3 available positions in that type
+	// 	// assign the player that position as a string
+	// 	// the standard is to use all lower case letters in the string (no spaces), and the positions are : 
+	// 	// Defensive - secondary, linebacker, defensiveline
+	// 	// Offensive - offensiveline, receiver, runningback
 		
-		// generate a random number between (and including 0-2)
-		// check whether player is offensive or defensive type
-		// assign as follows : 
-		// Defensive - secondary (0), linebacker (1), defensiveline (2)
-		// Offensive - offensiveline (0), receiver (1), runningback (2)
-	}
+	// 	// generate a random number between (and including 0-2)
+	// 	// check whether player is offensive or defensive type
+	// 	// assign as follows : 
+	// 	// Defensive - secondary (0), linebacker (1), defensiveline (2)
+	// 	// Offensive - offensiveline (0), receiver (1), runningback (2)
+	// }
 	
-	public int[] assignPositionScores()
+	public PlayerPositionStats assignPositionScores()
 	{
-		// check the position that the player has been assigned
-		// if offensive then all defensive have to be 0 and vice-versa
-		// 
+		// assign player scores for all positions randomly
+		PlayerPositionStats stats = new PlayerPositionStats();
+		
+		ArrayList<Integer> values = new ArrayList<>();
+		values.add(100); values.add(67); values.add(33);
+		
+		if(this.isOffensive())
+		{
+			// set them randomly to high medium and low
+			// the others were initialized to 0 so no change is needed
+			
+			Random rand = new Random();
+			int x = rand.nextInt(values.size());
+			stats.setOffensivelineScore(values.get(x));
+			values.remove(x);
+			x = rand.nextInt(values.size());
+			stats.setReceiverScore(values.get(x));
+			values.remove(x);
+			stats.setRunningbackScore(values.get(0));
+			values.remove(0);
+		}
+		else
+		{
+			// set them randomly to high medium and low
+			// the others were initialized to 0 so no change is needed
+			
+			Random rand = new Random();
+			int x = rand.nextInt(values.size());
+			stats.setSecondaryScore(values.get(x));
+			values.remove(x);
+			x = rand.nextInt(values.size());
+			stats.setLineBackerScore(values.get(x));
+			values.remove(x);
+			stats.setDefensivelineScore(values.get(0));
+			values.remove(0);
+		}
+		
+		return stats;
+		
 	}
 	
 	/*
@@ -383,25 +419,16 @@ public class Player {
 		return careerEndingInjury;
 	}
 	
-	public int[] getPositionScores() {
-		return positionScores;
+	public PlayerPositionStats getPositionScores() {
+		return this.positionScores;
 	}
 
-	public void setPositionScores(int positionScores[]) {
+	public void setPositionScores(PlayerPositionStats positionScores) {
 		this.positionScores = positionScores;
 	}
 	
-	public void setPositionScore(int pos, int score)
-	{
-		this.positionScores[pos] = score;
-	}
-	
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
+	public String getBestPosition() {
+		return this.positionScores.getBestPosition();
 	}
 
 	public int getWonderlic() {
