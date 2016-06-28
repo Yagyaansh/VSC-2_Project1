@@ -74,4 +74,10 @@ public class Result {
 		return copy;
 	}
 	
+	public String toString()
+	{
+		String s = this.wins + "-" + this.draws + "-" + this.losses;
+		return s;
+	}
+	
 }
