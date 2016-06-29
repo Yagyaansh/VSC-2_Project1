@@ -1,3 +1,4 @@
+package application;
 /******************************************************************************
  *  Compilation:  javac MinPQ.java
  *  Execution:    java MinPQ < input.txt

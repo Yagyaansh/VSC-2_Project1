@@ -1,3 +1,5 @@
+package application;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
@@ -52,7 +54,7 @@ public class Player {
 		
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
+		//this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -81,7 +83,7 @@ public class Player {
 		
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
+		//this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -109,7 +111,7 @@ public class Player {
 		
 		wonderlic = 0;	
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
+		//this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -289,7 +291,7 @@ public class Player {
 			stats.setSecondaryScore(values.get(x));
 			values.remove(x);
 			x = rand.nextInt(values.size());
-			stats.setLineBackerScore(values.get(x));
+			stats.setLinebackerScore(values.get(x));
 			values.remove(x);
 			stats.setDefensivelineScore(values.get(0));
 			values.remove(0);
@@ -347,6 +349,10 @@ public class Player {
 
 	public boolean getRookie() {
 		return this.rookie;
+	}
+	
+	public String getName() {
+		return this.firstName + " " + this.lastName;
 	}
 	
 	public int getAge(){

@@ -1,3 +1,4 @@
+package application;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -177,6 +178,7 @@ public class Main {
 		return 100;
 	}
 
+
 	/*
 	 * End of Getters and Setters
 	 * -------------------------------------------------------------------------
@@ -281,9 +283,11 @@ public class Main {
 
 	}
 
+
 	/*
 	 * All the print methods are between the lines
 	 * -------------------------------------------------------------------------
 	 * ----------------------------
 	 */
+	
 }

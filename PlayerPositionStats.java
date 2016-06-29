@@ -1,3 +1,4 @@
+package application;
 public class PlayerPositionStats {
   
   private int secondaryScore;
@@ -75,10 +76,10 @@ public class PlayerPositionStats {
 	this.runningbackScore = runningbackScore;
   }
   
-  public getBestPosition()
-  {
-    // the position with the highest score will be returned 
-  }
+//  public getBestPosition()
+//  {
+//    // the position with the highest score will be returned 
+//  }
   
  /*
  * End of Getters and Setters

@@ -1,3 +1,4 @@
+package application;
 /*
  * Wraps two variables into one type using a Key,Value combination
  * Used for the MinPQ
