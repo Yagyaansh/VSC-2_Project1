@@ -10,7 +10,7 @@ public class Owner {
 	private String firstName;
 	private String lastName;
 	private Team team;
-	
+
 	// Maybe delete this
 	private int lastYearWins;
 	private int lastYearLosses;
@@ -113,15 +113,17 @@ public class Owner {
 	 * coach will be fired
 	 * 
 	 */
-	public boolean shouldCoachBeFired() {
-		/*
-		 * We need to store history of performances for each team over every
-		 * season We need that for the output display anyway Once we have done
-		 * that we can get the history of season performances use that here to
-		 * determine if the coach will be fired or not
-		 */
-	}
+	
+	// public boolean shouldCoachBeFired() {
+	/*
+	 * We need to store history of performances for each team over every season
+	 * We need that for the output display anyway Once we have done that we can
+	 * get the history of season performances use that here to determine if the
+	 * coach will be fired or not
+	 */
+	// }
 
+	
 	/*
 	 * Determines if the coach needs to be fired or not
 	 * 
@@ -159,45 +161,43 @@ public class Owner {
 			return true;
 		}
 	}
-	
-	// Just need the team here. 
+
+	// Just need the team here.
 	// Already being called by the owner object.
 	// the owner has a reference to the team that he/she owns
-	
-	public boolean fireCoach()
-	{
+
+	public boolean fireCoach() {
 		Result current = this.team.getCurrentSeasonResult();
 		Result previous = this.team.getPreviousSeasonResult();
-		if(previous == null)
+		if (previous == null)
 			return false;
-		if(current.getWins() >= this.happyValue)
+		if (current.getWins() >= this.happyValue)
 			return false;
-		if(current.getWins() <= this.unhappyValue)
+		if (current.getWins() <= this.unhappyValue)
 			return true;
-		if(current.getWins() > this.unhappyValue && current.getWins() < this.happyValue)
-		{
-			if(current.getWins() > (previous.getWins() + this.patience))
+		if (current.getWins() > this.unhappyValue && current.getWins() < this.happyValue) {
+			if (current.getWins() > (previous.getWins() + this.patience))
 				return false;
 			return true;
 		}
+		return false;
 	}
-	
-	
+
 	/*
 	 * Print methods
-	 */	
-	
+	 */
+
 	public void printOwner() {
 		System.out.print("Owner: " + this.firstName + " " + lastName + " , ");
 		System.out.print("Happy Value: " + this.happyValue + " , ");
 		System.out.print("Unhappy Value: " + this.unhappyValue + " , ");
 		System.out.print("Patience: " + this.patience + " , ");
 	}
-	
+
 	/*
 	 * Deep copy method used to store information for printing purposes
-	 */	
-	public Owner deepCopy(){
+	 */
+	public Owner deepCopy() {
 		Owner o = new Owner();
 		o.happyValue = this.happyValue;
 		o.unhappyValue = this.unhappyValue;
@@ -207,6 +207,5 @@ public class Owner {
 		o.team = this.team;
 		return o;
 	}
-	 
 
 }
