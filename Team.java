@@ -134,11 +134,11 @@ public class Team {
 		return this.starters;
 	}
 
-	public ArrayList<Player> getOffensivePlayersInRoster() {
+	public ArrayList<Player> getOffensiveRoster() {
 		return this.offensiveRoster;
 	}
 
-	public ArrayList<Player> getDefensivePlayersInRoster() {
+	public ArrayList<Player> getDefensiveRoster() {
 		return this.defensiveRoster;
 	}
 
@@ -161,9 +161,17 @@ public class Team {
 	public int getWins() {
 		return this.result.getWins();
 	}
+	
+	public void setWins(int wins){
+		this.wins = wins;
+	}
 
 	public int getLosses() {
 		return this.result.getLosses();
+	}
+	
+	public void setLosses(int losses) {
+		this.losses = losses;
 	}
 	
 	public Owner getOwner() {
@@ -453,9 +461,9 @@ public class Team {
 	
 	public void clearResult()
 	{
-		this.setWins(0);
-		this.setDraws(0);
-		this.setLosses(0);
+		this.result.setWins(0);
+		this.result.setDraws(0);
+		this.result.setLosses(0);
 	}
 	
 	// Win and loss record must be reset after each season

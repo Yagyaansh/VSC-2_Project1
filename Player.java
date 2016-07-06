@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
@@ -289,7 +290,7 @@ public class Player {
 			stats.setSecondaryScore(values.get(x));
 			values.remove(x);
 			x = rand.nextInt(values.size());
-			stats.setLineBackerScore(values.get(x));
+			stats.setLinebackerScore(values.get(x));
 			values.remove(x);
 			stats.setDefensivelineScore(values.get(0));
 			values.remove(0);
