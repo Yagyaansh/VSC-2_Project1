@@ -110,6 +110,7 @@ public class Game {
 			team1.incrementLosses();
 			team2.incrementWins();
 		} else {
+			// when we can have draws then just increment the number of draws for both teams
 			Random rand = new Random();
 			boolean team1Wins = rand.nextBoolean();
 			if (team1Wins) {

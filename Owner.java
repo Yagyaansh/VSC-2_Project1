@@ -160,6 +160,29 @@ public class Owner {
 		}
 	}
 	
+	// Just need the team here. 
+	// Already being called by the owner object.
+	// the owner has a reference to the team that he/she owns
+	
+	public boolean fireCoach()
+	{
+		Result current = this.team.getCurrentSeasonResult();
+		Result previous = this.team.getPreviousSeasonResult();
+		if(previous == null)
+			return false;
+		if(current.getWins() >= this.happyValue)
+			return false;
+		if(current.getWins() <= this.unhappyValue)
+			return true;
+		if(current.getWins() > this.unhappyValue && current.getWins() < this.happyValue)
+		{
+			if(current.getWins() > (previous.getWins() + this.patience))
+				return false;
+			return true;
+		}
+	}
+	
+	
 	/*
 	 * Print methods
 	 */	

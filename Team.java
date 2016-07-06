@@ -22,6 +22,8 @@ public class Team {
 	private int wins;
 	private int losses;
 	private Owner owner;
+	private ArrayList<Result> results;
+	private Result result;
 
 	/*
 	 * Constructor to initialize a Team with NAME, HOMETOWN and GM population is
@@ -83,6 +85,8 @@ public class Team {
 			this.population = 617680;
 		}
 		this.owner = new Owner(this);
+		this.results = new ArrayList<>();
+		this.result = new Result();
 	}
 
 	/*
@@ -104,6 +108,8 @@ public class Team {
 		this.losses = 0;
 		this.population = 0;
 		this.owner = new Owner(this);
+		this.results = new ArrayList<>();
+		this.result = new Result();
 	}
 
 	/*
@@ -153,11 +159,11 @@ public class Team {
 	}
 
 	public int getWins() {
-		return this.wins;
+		return this.result.getWins();
 	}
 
 	public int getLosses() {
-		return this.losses;
+		return this.result.getLosses();
 	}
 	
 	public Owner getOwner() {
@@ -174,6 +180,36 @@ public class Team {
 
 	public void setCoach(Coach coach) {
 		this.coach = coach;
+	}
+	
+	public void addToResults(Result r)
+	{
+		this.results.add(r);
+	}
+	
+	public ArrayList<Result> getResults()
+	{
+		return this.results;
+	}
+	
+	// offseason for this "current season" has just started
+	public Result getCurrentSeasonResult()
+	{
+		return this.result;
+	}
+	
+	// this is the season before the current season
+	// if the offseason has been called then this past season should return null
+	// since there is no prior season
+	// to ensure that this works the owner must call this before the season result is saved to the list
+	// the season result is saved to the list as the final action in the offseason method of the season class
+	
+	// If this returns null means the 1st season has just ended
+	public Result getPreviousSeasonResult()
+	{
+		if(this.results.size() == 0)
+			return null;
+		return this.results.get(this.results.size() - 1);
 	}
 
 	/*
@@ -246,11 +282,17 @@ public class Team {
 	 */
 
 	public void incrementLosses() {
-		this.losses++;
+		this.losses++; // once I have sure that the Result class is working I will get rid of losses
+		this.result.incrementLosses();
 	}
 
 	public void incrementWins() {
-		this.wins++;
+		this.wins++; // once I have sure that the Result class is working I will get rid of wins
+		this.result.incrementWins();
+	}
+	
+	public void incrementDraws() {
+		this.result.incrementDraws();
 	}
 
 	public void updateHomeTeamRevenue() {
@@ -394,6 +436,28 @@ public class Team {
 
 	}
 	
+	/*
+	* The offseason has started and current seasons result has to stored in the record 
+	* The results array list stores the current results
+	* make sure to store the deep copy of the result in the array list
+	*/
+	
+	public void saveResultToList()
+	{
+		this.results.add(this.result.getDeepCopy());
+	}
+	
+	/*
+	* Clear the result field so that the result of the next season can be recorded here.
+	*/
+	
+	public void clearResult()
+	{
+		this.setWins(0);
+		this.setDraws(0);
+		this.setLosses(0);
+	}
+	
 	// Win and loss record must be reset after each season
 	
 	public void resetScores() {
@@ -439,6 +503,11 @@ public class Team {
 		t.defensiveRoster = defensiveRoster;
 		t.wins = this.wins;
 		t.losses = this.losses;
+		
+		// Need to add deep copy for the 2 new fields that I have created
+		// results - ArrayList of results - history of results (each result stores W-D-L for every seasosn)
+		// result - type Result
+		
 		return t;
 	}
 
