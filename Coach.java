@@ -19,7 +19,7 @@ public class Coach {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.setScheme(getRandomScheme());
-		this.setSalary(600000);
+		this.setSalary(1000000);
 		this.setTeachingFactor(getRandomTeachingFactor());
 	}
 
@@ -31,7 +31,7 @@ public class Coach {
 		this.firstName = "";
 		this.lastName = "";
 		this.setScheme(getRandomScheme());
-		this.setSalary(0);
+		this.setSalary(1000000);
 		this.setTeachingFactor(0);
 	}
 
@@ -40,7 +40,8 @@ public class Coach {
 	 * distribution between 25 and 75
 	 */
 	public int getRandomScheme() {
-		return (int) (Math.random() * (75 - 25)) + 25;
+		Random rand = new Random();
+		return (rand.nextInt(51) + 25);
 	}
 
 	/*

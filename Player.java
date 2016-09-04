@@ -211,26 +211,23 @@ public class Player {
 	 */
 	private double getRandomFitScore() {
 		Random rand = new Random ();
-		fit = rand.nextInt(100);
+		fit = rand.nextInt(101);
 		return fit;
 	}
 	
-	/*
-	 * Determines the salary of the player - depending on the rookie field
-	 */
-	private int getSalary() {
-		if (this.isRookie()) {
-			return 77000;
-		}
-		return 100000;
+	private int getSalary(Coach c) {
+		int salary= (int)(this.age+(100-Math.abs(this.fit-c.getScheme()) + this.athleticism)*100000);
+		this.salary=salary;
+		return salary;
 	}
 
 	/*
 	 * Determined the Age randomly
-	 * Follows a uniform distribution between 21 and 30
+	 * Follows a uniform distribution between 21 and 35
 	 */
 	private int getRandomAge() {
-		return (int) (Math.random() * (35 - 21) + 21);
+		Random rand = new Random();
+		return (rand.nextInt(15) + 21);
 	}
 
 	/*
@@ -332,12 +329,6 @@ public class Player {
 		this.fit = fit;
 	}
 
-	public int getSalaryAmount(Coach c) {
-		int salary= (int)(this.age+(100-Math.abs(this.fit-c.getScheme()) + this.athleticism)*100000);
-		this.salary=salary;
-		return salary;
-	}
-
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
@@ -377,7 +368,7 @@ public class Player {
 
 	public void increaseAge() {
 		this.age++;
-		this.athleticism=this.athleticism-2;
+		this.athleticism = this.athleticism-2;
 		if(this.age>21){
 			this.rookie=false;
 		}

@@ -134,11 +134,11 @@ public class Team {
 		return this.starters;
 	}
 
-	public ArrayList<Player> getOffensiveRoster() {
+	public ArrayList<Player> getOffensivePlayersInRoster() {
 		return this.offensiveRoster;
 	}
 
-	public ArrayList<Player> getDefensiveRoster() {
+	public ArrayList<Player> getDefensivePlayersInRoster() {
 		return this.defensiveRoster;
 	}
 
@@ -161,17 +161,9 @@ public class Team {
 	public int getWins() {
 		return this.result.getWins();
 	}
-	
-	public void setWins(int wins){
-		this.wins = wins;
-	}
 
 	public int getLosses() {
 		return this.result.getLosses();
-	}
-	
-	public void setLosses(int losses) {
-		this.losses = losses;
 	}
 	
 	public Owner getOwner() {
@@ -295,7 +287,7 @@ public class Team {
 	}
 
 	public void incrementWins() {
-		this.wins++; // The is a comment once I have sure that the Result class is working I will get rid of wins
+		this.wins++; // once I have sure that the Result class is working I will get rid of wins
 		this.result.incrementWins();
 	}
 	
@@ -315,17 +307,16 @@ public class Team {
 		this.grossRevenue += 1000000;
 	}
 
-	public int TeamDeterminateCalculator() {
-		int sum = 0;
+	public double TeamDeterminateCalculator() {
+		double determinante = 0.0;
 		for (int i = 0; i < 22; i++) {
 			Player member = starters.get(i);
-			int determinate;
-			determinate = (int)(member.getAthleticism() - Math.abs(coach.getScheme() - member.getFit()));
-			if (determinate > 0) {
-				sum = sum + determinate;
-			}
+			determinante += (member.getAthleticism() - Math.abs(coach.getScheme()
+					- member.getFit()));
 		}
-		return sum;
+
+		return determinante;
+
 	}
 
 	public double profitCalculator() {
@@ -461,9 +452,9 @@ public class Team {
 	
 	public void clearResult()
 	{
-		this.result.setWins(0);
-		this.result.setDraws(0);
-		this.result.setLosses(0);
+		this.setWins(0);
+		this.setDraws(0);
+		this.setLosses(0);
 	}
 	
 	// Win and loss record must be reset after each season
