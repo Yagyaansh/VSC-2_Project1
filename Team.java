@@ -295,7 +295,7 @@ public class Team {
 	}
 
 	public void incrementWins() {
-		this.wins++; // once I have sure that the Result class is working I will get rid of wins
+		this.wins++; // The is a comment once I have sure that the Result class is working I will get rid of wins
 		this.result.incrementWins();
 	}
 	
