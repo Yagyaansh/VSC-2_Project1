@@ -79,11 +79,17 @@ public class Main {
 			seasons.add(new Season(teams));
 		}
 
-		for (Season s : seasons) {
+	//	for (Season s : seasons) {
+		for(int i=0; i<seasons.size(); i++) {
+			Season s = seasons.get(i);
+			boolean isFirstSeason = false;
+			if(i==0) {
+				isFirstSeason= true;
+			}
 			s.startSeason();
 			s.play();
 			results.add(s.seasonResult());
-			s.offSeason(this.getPlayerPool(), this.getCoachPool());
+			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
 		}
 		printInputs(numberOfTeams, numberOfSeasons);
 		printOutputs(seasons);
