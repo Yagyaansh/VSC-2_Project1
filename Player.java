@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,10 +24,16 @@ public class Player {
 	private boolean offensive;
 	private int age;
 	private boolean careerEndingInjury;
-	private PlayerPositionStats positionScores;
 	private int wonderlic;
 	private String bestPosition;
 	private boolean isInATeam;
+	private int[] positionScores;
+ 	private final int SECONDARYSCORE = 0;
+	private final int LINEBACKERSCORE = 1;
+ 	private final int DEFENSIVELINESCORE = 2;
+ 	private final int OFFESENSIVELINESCORE = 3;
+	private final int RECIEVERSCORE = 4;
+	private final int RUNNNINGBACKSCORE = 5; 
 	private Team team; // make the player reference back to the team. If the
 						// player is not in a team then set team to null
 
@@ -254,9 +261,7 @@ public class Player {
 	// }
 
 	public PlayerPositionStats assignPositionScores() {
-		// assign player scores for all positions randomly
-		PlayerPositionStats stats = new PlayerPositionStats();
-
+		
 		ArrayList<Integer> values = new ArrayList<>();
 		values.add(100);
 		values.add(67);
@@ -420,16 +425,29 @@ public class Player {
 		return careerEndingInjury;
 	}
 
-	public PlayerPositionStats getPositionScores() {
+	public int[] getPositionScores() {
 		return this.positionScores;
 	}
 
-	public void setPositionScores(PlayerPositionStats positionScores) {
-		this.positionScores = positionScores;
+	public void setPositionScores(int[] positionScoreAdd) {
+		if(positionScoreAdd.length != 6){
+			System.out.println("positionScore length should be size");
+		}
+		for(int x = 0; x < positionScoreAdd.length; x++){
+			this.positionScores[x] = positionScoreAdd[x];
+		}
 	}
 
-	public String getBestPosition() {
-		return this.positionScores.getBestPosition();
+	public int getBestPosition() {
+		int temp = 0;
+		int pos = 0;
+		for(int x = 0; x < this.positionScores.length; x++){
+			if(temp < this.positionScores[x]){
+				temp = this.positionScores[x];
+				pos = x;
+			}
+		}
+		return pos;
 	}
 
 	public int getWonderlic() {
