@@ -89,12 +89,11 @@ public class Game {
 		team2Determinate = team2.TeamDeterminateCalculator();
 
 		Random generator1 = new Random();
-		double number1 = generator1.nextGaussian();
-		Random generator2 = new Random();
-		double number2 = generator2.nextGaussian();
-		team1Stochiastic = 10 * number1;
-		team2Stochiastic = 10 * number2;
-
+		
+		team1Stochiastic = 10 * generator1.nextGaussian();
+		team2Stochiastic = 10 * generator1.nextGaussian();
+		
+		//Advantage of 7 for home team (team 1)
 		team1advantage = 7;
 		team2advantage = 0;
 
@@ -111,9 +110,7 @@ public class Game {
 			team2.incrementWins();
 		} else {
 			// when we can have draws then just increment the number of draws for both teams
-			Random rand = new Random();
-			boolean team1Wins = rand.nextBoolean();
-			if (team1Wins) {
+			if (generator1.nextBoolean()) {
 				victor = team1;
 				team1.incrementWins();
 				team2.incrementLosses();
@@ -139,10 +136,7 @@ public class Game {
 					team1.getStarters().get(i).careerEndingInjury();
 				}
 			}
-		}
-		for (int i = 0; i < 22; i++) {
-			Random rand = new Random();
-			double d = rand.nextDouble();
+			d = rand.nextDouble();
 			if (d >= 0.9) {
 				team2.getStarters().get(i).injured();
 				if (this.isLastGame()) {
