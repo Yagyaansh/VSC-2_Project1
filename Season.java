@@ -188,7 +188,7 @@ public class Season {
 	 * 
 	 */
 
-	public void offSeason(Player_Pool players, Coach_Pool coachPool) {
+	public void offSeason(Player_Pool players, Coach_Pool coachPool, boolean isFirstSeason) {
 		// MinPQ_Athleticism<Wrapper_DataKey<Player, Integer>> rookies = new MinPQ_Athleticism<>();
 
 		/*
@@ -333,12 +333,13 @@ public class Season {
 		
 		// this should be done before saveResult and clear Result for the team
 		
-		for(Team t: this.teams)
-		{
-			if(t.getOwner().fireCoach())
-			{
-				Coach replacementCoach = t.getGM().pickACoach(coachPool);
-				t.setCoach(replacementCoach);
+		
+		if (!isFirstSeason) {
+			for (Team t : this.teams) {
+				if (t.getOwner().fireCoach()) {
+					Coach replacementCoach = t.getGM().pickACoach(coachPool);
+					t.setCoach(replacementCoach);
+				}
 			}
 		}
 		
