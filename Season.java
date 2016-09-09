@@ -368,7 +368,7 @@ public class Season {
 		// Reset revenue info
 		for (Team t : this.teams) {
 			t.resetScores();
-			t.resetRevenue();
+			//t.resetRevenue();
 			t.saveResultToList();
 			t.clearResult();
 		}
