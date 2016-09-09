@@ -31,9 +31,9 @@ public class Player {
  	private final int SECONDARYSCORE = 0;
 	private final int LINEBACKERSCORE = 1;
  	private final int DEFENSIVELINESCORE = 2;
- 	private final int OFFESENSIVELINESCORE = 3;
-	private final int RECIEVERSCORE = 4;
-	private final int RUNNNINGBACKSCORE = 5; 
+ 	private final int OFFENSIVELINESCORE = 3;
+	private final int RECEIVERSCORE = 4;
+	private final int RUNNINGBACKSCORE = 5; 
 	private Team team; // make the player reference back to the team. If the
 						// player is not in a team then set team to null
 
@@ -260,7 +260,7 @@ public class Player {
 	// // Offensive - offensiveline (0), receiver (1), runningback (2)
 	// }
 
-	public PlayerPositionStats assignPositionScores() {
+	public int[] assignPositionScores() {
 		
 		ArrayList<Integer> values = new ArrayList<>();
 		values.add(100);
@@ -273,19 +273,19 @@ public class Player {
 
 			Random rand = new Random();
 			int x = rand.nextInt(values.size());
-			stats.setOffensivelineScore(values.get(x));
+			positionScores[OFFENSIVELINESCORE] = values.get(x);
 			values.remove(x);
-			if (stats.getOffensivelineScore() == 100) {
-				stats.setRunningbackScore(67);
-				stats.setReceiverScore(33);
-			} else if (stats.getOffensivelineScore() == 67) {
-				stats.setRunningbackScore(100);
-				stats.setReceiverScore(33);
+			if (positionScores[OFFENSIVELINESCORE] == 100) {
+				positionScores[RUNNINGBACKSCORE] = 67;
+				positionScores[RECEIVERSCORE] = 33;
+			} else if (positionScores[OFFENSIVELINESCORE] == 67) {
+				positionScores[RUNNINGBACKSCORE] = 100;
+				positionScores[RECEIVERSCORE] = 33;
 			} else {
 				x = rand.nextInt(values.size());
-				stats.setReceiverScore(values.get(x));
+				positionScores[RECEIVERSCORE] = values.get(x);
 				values.remove(x);
-				stats.setRunningbackScore(values.get(0));
+				positionScores[RUNNINGBACKSCORE] = values.get(0);
 				values.remove(0);
 			}
 		} else {
@@ -294,25 +294,25 @@ public class Player {
 
 			Random rand = new Random();
 			int x = rand.nextInt(values.size());
-			stats.setDefensivelineScore(values.get(x));
+			positionScores[DEFENSIVELINESCORE] = values.get(x);
 			values.remove(x);
-			if (stats.getDefensivelineScore() == 100) {
-				stats.setSecondaryScore(33);
-				stats.setLinebackerScore(67);
-			} else if (stats.getDefensivelineScore() == 67) {
-				stats.setLinebackerScore(100);
-				stats.setSecondaryScore(33);
+			if (positionScores[DEFENSIVELINESCORE] == 100) {
+				positionScores[SECONDARYSCORE] = 33;
+				positionScores[LINEBACKERSCORE] = 67;
+			} else if (positionScores[DEFENSIVELINESCORE] == 67) {
+				positionScores[LINEBACKERSCORE] = 100;
+				positionScores[SECONDARYSCORE] = 33;
 			} else {
 				x = rand.nextInt(values.size());
-				stats.setSecondaryScore(values.get(x));
+				positionScores[SECONDARYSCORE] = values.get(x);
 				values.remove(x);
-				stats.setLinebackerScore(values.get(0));
+				positionScores[LINEBACKERSCORE] = values.get(0);
 				values.remove(0);
 			}
 
 		}
 
-		return stats;
+		return positionScores;
 
 	}
 
