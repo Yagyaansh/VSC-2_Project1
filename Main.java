@@ -35,6 +35,7 @@ public class Main {
 	private GeneralManager_Pool generalManagerPool;
 	private Coach_Pool coachPool;
 	private Player_Pool playerPool;
+	private ArrayList<Team> teams;
 
 	/*
 	 * Constructor - hard-coded with the sizes of the pools Change pool size
@@ -45,6 +46,10 @@ public class Main {
 		this.generalManagerPool = new GeneralManager_Pool(getGMPoolSize());
 		this.coachPool = new Coach_Pool(getCoachPoolSize());
 		this.playerPool = new Player_Pool(getPlayerPoolSize());
+		
+		int numberOfTeams = 16;
+		this.teams = new ArrayList<Team>();
+		this.teams = this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
 	}
 
 	/*
@@ -66,11 +71,7 @@ public class Main {
 
 	public void start() throws Exception {
 
-		ArrayList<Team> teams = new ArrayList<Team>();
-
 		int numberOfTeams = 16;
-		teams = createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
-
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<Team>();
 		int numberOfSeasons = 4;
@@ -101,7 +102,7 @@ public class Main {
 	 * participating in the simulation
 	 */
 
-	public static ArrayList<Team> createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
+	public ArrayList<Team> createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
 			Coach_Pool coachPool, Player_Pool playerPool) {
 		ArrayList<Team> allTeams = new ArrayList<Team>();
 		String[] teamNames = { "Atlanta Falcons", "Baltimore Ravens", "Carolina Panthers", "Chicago Bears",
@@ -118,21 +119,10 @@ public class Main {
 			t.setCoach(coach);
 			allTeams.add(t);
 		}
-
-		int optionNumber = 0;
-		for (int i = 0; i < 50; i++) {
-			for (Team t : allTeams) {
-				Player player = t.getGM().pickAPlayer(playerPool, optionNumber);
-				t.addToRoster(player);
-				player.setIsInATeam(true);
-				player.setTeam(t);
-			}
-			if (optionNumber == 5) {
-				optionNumber = 0;
-			} else {
-				optionNumber++;
-			}
-		}
+		
+		int rosterSize = 50;
+		int numberOfPositions = 6;
+		this.fillAllTeamRosters(rosterSize, numberOfPositions);		
 
 		for (Team t : allTeams) {
 			t.divideRoster_OffensiveAndDefensive();
@@ -146,6 +136,56 @@ public class Main {
 	 * -------------------------------------------------------------------------
 	 * ----------------------------
 	 */
+
+	private void fillAllTeamRosters(int rosterSize, int numberOfPositions) {
+		int i = 0;
+		for(i=0; i< (rosterSize/numberOfPositions); i++)
+		{
+			this.allTeamsPick(Player.RUNNINGBACKSCORE);
+			this.allTeamsPick(Player.RECEIVERSCORE);
+			this.allTeamsPick(Player.OFFENSIVELINESCORE);
+			this.allTeamsPick(Player.SECONDARYSCORE);
+			this.allTeamsPick(Player.LINEBACKERSCORE);
+			this.allTeamsPick(Player.DEFENSIVELINESCORE);
+		}
+		int remaining = rosterSize % numberOfPositions;
+		
+		this.allTeamsPick(Player.RUNNINGBACKSCORE);
+		remaining--;
+		if(remaining == 0)
+			return;
+		
+		this.allTeamsPick(Player.RECEIVERSCORE);
+		remaining--;
+		if(remaining == 0)
+			return;
+		
+		this.allTeamsPick(Player.OFFENSIVELINESCORE);
+		remaining--;
+		if(remaining == 0)
+			return;
+		
+		this.allTeamsPick(Player.SECONDARYSCORE);
+		remaining--;
+		if(remaining == 0)
+			return;
+		
+		this.allTeamsPick(Player.LINEBACKERSCORE);
+		remaining--;
+		
+	}
+
+	private void allTeamsPick(int position) {
+		
+		for(Team team: this.teams)
+		{
+			Player player = team.getGM().pickAPlayer(position);
+			team.addToRoster(player);
+			player.setIsInATeam(true);
+			player.setTeam(team);
+		}
+		
+	}
 
 	public void setGeneralManagerPool(GeneralManager_Pool generalManagerPool) {
 		this.generalManagerPool = generalManagerPool;

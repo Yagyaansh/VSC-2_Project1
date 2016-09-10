@@ -28,12 +28,12 @@ public class Player {
 	private String bestPosition;
 	private boolean isInATeam;
 	private int[] positionScores;
- 	private final int SECONDARYSCORE = 0;
-	private final int LINEBACKERSCORE = 1;
- 	private final int DEFENSIVELINESCORE = 2;
- 	private final int OFFENSIVELINESCORE = 3;
-	private final int RECEIVERSCORE = 4;
-	private final int RUNNINGBACKSCORE = 5; 
+ 	public static final int SECONDARYSCORE = 0;
+ 	public static final int LINEBACKERSCORE = 1;
+ 	public static final int DEFENSIVELINESCORE = 2;
+ 	public static final int OFFENSIVELINESCORE = 3;
+ 	public static final int RECEIVERSCORE = 4;
+ 	public static final int RUNNINGBACKSCORE = 5; 
 	private Team team; // make the player reference back to the team. If the
 						// player is not in a team then set team to null
 

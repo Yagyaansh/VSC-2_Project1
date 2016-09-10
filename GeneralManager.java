@@ -102,54 +102,11 @@ public class GeneralManager {
 	 * parameter) the player after being selected is removed from the player
 	 * pool
 	 */
-	public Player pickAPlayer(Player_Pool playerPool, int optionNumber) {
-		// Random rand = new Random();
-		// int index = rand.nextInt(playerPool.getSize());
-		// Player player = playerPool.getPlayerPool().get(index);
-		// playerPool.getPlayerPool().remove(index);
-		// return player;
-
-		switch (optionNumber) {
-		case 0:
-			return pickARunningBack(playerPool);
-		case 1:
-			return pickAReciever(playerPool);
-		case 2:
-			return pickAOffensiveLine(playerPool);
-		case 3:
-			return pickASecondary(playerPool);
-		case 4:
-			return pickALinebacker(playerPool);
-		case 5:
-			return pickASecondary(playerPool);
-		default:
-			return null;
-		}
-	}
-
-	public Player pickARunningBack(Player_Pool playerPool) {
+	public Player pickAPlayer(int optionNumber) {
 
 	}
 
-	public Player pickAReciever(Player_Pool playerPool) {
-
-	}
-
-	public Player pickAOffensiveLine(Player_Pool playerPool) {
-
-	}
-
-	public Player pickASecondary(Player_Pool playerPool) {
-
-	}
-
-	public Player pickALinebacker(Player_Pool playerPool) {
-
-	}
-
-	public Player pickADefensiveLine(Player_Pool playerPool) {
-
-	}
+	
 
 	public GeneralManager deepCopy() {
 		GeneralManager g = new GeneralManager();
