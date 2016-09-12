@@ -139,7 +139,7 @@ public class Main {
 
 	private void fillAllTeamRosters(int rosterSize, int numberOfPositions) {
 		int i = 0;
-		Collections.sort(this.playerPool);
+		Collections.sort(this.playerPool.getPlayerPool());
 		for(i=0; i< (rosterSize/numberOfPositions); i++)
 		{
 			this.allTeamsPick(Player.RUNNINGBACKSCORE);
