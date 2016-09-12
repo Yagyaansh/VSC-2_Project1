@@ -214,9 +214,13 @@ public class Player {
 		fit = rand.nextInt(101);
 		return fit;
 	}
+	//Sets the coach, called in main
+	public void setCoach(Coach c){
+		this.coach = c;
+	}
 
-	private int getSalary(Coach c) {
-		int salary = (int) (this.age + (100 - Math.abs(this.fit - c.getScheme()) + this.athleticism) * 100000);
+	private int getSalary() {
+		int salary = (int) (this.age + (100 - Math.abs(this.fit - this.coach.getScheme()) + this.athleticism) * 100000);
 		this.salary = salary;
 		return salary;
 	}

@@ -184,6 +184,7 @@ public class Main {
 			team.addToRoster(player);
 			player.setIsInATeam(true);
 			player.setTeam(team);
+			player.setCoach(team.getCoach());
 			this.playerPool.getPlayerPool().remove(player);
 		}
 		
