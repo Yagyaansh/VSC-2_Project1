@@ -75,6 +75,7 @@ public class Season {
 	public void play() {
 		for (Game g : this.games) {
 			Team victor = g.runGameSimulation();
+			
 			victors.add(victor);
 			
 		}
@@ -233,8 +234,9 @@ public class Season {
 		
 		for (int i = 0; i < teams.size(); i++) {
 			Team team = teams.get(i);
+			Coach coach = team.getCoach();
+			coach.increaseSalary(team.getWins());
 			for (int j = 0; j < team.getRoster().size(); j++) {
-				Coach coach = team.getCoach();
 				Player player = team.getRoster().get(j);
 				player.increaseAge();
 				if(player.getAge() == 40)
