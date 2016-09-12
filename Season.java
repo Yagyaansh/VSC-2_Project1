@@ -235,7 +235,7 @@ public class Season {
 		for (int i = 0; i < teams.size(); i++) {
 			Team team = teams.get(i);
 			Coach coach = team.getCoach();
-			coach.increaseSalary(team.getWins());
+			coach.updateSalary(team.getWins());
 			for (int j = 0; j < team.getRoster().size(); j++) {
 				Player player = team.getRoster().get(j);
 				player.increaseAge();
