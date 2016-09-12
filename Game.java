@@ -59,9 +59,6 @@ public class Game {
 		updateBothTeamRevenues(victor);
 		this.team1.profitCalculator();
 		this.team2.profitCalculator();
-		
-		// Increase the salary of winning team's coach
-		victor.getCoach().increaseSalary();
 
 		// A copy to refer to later
 		this.tempTeam1 = team1.deepCopy();
