@@ -300,10 +300,12 @@ public class Player {
 			positionScores[DEFENSIVELINESCORE] = values.get(x);
 			values.remove(x);
 			if (positionScores[DEFENSIVELINESCORE] == 100) {
+				this.bestPosition = DEFENSIVELINESCORE;
 				positionScores[SECONDARYSCORE] = 33;
 				positionScores[LINEBACKERSCORE] = 67;
 			} else if (positionScores[DEFENSIVELINESCORE] == 67) {
 				positionScores[LINEBACKERSCORE] = 100;
+				this.bestPosition = LINEBACKERSCORE;
 				positionScores[SECONDARYSCORE] = 33;
 			} else {
 				x = rand.nextInt(values.size());
