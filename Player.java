@@ -27,7 +27,7 @@ public class Player {
 	private int age;
 	private boolean careerEndingInjury;
 	private int wonderlic;
-	private String bestPosition;
+	private int bestPosition;
 	private boolean isInATeam;
 	private int[] positionScores;
  	public static final int SECONDARYSCORE = 0;
@@ -273,14 +273,20 @@ public class Player {
 			positionScores[OFFENSIVELINESCORE] = values.get(x);
 			values.remove(x);
 			if (positionScores[OFFENSIVELINESCORE] == 100) {
+				this.bestPosition = OFFENSIVELINESCORE;
 				positionScores[RUNNINGBACKSCORE] = 67;
 				positionScores[RECEIVERSCORE] = 33;
 			} else if (positionScores[OFFENSIVELINESCORE] == 67) {
 				positionScores[RUNNINGBACKSCORE] = 100;
+				this.bestPosition = RUNNINGBACKSCORE;
 				positionScores[RECEIVERSCORE] = 33;
 			} else {
 				x = rand.nextInt(values.size());
 				positionScores[RECEIVERSCORE] = values.get(x);
+				if (positionScores[RECEIVERSCORE] == 100)
+					this.bestPosition = RECEIVERSCORE;
+				else
+					this.bestPosition = RUNNINGBACKSCORE;
 				values.remove(x);
 				positionScores[RUNNINGBACKSCORE] = values.get(0);
 				values.remove(0);
@@ -302,6 +308,10 @@ public class Player {
 			} else {
 				x = rand.nextInt(values.size());
 				positionScores[SECONDARYSCORE] = values.get(x);
+				if (positionScores[SECONDARYSCORE] == 100)
+					this.bestPosition = SECONDARYSCORE;
+				else
+					this.bestPosition = LINEBACKERSCORE;
 				values.remove(x);
 				positionScores[LINEBACKERSCORE] = values.get(0);
 				values.remove(0);
