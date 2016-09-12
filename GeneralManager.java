@@ -103,7 +103,7 @@ public class GeneralManager {
 	 * pool
 	 */
 	public Player pickAPlayer(int optionNumber) {
-
+		
 	}
 
 	
