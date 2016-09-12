@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player {
+public class Player implements Comparable<Player>{
 
 	/*
 	 * ACTUALLY WE MIGHT NOT NEED THE POSITION FIELD THE PLAYERS POSITION WILL
@@ -448,7 +448,7 @@ public class Player {
 	public int[] getPositionScores() {
 		return this.positionScores;
 	}
-
+	
 	public void setPositionScores(int[] positionScoreAdd) {
 		if(positionScoreAdd.length != 6){
 			System.out.println("positionScore length should be size");
@@ -515,6 +515,24 @@ public class Player {
 		p.offensive = this.offensive;
 		p.age = this.age;
 		return p;
+	}
+
+	@Override
+	public int compareTo(Player p) {
+		if(this.getPositionScores()[this.getBestPosition()] == p.getPositionScores()[p.getBestPosition()])
+		{
+			if(this.getAthleticism() == p.getAthleticism())
+			{
+				if(this.getWonderlic() == p.getWonderlic())
+				{
+					Random rand = new Random();
+					return ((rand.nextInt(2)*2) - 1);
+				}
+				return (this.getWonderlic() - p.getWonderlic());
+			}
+			return (this.getAthleticism() - p.getAthleticism());
+		}
+		return (this.getPositionScores()[this.getBestPosition()] - p.getPositionScores()[p.getBestPosition()]);
 	}
 
 }
