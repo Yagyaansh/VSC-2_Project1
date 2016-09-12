@@ -58,8 +58,8 @@ public class Coach {
 	 * Increase salary for the coaches by 100000
 	 */
 	
-	public void increaseSalary() {
-		this.salary = this.salary + 100000;
+	public void updateSalary(int wins) {
+		this.salary = 600000 + (wins*100000);
 	}
 	
 	/*
