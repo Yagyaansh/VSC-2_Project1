@@ -21,7 +21,9 @@ public class Player {
 	private int salary;
 	private boolean rookie;
 	private boolean injured;
+	private int injuryDaysRemaining;
 	private boolean offensive;
+	private Coach coach;
 	private int age;
 	private boolean careerEndingInjury;
 	private int wonderlic;
@@ -369,6 +371,8 @@ public class Player {
 	}
 
 	public void injured() {
+		Random rand = new Random();
+		this.injuryDaysRemaining = (2 + (Math.abs((int)(rand.nextGaussian()))));
 		this.injured = true;
 	}
 
@@ -377,7 +381,12 @@ public class Player {
 	}
 
 	public void heal() {
-		this.injured = false;
+		if(this.injuryDaysRemaining > 1)
+			this.injuryDaysRemaining--;
+		else{
+			this.injured = false;
+			this.injuryDaysRemaining = 0;
+		}
 	}
 
 	public boolean isOffensive() {
