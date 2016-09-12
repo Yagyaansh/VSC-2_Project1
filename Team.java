@@ -450,13 +450,6 @@ public class Team {
 	* Clear the result field so that the result of the next season can be recorded here.
 	*/
 	
-	public void clearResult()
-	{
-		this.setWins(0);
-		this.setDraws(0);
-		this.setLosses(0);
-	}
-	
 	// Win and loss record must be reset after each season
 	
 	public void resetScores() {

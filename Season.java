@@ -368,7 +368,6 @@ public class Season {
 			t.resetScores();
 			//t.resetRevenue();
 			t.saveResultToList();
-			t.clearResult();
 		}
 
 	}
@@ -386,7 +385,7 @@ public class Season {
 		int offensiveSize = 0;
 		int defensiveSize = 0;
 		
-		while // all teams do not have 50 players we keep drafting
+		// while // all teams do not have 50 players we keep drafting
 		
 		for (Team t: teamLosstoWinOrder)
 		{
