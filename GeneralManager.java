@@ -102,8 +102,13 @@ public class GeneralManager {
 	 * parameter) the player after being selected is removed from the player
 	 * pool
 	 */
-	public Player pickAPlayer(int optionNumber) {
-		
+	public Player pickAPlayer(Player_Pool players, int position) {
+		for(Player player: players.getPlayerPool())
+		{
+			if(player.getBestPosition() == position)
+				return player;
+		}
+		return null;
 	}
 
 	

@@ -139,6 +139,7 @@ public class Main {
 
 	private void fillAllTeamRosters(int rosterSize, int numberOfPositions) {
 		int i = 0;
+		Collections.sort(this.playerPool);
 		for(i=0; i< (rosterSize/numberOfPositions); i++)
 		{
 			this.allTeamsPick(Player.RUNNINGBACKSCORE);
@@ -175,14 +176,15 @@ public class Main {
 		
 	}
 
+
 	private void allTeamsPick(int position) {
-		
 		for(Team team: this.teams)
 		{
-			Player player = team.getGM().pickAPlayer(position);
+			Player player = team.getGM().pickAPlayer(this.playerPool, position);
 			team.addToRoster(player);
 			player.setIsInATeam(true);
 			player.setTeam(team);
+			this.playerPool.getPlayerPool().remove(player);
 		}
 		
 	}
