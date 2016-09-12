@@ -61,7 +61,6 @@ public class Player {
 
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -90,7 +89,6 @@ public class Player {
 
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -118,7 +116,6 @@ public class Player {
 
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -147,7 +144,6 @@ public class Player {
 
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -170,7 +166,6 @@ public class Player {
 
 		wonderlic = 0;
 		this.positionScores = assignPositionScores();
-		this.bestPosition = getBestPosition();
 		this.isInATeam = false;
 		this.team = null;
 	}
@@ -448,15 +443,7 @@ public class Player {
 	}
 
 	public int getBestPosition() {
-		int temp = 0;
-		int pos = 0;
-		for(int x = 0; x < this.positionScores.length; x++){
-			if(temp < this.positionScores[x]){
-				temp = this.positionScores[x];
-				pos = x;
-			}
-		}
-		return pos;
+		return this.bestPosition;
 	}
 
 	public int getWonderlic() {
