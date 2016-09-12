@@ -322,7 +322,7 @@ public class Team {
 	public double profitCalculator() {
 
 		for (int i = 0; i < starters.size(); i++) {
-			expenses += starters.get(i).getSalaryAmount(this.coach);
+			expenses += starters.get(i).getSalary();
 		}
 		expenses += GM.getSalary();
 		expenses += coach.getSalary();

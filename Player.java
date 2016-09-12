@@ -48,7 +48,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = "";
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = getSalary();
+		this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = randomlyAssignOffensive();
 		this.age = getRandomAge();
@@ -76,7 +76,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = lastName;
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = getSalary();
+		this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = randomlyAssignOffensive();
 		this.age = getRandomAge();
@@ -103,7 +103,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = lastName;
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = getSalary();
+		this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = randomlyAssignOffensive();
 		this.age = age;
@@ -131,7 +131,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = lastName;
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = getSalary();
+		this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = offensive;
 		this.age = getRandomAge();
@@ -153,7 +153,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = lastName;
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = getSalary();
+		this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = offensive;
 		this.age = age;
@@ -219,9 +219,14 @@ public class Player implements Comparable<Player>{
 		this.coach = c;
 	}
 
-	private int getSalary() {
+	public int calculateSalary() {
 		int salary = (int) (this.age + (100 - Math.abs(this.fit - this.coach.getScheme()) + this.athleticism) * 100000);
 		this.salary = salary;
+		return salary;
+	}
+	
+	public int getSalary()
+	{
 		return salary;
 	}
 

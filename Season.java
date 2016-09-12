@@ -214,21 +214,10 @@ public class Season {
 			if(player.getAge() == 40)
 			{
 				// remove the player from the player pool
-				if(player.isInATeam())
-				{
-					// if the player belongs to a team roster
-					// remove the player from the team roster too
-					
-					// remove player from the roster list
-					// THE PLAYER SHOULD SOMEHOW POINT TO THE TEAM !!!
-					// then get the team -> get the roster -> remove player from the roster
-					
-					// AND
-					player.setIsInATeam(false);
-					player.setTeam(null);
+				
 				}
 			// continue; // if the player has been removed - no need to update his fit score
-			}
+			
 			// we dont have the teams coach here
 			// for players that belong to a team roster
 			// there should be some way to retrieve coach information for the player
@@ -247,8 +236,16 @@ public class Season {
 			for (int j = 0; j < team.getRoster().size(); j++) {
 				Coach coach = team.getCoach();
 				Player player = team.getRoster().get(j);
-				// player.increaseAge(); // this is wrong ! All the players must age not just those in team rosters !!
+				player.increaseAge();
+				if(player.getAge() == 40)
+				{
+					player.setIsInATeam(false);
+					player.setTeam(null);
+				}
+				else {
 				player.updateFit(coach); // this is fine because players not in any team roster dont have a coach
+				player.setSalary(player.calculateSalary());
+				}
 			}
 			
 			
@@ -301,22 +298,23 @@ public class Season {
 			
 			
 			
-			for (Player p: players.getPlayerPool())
-			{
-				if(p.getRookie() == true)
-				{
-					if(p.isOffensive())
-					{
-						// add to minPQ of Offensive rookie players
-						// pqOffensive is the PQ
-					}
-					else
-					{
-						// add to minPQ of defensive rookie players
-						// pqDefensive is the PQ
-					}
-				}
-			}
+//			for (Player p: players.getPlayerPool())
+//			{
+//			
+//				if(p.getRookie() == true)
+//				{
+//					if(p.isOffensive())
+//					{
+//						// add to minPQ of Offensive rookie players
+//						// pqOffensive is the PQ
+//					}
+//					else
+//					{
+//						// add to minPQ of defensive rookie players
+//						// pqDefensive is the PQ
+//					}
+//				}
+//			}
 			// now offensive PQ and defensive PQ have been set up
 		
 		// ITERATION 3 CHANGES 

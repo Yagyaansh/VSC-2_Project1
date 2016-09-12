@@ -75,7 +75,7 @@ public class PlayerPositionStats {
 	this.runningbackScore = runningbackScore;
   }
   
-  public getBestPosition()
+  public void getBestPosition()
   {
     // the position with the highest score will be returned 
   }
