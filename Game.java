@@ -84,11 +84,20 @@ public class Game {
 
 		team1Determinate = team1.TeamDeterminateCalculator();
 		team2Determinate = team2.TeamDeterminateCalculator();
+		
+		team1Determinate = team1Determinate/125;
+		team2Determinate = team2Determinate/125;
+		
+		team1Determinate = 7*Math.round(team1Determinate);
+		team2Determinate = 7*Math.round(team2Determinate);
 
 		Random generator1 = new Random();
 		
-		team1Stochiastic = 10 * generator1.nextGaussian();
-		team2Stochiastic = 10 * generator1.nextGaussian();
+		team1Stochiastic = Math.round(4 * generator1.nextGaussian());
+		team2Stochiastic = Math.round(4 * generator1.nextGaussian());
+		
+		team1Stochiastic = Math.abs(3*team1Stochiastic);
+		team2Stochiastic = Math.abs(3*team2Stochiastic);
 		
 		//Advantage of 7 for home team (team 1)
 		team1advantage = 7;
