@@ -266,7 +266,7 @@ public class Team {
 	}
 
 	public void profitPrinter() {
-		System.out.println(name + "'s Total Profit: $" + profit);
+		System.out.println(name + "'s Total Profit: $" + profit );
 	}
 
 	/*

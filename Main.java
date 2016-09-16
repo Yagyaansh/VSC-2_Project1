@@ -328,13 +328,18 @@ public class Main {
 	}
 
 	public static void printRevenueDetails(ArrayList<Season> seasons) {
-		for (int i = 0; i < seasons.size(); i++) {
+		/*for (int i = 0; i < seasons.size(); i++) {
 			Season s = seasons.get(i);
 			System.out.println("SEASON #" + (i + 1));
 			for (int j = 0; j < s.teams.size(); j++) {
 				s.tempTeams.get(j).profitPrinter();
 			}
 			System.out.println("");
+		}*/
+		System.out.println("OVERALL REVENUE DETAILS");
+		Season s=seasons.get(3);
+		for(int i=0; i<s.teams.size(); i++){
+			s.teams.get(i).profitPrinter() ;
 		}
 
 	}
