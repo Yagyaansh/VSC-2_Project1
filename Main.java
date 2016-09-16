@@ -23,7 +23,7 @@ public class Main {
 	 * all the teams is then returned by the method createTeams() Then all the
 	 * seasons are created using the Season class The seasons are added to a
 	 * list The number of seasons is hard coded since the number should
-	 * notchange too much Each season is then simulated and the results are
+	 * not change too much Each season is then simulated and the results are
 	 * stored in a list called results This stores all the final results for the
 	 * simulation
 	 * 
