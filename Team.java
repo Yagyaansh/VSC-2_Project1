@@ -493,9 +493,10 @@ public class Team {
 		t.starters = starters;
 		t.offensiveRoster = offensiveRoster;
 		t.defensiveRoster = defensiveRoster;
-		System.out.println(this.wins);
 		t.wins = this.wins;
 		t.losses = this.losses;
+		
+		
 		
 		// Need to add deep copy for the 2 new fields that I have created
 		// results - ArrayList of results - history of results (each result stores W-D-L for every seasosn)

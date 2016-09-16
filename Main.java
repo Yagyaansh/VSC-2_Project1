@@ -286,23 +286,31 @@ public class Main {
 
 	public static void printSeasonDetails(ArrayList<Season> seasons) {
 		// Print out season outcome and game statistics in each season
-		for (int i = 0; i < seasons.size(); i++) {
-			Season s = seasons.get(i);
-			System.out.println("SEASON #" + (i + 1) + " Victor: " + s.victors.get(i).getTeamName());
-			s.printSeason();
-			System.out.println("");
-		}
+//		for (int i = 0; i < seasons.size(); i++) {
+//			Season s = seasons.get(i);
+//			System.out.println("SEASON #" + (i + 1) + " Victor: " + s.victors.get(i).getTeamName());
+//			s.printSeason();
+//			System.out.println("");
+//		}
+		System.out.println("OVERALL OUTCOME");
+		System.out.println("Victor: " + seasons.get(3).victors.get(3).getTeamName());
+		seasons.get(3).printSeason();
 	}
 
 	public static void printWinLossRecords(ArrayList<Season> seasons) {
-		for (int i = 0; i < seasons.size(); i++) {
-			Season s = seasons.get(i);
-			System.out.println("SEASON #" + (i + 1));
-			for (Team t : s.tempTeams) {
-				System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
-			}
-			System.out.println("");
-		}
+//		for (int i = 0; i < seasons.size(); i++) {
+//			Season s = seasons.get(i);
+//			System.out.println("SEASON #" + (i + 1));
+//			System.out.println(s.tempTeams.get(0).getWins());
+//			for (Team t : s.teams) {
+//				System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
+//			}
+//			System.out.println("");
+//		}
+		System.out.println("TOTAL RECORD ACROSS SEASONS");
+				for (Team t : seasons.get(3).teams) {
+					System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
+				}
 	}
 
 	public static void printTeamDetails(ArrayList<Season> seasons) {

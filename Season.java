@@ -369,7 +369,7 @@ public class Season {
 		for (Team t : this.teams) {
 			t.resetScores();
 			//t.resetRevenue();
-			t.saveResultToList();
+			//t.saveResultToList();
 		}
 
 	}
