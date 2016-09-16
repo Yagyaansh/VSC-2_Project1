@@ -142,8 +142,6 @@ public class Main {
 		Collections.sort(this.playerPool.getPlayerPool());
 		for(i=0; i< (rosterSize/numberOfPositions); i++)
 		{
-			System.out.println("inside fillall");
-			System.out.println(this.teams);
 			this.allTeamsPick(Player.RUNNINGBACKSCORE);
 			this.allTeamsPick(Player.RECEIVERSCORE);
 			this.allTeamsPick(Player.OFFENSIVELINESCORE);
