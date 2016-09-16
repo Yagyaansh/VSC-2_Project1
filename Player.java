@@ -76,7 +76,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = lastName;
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = calculateSalary();
+		//this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = randomlyAssignOffensive();
 		this.age = getRandomAge();
@@ -131,7 +131,7 @@ public class Player implements Comparable<Player>{
 		this.lastName = lastName;
 		this.athleticism = getRandomAthleticismScore();
 		this.fit = getRandomFitScore();
-		this.salary = calculateSalary();
+		//this.salary = calculateSalary();
 		this.injured = false;
 		this.offensive = offensive;
 		this.age = getRandomAge();
@@ -272,6 +272,7 @@ public class Player implements Comparable<Player>{
 		values.add(100);
 		values.add(67);
 		values.add(33);
+		this.positionScores = new int[6];
 
 		if (this.isOffensive()) {
 			// set them randomly to high medium and low
