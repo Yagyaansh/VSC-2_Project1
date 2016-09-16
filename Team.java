@@ -493,6 +493,7 @@ public class Team {
 		t.starters = starters;
 		t.offensiveRoster = offensiveRoster;
 		t.defensiveRoster = defensiveRoster;
+		System.out.println(this.wins);
 		t.wins = this.wins;
 		t.losses = this.losses;
 		

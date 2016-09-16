@@ -50,7 +50,7 @@ public class Main {
 		
 		int numberOfTeams = 16;
 		this.teams = new ArrayList<Team>();
-		this.teams = this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
+		this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
 	}
 
 	/*
@@ -78,7 +78,7 @@ public class Main {
 		int numberOfSeasons = 4;
 
 		for (int i = 0; i < numberOfSeasons; i++) {
-			seasons.add(new Season(teams));
+			seasons.add(new Season(this.teams));
 		}
 
 	//	for (Season s : seasons) {
@@ -103,9 +103,8 @@ public class Main {
 	 * participating in the simulation
 	 */
 
-	public ArrayList<Team> createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
+	public void createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
 			Coach_Pool coachPool, Player_Pool playerPool) {
-		ArrayList<Team> allTeams = new ArrayList<Team>();
 		String[] teamNames = { "Atlanta Falcons", "Baltimore Ravens", "Carolina Panthers", "Chicago Bears",
 				"Cincinnati Bengals", "Cleveland Browns", "Detroit Lions", "Green Bay Packers", "Houston Texans",
 				"Indianapolis Colts", "Jacksonville Jaguars", "Minnesota Vikings", "Tennessee Titans",
@@ -118,18 +117,17 @@ public class Main {
 			Team t = new Team(teamNames[i], teamHometowns[i], generalManagerPool.getRandomGM());
 			Coach coach = t.getGM().pickACoach(coachPool);
 			t.setCoach(coach);
-			allTeams.add(t);
+			this.teams.add(t);
 		}
-		
 		int rosterSize = 50;
 		int numberOfPositions = 6;
 		this.fillAllTeamRosters(rosterSize, numberOfPositions);		
 
-		for (Team t : allTeams) {
+		for (Team t : this.teams) {
 			t.divideRoster_OffensiveAndDefensive();
+			//t.printTeam();
 		}
 
-		return allTeams;
 	}
 
 	/*
@@ -140,9 +138,12 @@ public class Main {
 
 	private void fillAllTeamRosters(int rosterSize, int numberOfPositions) {
 		int i = 0;
+		
 		Collections.sort(this.playerPool.getPlayerPool());
 		for(i=0; i< (rosterSize/numberOfPositions); i++)
 		{
+			System.out.println("inside fillall");
+			System.out.println(this.teams);
 			this.allTeamsPick(Player.RUNNINGBACKSCORE);
 			this.allTeamsPick(Player.RECEIVERSCORE);
 			this.allTeamsPick(Player.OFFENSIVELINESCORE);
@@ -183,6 +184,7 @@ public class Main {
 		{
 			Player player = team.getGM().pickAPlayer(this.playerPool, position);
 			team.addToRoster(player);
+			//System.out.println("inside all teams pick");
 			player.setIsInATeam(true);
 			player.setTeam(team);
 			player.setCoach(team.getCoach());
