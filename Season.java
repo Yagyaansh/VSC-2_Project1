@@ -349,7 +349,7 @@ public class Season {
 		// we have to just re-draft all the rookies till the team rosters
 		// are complete and have a 50/50 ratio.
 		
-		redraftPlayers(pqOffensive, pqDefensive, teamLosstoWinOrder);
+		//redraftPlayers(pqOffensive, pqDefensive, teamLosstoWinOrder);
 		
 		// redrafting of all the players is complete now
 		
@@ -381,56 +381,56 @@ public class Season {
 	* the 3rd parameter is the order in which teams redraft the players
 	*/
 	
-	public void redraftPlayers(PQ pqOffensive, PQ pqDefensive, ArrayList<Team> teamLosstoWinOrder)
-	{
-		int rosterSize = 0;
-		int offensiveSize = 0;
-		int defensiveSize = 0;
-		
-		// while // all teams do not have 50 players we keep drafting
-		
-		for (Team t: teamLosstoWinOrder)
-		{
-			rosterSize = t.getRoster().getSize();
-			offensiveSize = t.getOffensiveRoster().size();
-			defensiveSize = t.getDefensiveRoster().size();
-			
-			if(rosterSize > 50)
-			{
-				System.out.println("Error : Roster size has exceeded 50");
-				System.exit(0);
-			}
-			else if(rosterSize == 50)
-			{
-				continue;
-			}
-			else if(offensiveSize == 25)
-			{
-				// pick the defensive player with the highest athleticism score
-				// For the player that is added to the roster - set isInATeam to true !
-				// player.setIsInATeam(true);
-				// player.setTeam(t);
-			}
-			else if(defensiveSize == 25)
-			{
-				// pick the offesnive player with the highest athleticism score
-				// For the player that is added to the roster - set isInATeam to true !
-				// player.setIsInATeam(true);
-				// player.setTeam(t);
-			}
-			else {
-				// when the team needs both offensive and defensive type
-				// compare the best (highest athleticism score) offensive player
-				// to the best defensive player
-				// add the one with the higher athleticism score to the team
-				
-				// For the player that is added to the roster - set isInATeam to true !
-				// player.setIsInATeam(true);
-				// player.setTeam(t);
-
-			}
-		}
-	}
+//	public void redraftPlayers(PQ pqOffensive, PQ pqDefensive, ArrayList<Team> teamLosstoWinOrder)
+//	{
+//		int rosterSize = 0;
+//		int offensiveSize = 0;
+//		int defensiveSize = 0;
+//		
+//		// while // all teams do not have 50 players we keep drafting
+//		
+//		for (Team t: teamLosstoWinOrder)
+//		{
+//			rosterSize = t.getRoster().getSize();
+//			offensiveSize = t.getOffensiveRoster().size();
+//			defensiveSize = t.getDefensiveRoster().size();
+//			
+//			if(rosterSize > 50)
+//			{
+//				System.out.println("Error : Roster size has exceeded 50");
+//				System.exit(0);
+//			}
+//			else if(rosterSize == 50)
+//			{
+//				continue;
+//			}
+//			else if(offensiveSize == 25)
+//			{
+//				// pick the defensive player with the highest athleticism score
+//				// For the player that is added to the roster - set isInATeam to true !
+//				// player.setIsInATeam(true);
+//				// player.setTeam(t);
+//			}
+//			else if(defensiveSize == 25)
+//			{
+//				// pick the offesnive player with the highest athleticism score
+//				// For the player that is added to the roster - set isInATeam to true !
+//				// player.setIsInATeam(true);
+//				// player.setTeam(t);
+//			}
+//			else {
+//				// when the team needs both offensive and defensive type
+//				// compare the best (highest athleticism score) offensive player
+//				// to the best defensive player
+//				// add the one with the higher athleticism score to the team
+//				
+//				// For the player that is added to the roster - set isInATeam to true !
+//				// player.setIsInATeam(true);
+//				// player.setTeam(t);
+//
+//			}
+//		}
+//	}
 
 	/*
 	 * Printing methods

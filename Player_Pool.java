@@ -118,6 +118,7 @@ public class Player_Pool {
 			}
 		} catch (Exception e) {
 			System.out.println("Exception in Player_Pool fillPlayerList without age");
+			e.printStackTrace();
 			System.exit(0);
 		}
 	}
