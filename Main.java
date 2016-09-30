@@ -78,21 +78,19 @@ public class Main {
 		int numberOfSeasons = 4;
 
 		for (int i = 0; i < numberOfSeasons; i++) {
-			seasons.add(new Season(this.teams));
-		}
-
-	//	for (Season s : seasons) {
-		for(int i=0; i<seasons.size(); i++) {
+			seasons.add(new Season(this.teams, 16));
 			Season s = seasons.get(i);
 			boolean isFirstSeason = false;
 			if(i==0) {
 				isFirstSeason= true;
 			}
-			s.startSeason();
+			s.scheduleRandSeason();
 			s.play();
 			results.add(s.seasonResult());
 			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
+			
 		}
+
 		printInputs(numberOfTeams, numberOfSeasons);
 		printOutputs(seasons);
 	}
@@ -291,7 +289,7 @@ public class Main {
 //			System.out.println("");
 //		}
 		System.out.println("OVERALL OUTCOME");
-		System.out.println("Victor: " + seasons.get(3).victors.get(3).getTeamName());
+		System.out.println("Victor: " + seasons.get(3).getVictors().get(3).getTeamName());
 		seasons.get(3).printSeason();
 	}
 
@@ -306,14 +304,14 @@ public class Main {
 //			System.out.println("");
 //		}
 		System.out.println("TOTAL RECORD ACROSS SEASONS");
-				for (Team t : seasons.get(3).teams) {
+				for (Team t : seasons.get(3).getTeams()) {
 					System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
 				}
 	}
 
 	public static void printTeamDetails(ArrayList<Season> seasons) {
-		for(int i=0; i<seasons.get(0).teams.size(); i++) {
-			System.out.println(seasons.get(0).teams.get(i).getTeamName());
+		for(int i=0; i<seasons.get(0).getTeams().size(); i++) {
+			System.out.println(seasons.get(0).getTeams().get(i).getTeamName());
 		}
 		System.out.println("");
 		System.out.print("Please select a team: ");
@@ -338,8 +336,8 @@ public class Main {
 		}*/
 		System.out.println("OVERALL REVENUE DETAILS");
 		Season s=seasons.get(3);
-		for(int i=0; i<s.teams.size(); i++){
-			s.teams.get(i).profitPrinter() ;
+		for(int i=0; i<s.getTeams().size(); i++){
+			s.getTeams().get(i).profitPrinter() ;
 		}
 
 	}
