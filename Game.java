@@ -85,8 +85,8 @@ public class Game {
 		team1Determinate = team1.TeamDeterminateCalculator();
 		team2Determinate = team2.TeamDeterminateCalculator();
 		
-		team1Determinate = team1Determinate/125;
-		team2Determinate = team2Determinate/125;
+		team1Determinate = team1Determinate/175;
+		team2Determinate = team2Determinate/175;
 		
 		team1Determinate = 7*Math.round(team1Determinate);
 		team2Determinate = 7*Math.round(team2Determinate);
