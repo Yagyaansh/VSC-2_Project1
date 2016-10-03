@@ -91,7 +91,6 @@ public class Main {
 			//printSeasonDetails(seasons);
 			//printWinLossRecords(seasons);
 			printTeamDetails(seasons);
-			System.out.println("\nHere\nHere\nHere");
 			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
 			
 		}
@@ -189,6 +188,7 @@ public class Main {
 			player.setIsInATeam(true);
 			player.setTeam(team);
 			player.setCoach(team.getCoach());
+			player.setSalary(player.calculateSalary());
 			this.playerPool.getPlayerPool().remove(player);
 		}
 		

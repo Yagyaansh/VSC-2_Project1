@@ -179,7 +179,7 @@ public class Player implements Comparable<Player>{
 	public void printPlayer() {
 
 		System.out.print("Player: " + this.firstName + " " + this.lastName + " , ");
-		System.out.print("Fit: " + this.fit + " , ");
+		System.out.printf("Fit: %.1f, ", this.fit);
 		System.out.print("Athleticism: " + this.athleticism + " , ");
 		System.out.println("Salary: $" + this.salary + ". ");
 	}
