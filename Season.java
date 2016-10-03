@@ -121,6 +121,8 @@ public class Season {
 		for (currWeek = 0; currWeek < totalWeeks; currWeek++) {
 			for (Game g : this.schedule[currWeek]) {
 				Team victor = g.runGameSimulation();
+				g.getTeam1().getCurrentSeasonResult().addGame(currWeek, g);
+				g.getTeam2().getCurrentSeasonResult().addGame(currWeek, g);
 				victors.add(victor);
 			}
 
@@ -147,9 +149,9 @@ public class Season {
 		seasonVictor.updateSeasonWinningTeamRevenue();
 
 		// Make a deep copy for future references
-		for (Team t : this.teams) {
-			tempTeams.add(t.deepCopy());
-		}
+//		for (Team t : this.teams) {
+//			tempTeams.add(t.deepCopy());
+//		}
 
 		return seasonVictor;
 	}
@@ -390,6 +392,11 @@ public class Season {
 				}
 			}
 		}
+		
+		for (Team t : this.teams){
+			t.addToResults(t.getCurrentSeasonResult());
+			t.newTeamResult();
+		}
 
 		// till here the new coach has been assigned to the worst team and the 2
 		// PQs are ready
@@ -413,12 +420,6 @@ public class Season {
 
 		// Reset wins and losses to prepare for next season
 		// Reset revenue info
-		for (Team t : this.teams) {
-			t.resetScores();
-			// t.resetRevenue();
-			// t.saveResultToList();
-		}
-
 	}
 
 	/*
@@ -487,50 +488,26 @@ public class Season {
 	 */
 
 	public void printSeason() {
-		for (int i = 0; i < games.size(); i++) {
-			Game g = this.games.get(i);
-			System.out.println("Game #" + (i + 1) + " Winner: " + g.getVictor().getTeamName());
+		for (int i = 0; i < schedule.length; i++) {
+			for (int j = 0; j < schedule[i].length; j++)
+			{
+			Game g = schedule[i][j];
+			System.out.println("Week " + (i + 1) + " Game " + (j + 1) + " Winner: " + g.getVictor().getTeamName());
 			g.printGame();
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
+			}
 		}
 	}
 
 	public void printRosterDetails(String input) {
-		// for (int i = 0; i < games.size(); i++) {
-		// Game g = this.games.get(i);
-		// System.out.println("Game #" + (i + 1));
-		// g.getTempTeam1().printTeam();
-		// g.getTempTeam2().printTeam();
-		// System.out.println(
-		// "----------------------------------------------------------------------------------------");
-		// }
-		boolean printTempTeam1 = false;
-		for (int i = 0; i < games.size(); i++) {
-			Game g = this.games.get(i);
-			if (g.getTempTeam1().getTeamName().equals(input) || g.getTeam2().getTeamName().equals(input)) {
-				if (g.getTempTeam1().getTeamName().equals(input)) {
-					printTempTeam1 = true;
-
-				} else {
-					printTempTeam1 = false;
-				}
-				if (printTempTeam1) {
-					System.out.println("Game #" + (i + 1));
-					g.getTempTeam1().printTeam();
-					System.out.println(
-							"----------------------------------------------------------------------------------------");
-				} else {
-					System.out.println("Game #" + (i + 1));
-					g.getTempTeam2().printTeam();
-					System.out.println(
-							"----------------------------------------------------------------------------------------");
-
-				}
-			}
+		for (int i = 0; i < teams.size(); i++) {
+			if (teams.get(i).getTeamName().equals(input))
+				teams.get(i).printTeam();
 		}
 
 	}
+	
 
 	/*
 	 * End of printing methods

@@ -8,12 +8,14 @@ public class Result {
 	private int wins;
 	private int losses;
 	private int draws;
+	private Game[] games;
 	
 	public Result()
 	{
 		this.wins = 0;
 		this.losses = 0;
 		this.draws = 0;
+		this.games = new Game[16];
 	}
 	
 	
@@ -22,6 +24,10 @@ public class Result {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	public void addGame(int week, Game g)
+	{
+		games[week] = g;
+	}
 	
 	public int getWins() {
 		return wins;

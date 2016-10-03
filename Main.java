@@ -77,7 +77,7 @@ public class Main {
 		ArrayList<Team> results = new ArrayList<Team>();
 		int numberOfSeasons = 4;
 
-		for (int i = 0; i < numberOfSeasons; i++) {
+		for (int i = 0; i < 2; i++) {
 			seasons.add(new Season(this.teams, 16));
 			Season s = seasons.get(i);
 			boolean isFirstSeason = false;
@@ -87,12 +87,17 @@ public class Main {
 			s.scheduleRandSeason();
 			s.play();
 			results.add(s.seasonResult());
+			//s.printSeason();
+			//printSeasonDetails(seasons);
+			//printWinLossRecords(seasons);
+			printTeamDetails(seasons);
+			System.out.println("\nHere\nHere\nHere");
 			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
 			
 		}
 
-		printInputs(numberOfTeams, numberOfSeasons);
-		printOutputs(seasons);
+		//printInputs(numberOfTeams, numberOfSeasons);
+		//printOutputs(seasons);
 	}
 
 	/*
@@ -289,8 +294,8 @@ public class Main {
 //			System.out.println("");
 //		}
 		System.out.println("OVERALL OUTCOME");
-		System.out.println("Victor: " + seasons.get(3).getVictors().get(3).getTeamName());
-		seasons.get(3).printSeason();
+		System.out.println("Victor: " + seasons.get(0).getVictors().get(0).getTeamName());
+		//seasons.get(0).printSeason();
 	}
 
 	public static void printWinLossRecords(ArrayList<Season> seasons) {
@@ -304,7 +309,7 @@ public class Main {
 //			System.out.println("");
 //		}
 		System.out.println("TOTAL RECORD ACROSS SEASONS");
-				for (Team t : seasons.get(3).getTeams()) {
+				for (Team t : seasons.get(0).getTeams()) {
 					System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
 				}
 	}
@@ -316,13 +321,18 @@ public class Main {
 		System.out.println("");
 		System.out.print("Please select a team: ");
 		Scanner scan = new Scanner(System.in);
-		String input = scan.nextLine();
+		String input;
+		if (scan.hasNextLine())
+			input = scan.nextLine();
+		else
+			input = null;
 		for (int i = 0; i < seasons.size(); i++) {
 			Season s = seasons.get(i);
 			System.out.println("SEASON #" + (i + 1));
 			s.printRosterDetails(input);
 			System.out.println("");
 		}
+		//scan.close();
 	}
 
 	public static void printRevenueDetails(ArrayList<Season> seasons) {

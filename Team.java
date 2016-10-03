@@ -19,8 +19,6 @@ public class Team {
 	private double profit;
 	private ArrayList<Player> offensiveRoster;
 	private ArrayList<Player> defensiveRoster;
-	private int wins;
-	private int losses;
 	private Owner owner;
 	private ArrayList<Result> results;
 	private Result result;
@@ -42,8 +40,6 @@ public class Team {
 		this.profit = 0.0;
 		this.offensiveRoster = new ArrayList<Player>();
 		this.defensiveRoster = new ArrayList<Player>();
-		this.wins = 0;
-		this.losses = 0;
 		/*
 		 * Hard coded population value depending on the hometown
 		 */
@@ -104,8 +100,6 @@ public class Team {
 		this.profit = 0.0;
 		this.offensiveRoster = new ArrayList<Player>();
 		this.defensiveRoster = new ArrayList<Player>();
-		this.wins = 0;
-		this.losses = 0;
 		this.population = 0;
 		this.owner = new Owner(this);
 		this.results = new ArrayList<>();
@@ -191,6 +185,10 @@ public class Team {
 	{
 		return this.results;
 	}
+	public void newTeamResult()
+	{
+		result = new Result();
+	}
 	
 	// offseason for this "current season" has just started
 	public Result getCurrentSeasonResult()
@@ -251,15 +249,15 @@ public class Team {
 			defensiveRoster.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("INJURIED PLAYERS: ");
-		int numberOfInjuried = 0;
+		System.out.println("INJURED PLAYERS: ");
+		int numberOfInjuries = 0;
 		for (Player p : this.roster) {
 			if (p.isInjured()) {
 				p.printPlayer();
-				numberOfInjuried++;
+				numberOfInjuries++;
 			}
 		}
-		if (numberOfInjuried == 0) {
+		if (numberOfInjuries == 0) {
 			System.out.println("None");
 		}
 		System.out.println("");
@@ -282,12 +280,10 @@ public class Team {
 	 */
 
 	public void incrementLosses() {
-		this.losses++; // once I have sure that the Result class is working I will get rid of losses
 		this.result.incrementLosses();
 	}
 
 	public void incrementWins() {
-		this.wins++; // once I have sure that the Result class is working I will get rid of wins
 		this.result.incrementWins();
 	}
 	
@@ -452,10 +448,6 @@ public class Team {
 	
 	// Win and loss record must be reset after each season
 	
-	public void resetScores() {
-		this.wins = 0;
-		this.losses = 0;
-	}
 
 	public void resetRevenue() {
 		this.grossRevenue = 0;
@@ -493,8 +485,7 @@ public class Team {
 		t.starters = starters;
 		t.offensiveRoster = offensiveRoster;
 		t.defensiveRoster = defensiveRoster;
-		t.wins = this.wins;
-		t.losses = this.losses;
+
 		
 		
 		
