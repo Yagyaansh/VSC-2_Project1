@@ -22,6 +22,7 @@ public class Team {
 	private Owner owner;
 	private ArrayList<Result> results;
 	private Result result;
+	private String divison;
 
 	/*
 	 * Constructor to initialize a Team with NAME, HOMETOWN and GM population is
@@ -43,47 +44,56 @@ public class Team {
 		/*
 		 * Hard coded population value depending on the hometown
 		 */
-		if (hometown == "Baltimore"){
-			this.population = 621849;
-		} else if (hometown == "Cincinnati") {
-			this.population = 296943;
-		} else if (hometown == "Cleveland") {
-			this.population = 396815;
+		if (hometown == "Boston"){
+			this.population = 645966;
+		} else if (hometown == "Buffoalo") {
+			this.population = 258959;
+		} else if (hometown == "New York") {
+			this.population = 8406000;
+		} else if(hometown == "Miami"){
+			this.population = 417650;
 		} else if (hometown == "Pittsburgh") {
-			this.population = 305704 ;
-		} else if (hometown == "Chicago") {
-			this.population = 2695598 ;
-		} else if (hometown == "Detroit") {
-			this.population = 711299 ;
-		} else if (hometown == "Green Bay") {
-			this.population = 104057  ;
-		} else if (hometown == "Minneapolis") {
-			this.population = 382578;
-		} else if (hometown == "Houston") {
-			this.population = 2099451;
-		} else if (hometown == "Indianapolis") {
-			this.population = 6484229;
+			this.population = 305704;
+		} else if (hometown == "Baltimore") {
+			this.population = 622104;
+		} else if (hometown == "Cincinnati") {
+			this.population = 297517;
+		} else if (hometown == "Cleveland") {
+			this.population = 390113;
+		} else if (hometown == "Huston") {
+			this.population = 2196000;
 		} else if (hometown == "Jacksonville") {
-			this.population = 821784;
-		} else if (hometown == "Nashville") {
-			this.population = 601222;
-		} else if (hometown == "Atlanta") {
-			this.population = 420003;
-		} else if (hometown == "Charlotte") {
-			this.population = 731424;
-		} else if (hometown == "New Orleans") {
-			this.population = 343829;
-		} else if (hometown == "Tampa") {
-			this.population = 335715;
-		} else if (hometown == "Phoenix") {
-			this.population = 1447624;
-		} else if (hometown == "Boston") {
-			this.population = 617680;
+			this.population = 842583;
+		} else if (hometown == "Tennessee") {
+			this.population = 6549000;
+		} else if (hometown == "Indianapolis") {
+			this.population = 852866;
+		} else if (hometown == "Denver") {
+			this.population = 649495;
+		} else if (hometown == "Oakland") {
+			this.population = 406253;
+		} else if (hometown == "Kansas City") {
+			this.population = 467007;
+		} else if (hometown == "San Diego") {
+			this.population = 1356000;
 		}
 		this.owner = new Owner(this);
 		this.results = new ArrayList<>();
 		this.result = new Result();
-	}
+		  
+		if( this.name.equals("Patriots") || this.name.equals("Bills") || this.name.equals("Jets") ||this.name.equals("Dolphins")){
+			this.divison = "AFC EAST";
+		}
+		if( this.name.equals("Steelers") || this.name.equals("Ravens") || this.name.equals("Bengals") ||this.name.equals("Browns")){
+			this.divison = "AFC NORTH";
+		}
+		if( this.name.equals("Texans") || this.name.equals("Jaguars") || this.name.equals("Titans") ||this.name.equals("Colts")){
+			this.divison = "AFC SOUTH";
+		}
+		if( this.name.equals("Broncos") || this.name.equals("Ravens") || this.name.equals("Cheifs") ||this.name.equals("Chargers")){
+			this.divison = "AFC WEST";
+		}
+	} 
 
 	/*
 	 * Default constructor for Team

@@ -107,13 +107,14 @@ public class Main {
 
 	public void createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
 			Coach_Pool coachPool, Player_Pool playerPool) {
-		String[] teamNames = { "Atlanta Falcons", "Baltimore Ravens", "Carolina Panthers", "Chicago Bears",
-				"Cincinnati Bengals", "Cleveland Browns", "Detroit Lions", "Green Bay Packers", "Houston Texans",
-				"Indianapolis Colts", "Jacksonville Jaguars", "Minnesota Vikings", "Tennessee Titans",
-				"New Orleans Saints", "Pittsburgh Steelers", "Tampa Bay Buccaneers", "T" };
-		String[] teamHometowns = { "Atlanta", "Baltimore", "Charlotte", "Chicago", "Cincinnati", "Cleveland", "Detroit",
-				"Green Bay", "Houston", "Indianapolis", "Jacksonville", "Minneapolis", "Nashville", "New Orleans",
-				"Pittsburgh", "Tampa" };
+		String[] teamNames = { "Boston Patriots", "Buffoalo Bills", "New York Jets", "Miami Dolphins",
+				"Pittsburgh Steelers", "Baltimore Ravens", "Cincinnati Bengals", "Clevelnad Browns", "Huston Texans",
+				"Jacksonville Jaguars", "Tennessee Titans", "Indianapolis Colts", "Denver Broncos",
+				"Oakland Raiders", "Kansas City Cheifs", "San Diego Chargers"};
+		String[] teamHometowns = { "Boston", "Buffoalo", "New York", "Miami",
+				"Pittsburgh", "Baltimore", "Cincinnati", "Cleveland", "Huston",
+				"Jacksonville", "Tennessee", "Indianapolis", "Denver",
+				"Oakland", "Kansas City", "San Diego" };
 
 		for (int i = 0; i < numberOfTeams; i++) {
 			Team t = new Team(teamNames[i], teamHometowns[i], generalManagerPool.getRandomGM());
