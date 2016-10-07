@@ -80,7 +80,6 @@ public class Main {
 		int numberOfSeasons = 4;
 		System.out.println("How many seasons would you like to run? ");
 		numberOfSeasons = Integer.parseInt(mainScanner.nextLine());
-		
 
 		for (int i = 0; i < numberOfSeasons; i++) {
 			seasons.add(new Season(this.teams, 16));
@@ -90,21 +89,15 @@ public class Main {
 				isFirstSeason = true;
 			}
 			s.scheduleRandSeason();
-			while (!s.isFinished())
-			{
+			while (!s.isFinished()) {
+				System.out.println("\nSeason " + (i + 1) + " Week " + (s.getCurrWeek() + 1));
 				System.out.println("How many weeks to run before stopping? ");
 				int weeksToRun = Integer.parseInt(mainScanner.nextLine());
 				s.play(weeksToRun);
+				System.out.println("\nSeason " + (i + 1) + " Week " + (s.getCurrWeek() + 1));
 				printOutputs(s, weeksToRun);
-				for(Team t: s.getTeams())
-					t.getCurrentSeasonResult().getGames()[0].printGame();
 			}
-
 			results.add(s.seasonResult());
-			// s.printSeason();
-			// printSeasonDetails(seasons);
-			// printWinLossRecords(seasons);
-			// printTeamDetails(seasons);
 			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
 
 		}
@@ -268,12 +261,11 @@ public class Main {
 			System.out.println("Option 4: Print out team roster details");
 			System.out.println("Option 5: Print out team revenue details");
 			System.out.println("Option 6: Print out full revenue statistics for one week");
-			System.out.print("Enter an option number (1,2, 3, or 4): ");
+			System.out.print("Enter an option number (1-6): ");
 			String input = mainScanner.nextLine();
 			System.out.println("");
-			switch (input){
+			switch (input) {
 			case "1":
-				//printWeekDetails(s);
 				printTeamGames(s);
 				break;
 			case "2":
@@ -288,94 +280,90 @@ public class Main {
 			case "5":
 				printTeamRevenues(s);
 				break;
+			case "6":
+				// TODO
+				break;
 			default:
 				System.out.println("Invalid number. Program terminated. ");
 				break;
-				
+
 			}
-			System.out.print("Would you like to continue? (y/n): ");
+			System.out.print("Would you like to continue with the season? (y/n): ");
 			input = mainScanner.nextLine();
-			if (input.equals("n")) {
+			if (input.equals("y"))
 				break;
-			}
 			System.out.println("");
 		}
 
 	}
-	
-	public static void printTeamRevenues(Season s)
-	{
-		for (Team t: s.getTeams())
-		{
+
+	public static void printTeamRevenues(Season s) {
+		for (Team t : s.getTeams()) {
 			t.printRevenue();
 			System.out.println("");
 		}
 	}
-	
-	public static void printTeamGames(Season s){
-		for (int i = 0; i < s.getTeams().size(); i++) {
-			System.out.println(s.getTeams().get(i).getTeamName());
-		}
-		System.out.println("");
-		System.out.print("Please select a team: ");
-		String input = mainScanner.nextLine();
-		
-		Team t = new Team();
-		System.out.println(input);
-		for (int i = 0; i < s.getTeams().size(); i++) {
-			if (s.getTeams().get(i).getTeamName().equals(input))
-			{
-				t = s.getTeams().get(i);
-				System.out.println("Found Team");
+
+	public static void printTeamGames(Season s) {
+		boolean found = false;
+		do {
+			System.out.println("");
+			for (int i = 0; i < s.getTeams().size(); i++) {
+				System.out.print(s.getTeams().get(i).getTeamName() + ", ");
+				if ((i+1) % 5 == 0)
+					System.out.println("");
 			}
-		}
-		
-		for (int i = 0; i < t.getCurrentSeasonResult().getGames().length; i++)
-		{
-			if (t.getCurrentSeasonResult().getGames()[i] != null)
-			{
-				System.out.println("Game " + (i+1));
-				t.getCurrentSeasonResult().getGames()[i].printGame();
-				System.out.println("");
+			System.out.println("\n");
+			System.out.print("Please select a team: ");
+			String input = mainScanner.nextLine();
+
+			Team t = new Team();
+			for (int i = 0; i < s.getTeams().size(); i++) {
+				if (s.getTeams().get(i).getTeamName().equals(input)) {
+					t = s.getTeams().get(i);
+					found = true;
+				}
 			}
-		}
-		
+
+			for (int i = 0; i < t.getCurrentSeasonResult().getGames().length; i++) {
+				if (t.getCurrentSeasonResult().getGames()[i] != null) {
+					System.out.println("Game " + (i + 1));
+					t.getCurrentSeasonResult().getGames()[i].printGame();
+					System.out.println("");
+				}
+			}
+			if (!found)
+				System.out.println("\nTeam not found, check the spelling.\n");
+		} while (!found);
+
 	}
 
+	// Print out week outcome and game statistics in one season
 	public static void printWeekDetails(Season s, int weeksToRun) {
-		// Print out season outcome and game statistics in each season
-		for (int i=0; i< weeksToRun; i++){
-			System.out.println("WEEK #" + (i+1));
-			for (int j=0; j<s.getWeek(i).length; j++){
-				s.getWeek(i)[j].printGame();
-			}
+		int week = 0;
+		do {
+			if (week > s.getCurrWeek())
+				System.out.println("That week has not been played yet.");
+
+			System.out.println("What week would you like to look at? ");
+			week = Integer.parseInt(mainScanner.nextLine());
+		} while (week > s.getCurrWeek());
+
+		System.out.println("WEEK #" + week);
+		for (int j = 0; j < s.getWeek(week).length; j++) {
+			s.getWeek(week)[j].printGame();
+			System.out.println("");
 		}
-		
-		}
-	
+
+	}
 
 	public static void printWinLossRecords(Season s) {
-		// for (int i = 0; i < seasons.size(); i++) {
-		// Season s = seasons.get(i);
-		// System.out.println("SEASON #" + (i + 1));
-		// System.out.println(s.tempTeams.get(0).getWins());
-		// for (Team t : s.teams) {
-		// System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + "
-		// " + "Losses-" + t.getLosses());
-		// }
-		// System.out.println("");
-		// }
-		// System.out.println("TOTAL RECORD ACROSS SEASONS");
-		
-		//for (int i=0; i)
-		//for (Team t : seasons.get().getTeams()) {
 		System.out.println("WIN-LOSS RECORDS");
 		for (Team t : s.getTeams()) {
 			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
 		}
 		System.out.println("");
 	}
-		 
 
 	public static void printTeamDetails(Season s) {
 		for (int i = 0; i < s.getTeams().size(); i++) {
@@ -385,21 +373,6 @@ public class Main {
 		System.out.print("Please select a team: ");
 		String input = mainScanner.nextLine();
 		s.printRosterDetails(input);
-	
-	}
-
-	public static void printRevenueDetails(ArrayList<Season> seasons) {
-		/*
-		 * for (int i = 0; i < seasons.size(); i++) { Season s = seasons.get(i);
-		 * System.out.println("SEASON #" + (i + 1)); for (int j = 0; j <
-		 * s.teams.size(); j++) { s.tempTeams.get(j).profitPrinter(); }
-		 * System.out.println(""); }
-		 */
-		System.out.println("OVERALL REVENUE DETAILS");
-		Season s = seasons.get(3);
-		for (int i = 0; i < s.getTeams().size(); i++) {
-			s.getTeams().get(i).profitPrinter();
-		}
 
 	}
 
@@ -408,11 +381,11 @@ public class Main {
 			Season s = seasons.get(i);
 			System.out.println("SEASON #" + (i + 1));
 			System.out.print("Retired Players:");
-			for(int j=0; j<s.retiredPlayers.size(); j++){
+			for (int j = 0; j < s.retiredPlayers.size(); j++) {
 				s.retiredPlayers.get(i).printPlayer();
 			}
 			System.out.println("Fired Coaches:");
-			for(int j=0; j<s.firedCoaches.size(); j++){
+			for (int j = 0; j < s.firedCoaches.size(); j++) {
 				s.firedCoaches.get(i).printCoach();
 			}
 			System.out.println("");

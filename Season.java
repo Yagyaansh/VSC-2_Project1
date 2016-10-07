@@ -140,6 +140,7 @@ public class Season {
 	 */
 	public void play(int n) {
 		int end = currWeek + n;
+		end = (end  > totalWeeks) ? totalWeeks : currWeek+ n;
 		for (int i = currWeek; i < end; i++) {
 			currWeek++;
 			for (Game g : this.schedule[i]) {
