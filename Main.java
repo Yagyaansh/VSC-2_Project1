@@ -93,8 +93,9 @@ public class Main {
 			while (!s.isFinished())
 			{
 				System.out.println("How many weeks to run before stopping? ");
-				s.play(Integer.parseInt(mainScanner.next()));
-				System.out.println(s.getCurrWeek());
+				int weeksToRun = Integer.parseInt(mainScanner.next());
+				s.play(weeksToRun);
+				printOutputs(seasons);
 			}
 
 			results.add(s.seasonResult());

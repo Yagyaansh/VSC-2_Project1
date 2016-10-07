@@ -142,7 +142,7 @@ public class Season {
 		int end = currWeek + n;
 		for (int i = currWeek; i < end; i++) {
 			currWeek++;
-			for (Game g : this.schedule[currWeek]) {
+			for (Game g : this.schedule[i]) {
 				Team victor = g.runGameSimulation();
 				g.getTeam1().getCurrentSeasonResult().addGame(currWeek, g);
 				g.getTeam2().getCurrentSeasonResult().addGame(currWeek, g);

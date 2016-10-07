@@ -26,7 +26,7 @@ public class Result {
 	 */
 	public void addGame(int week, Game g)
 	{
-		games[week] = g;
+		games[week-1] = g;
 	}
 	
 	public int getWins() {
