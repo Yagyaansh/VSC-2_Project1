@@ -281,7 +281,7 @@ public class Main {
 				break;
 			case "3":
 				printWinLossRecords(s);
-				//printTeamDetails(s);
+				break;
 			case "4":
 				printTeamDetails(s);
 				break;
