@@ -259,7 +259,7 @@ public class Main {
 
 	}
 
-	public static void printOutputs(ArrayList<Season> seasons) {
+	public static void printOutputs(ArrayList<Season> seasons, int weeksToRun) {
 		while (true) {
 			System.out.println("Option 1: Print out game statistics");
 			System.out.println("Option 2: Print out win loss records");
@@ -269,17 +269,21 @@ public class Main {
 			Scanner scan1 = new Scanner(System.in);
 			String input = scan1.nextLine();
 			System.out.println("");
-			if (input.equals("1")) {
+			switch (input){
+			case "1":
 				printWeekDetails(seasons);
-			} else if (input.equals("2")) {
+				break;
+			case "2":
 				printWinLossRecords(seasons);
-			} else if (input.equals("3")) {
+				break;
+			case "3":
 				printTeamDetails(seasons);
-			} else if (input.equals("4")) {
+			case "4":
 				printRevenueDetails(seasons);
-			} else {
+			default:
 				System.out.println("Invalid number. Program terminated. ");
 				break;
+				
 			}
 			System.out.print("Would you like to continue? (y/n): ");
 			Scanner scan2 = new Scanner(System.in);
