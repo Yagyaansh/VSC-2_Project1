@@ -277,9 +277,10 @@ public class Main {
 				printTeamGames(s);
 				break;
 			case "2":
-				//printWinLossRecords(s);
+				printWeekDetails(s, weeksToRun);
 				break;
 			case "3":
+				printWinLossRecords(s);
 				//printTeamDetails(s);
 			case "4":
 				printTeamDetails(s);
@@ -329,30 +330,19 @@ public class Main {
 		
 	}
 
-	public static void printWeekDetails(ArrayList<Season> seasons) {
+	public static void printWeekDetails(Season s, int weeksToRun) {
 		// Print out season outcome and game statistics in each season
-		// for (int i = 0; i < seasons.size(); i++) {
-		// Season s = seasons.get(i);
-		// System.out.println("SEASON #" + (i + 1) + " Victor: " +
-		// s.victors.get(i).getTeamName());
-		// s.printSeason();
-		// System.out.println("");
-		// }
-		//System.out.println("OVERALL OUTCOME");
-		//System.out.println("Victor: " + seasons.get(0).getVictors().get(0).getTeamName());
-		// seasons.get(0).printSeason();
+		for (int i=0; i< weeksToRun; i++){
+			System.out.println("WEEK #" + (i+1));
+			for (int j=0; j<s.getWeek(i).length; j++){
+				s.getWeek(i)[j].printGame();
+			}
+		}
 		
-	/*	Scanner scan = new Scanner (System.in);
-		System.out.println("Please select a season: ");
-		String input = scan.nextLine();*/
-		for(int i =0; i< seasons.size(); i++ ) {
-			Season s = seasons.get(i);
-			s.printSeason();
-			 }
 		}
 	
 
-	public static void printWinLossRecords(ArrayList<Season> seasons) {
+	public static void printWinLossRecords(Season s) {
 		// for (int i = 0; i < seasons.size(); i++) {
 		// Season s = seasons.get(i);
 		// System.out.println("SEASON #" + (i + 1));
@@ -367,9 +357,13 @@ public class Main {
 		
 		//for (int i=0; i)
 		//for (Team t : seasons.get().getTeams()) {
-			//System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
-		
+		System.out.println("WIN-LOSS RECORDS");
+		for (Team t : s.getTeams()) {
+			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
+		}
+		System.out.println("");
 	}
+		 
 
 	public static void printTeamDetails(Season s) {
 		for (int i = 0; i < s.getTeams().size(); i++) {
