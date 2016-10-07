@@ -37,6 +37,7 @@ public class Main {
 	private Coach_Pool coachPool;
 	private Player_Pool playerPool;
 	private ArrayList<Team> teams;
+	private Scanner mainScanner;
 
 	/*
 	 * Constructor - hard-coded with the sizes of the pools Change pool size
@@ -50,6 +51,7 @@ public class Main {
 
 		int numberOfTeams = 16;
 		this.teams = new ArrayList<Team>();
+		this.mainScanner = new Scanner(System.in);
 		this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
 	}
 
@@ -76,6 +78,8 @@ public class Main {
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<Team>();
 		int numberOfSeasons = 4;
+		System.out.println("How many seasons would you like to run? ");
+		
 
 		for (int i = 0; i < 2; i++) {
 			seasons.add(new Season(this.teams, 16));
