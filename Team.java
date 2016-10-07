@@ -46,7 +46,7 @@ public class Team {
 		 */
 		if (hometown == "Boston"){
 			this.population = 645966;
-		} else if (hometown == "Buffoalo") {
+		} else if (hometown == "Buffalo") {
 			this.population = 258959;
 		} else if (hometown == "New York") {
 			this.population = 8406000;
@@ -60,7 +60,7 @@ public class Team {
 			this.population = 297517;
 		} else if (hometown == "Cleveland") {
 			this.population = 390113;
-		} else if (hometown == "Huston") {
+		} else if (hometown == "Houston") {
 			this.population = 2196000;
 		} else if (hometown == "Jacksonville") {
 			this.population = 842583;
