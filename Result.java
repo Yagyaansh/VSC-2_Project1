@@ -47,6 +47,10 @@ public class Result {
 	public void setDraws(int draws) {
 		this.draws = draws;
 	}
+	public Game[] getGames()
+	{
+		return games;
+	}
 	
 	/*
 	 * End of Getters and Setters

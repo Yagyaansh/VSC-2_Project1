@@ -37,7 +37,7 @@ public class Main {
 	private Coach_Pool coachPool;
 	private Player_Pool playerPool;
 	private ArrayList<Team> teams;
-	private Scanner mainScanner;
+	private static Scanner mainScanner;
 
 	/*
 	 * Constructor - hard-coded with the sizes of the pools Change pool size
@@ -95,7 +95,7 @@ public class Main {
 				System.out.println("How many weeks to run before stopping? ");
 				int weeksToRun = Integer.parseInt(mainScanner.next());
 				s.play(weeksToRun);
-				printOutputs(seasons, weeksToRun);
+				printOutputs(s, weeksToRun);
 			}
 
 			results.add(s.seasonResult());
@@ -258,27 +258,30 @@ public class Main {
 
 	}
 
-	public static void printOutputs(ArrayList<Season> seasons, int weeksToRun) {
+	public static void printOutputs(Season s, int weeksToRun) {
 		while (true) {
-			System.out.println("Option 1: Print out game statistics");
-			System.out.println("Option 2: Print out win loss records");
-			System.out.println("Option 3: Print out team roster details");
-			System.out.println("Option 4: Print out team revenue details");
+			System.out.println("Option 1: Print out game statistics for one team");
+			System.out.println("Option 2: Print full game statistics for one week");
+			System.out.println("Option 3: Print out win/loss records");
+			System.out.println("Option 4: Print out team roster details");
+			System.out.println("Option 5: Print out team revenue details");
+			System.out.println("Option 6: Print out full revenue statistics for one week");
 			System.out.print("Enter an option number (1,2, 3, or 4): ");
 			Scanner scan1 = new Scanner(System.in);
 			String input = scan1.nextLine();
 			System.out.println("");
 			switch (input){
 			case "1":
-				printWeekDetails(seasons);
+				//printWeekDetails(s);
+				printTeamGames(s);
 				break;
 			case "2":
-				printWinLossRecords(seasons);
+				//printWinLossRecords(s);
 				break;
 			case "3":
-				printTeamDetails(seasons);
+				//printTeamDetails(s);
 			case "4":
-				printRevenueDetails(seasons);
+				//printRevenueDetails(s);
 			default:
 				System.out.println("Invalid number. Program terminated. ");
 				break;
@@ -295,6 +298,30 @@ public class Main {
 			// scan2.close();
 		}
 
+	}
+	
+	public static void printTeamGames(Season s){
+		for (int i = 0; i < s.getTeams().size(); i++) {
+			System.out.println(s.getTeams().get(i).getTeamName());
+		}
+		System.out.println("");
+		System.out.print("Please select a team: ");
+		String input;
+		if (mainScanner.hasNextLine())
+			input = mainScanner.nextLine();
+		else
+			input = null;
+		Team t = new Team();
+		for (int i = 0; i < s.getTeams().size(); i++) {
+			if (s.getTeams().get(i).getTeamName().equals(input))
+				t = s.getTeams().get(i);
+		}
+		for (int i = 0; i < t.getCurrentSeasonResult().getGames().length; i++)
+		{
+			if (t.getCurrentSeasonResult().getGames()[i] != null)
+				t.getCurrentSeasonResult().getGames()[i].printGame();
+		}
+		
 	}
 
 	public static void printWeekDetails(ArrayList<Season> seasons) {
