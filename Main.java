@@ -95,7 +95,7 @@ public class Main {
 				System.out.println("How many weeks to run before stopping? ");
 				int weeksToRun = Integer.parseInt(mainScanner.next());
 				s.play(weeksToRun);
-				printOutputs(seasons);
+				printOutputs(seasons, weeksToRun);
 			}
 
 			results.add(s.seasonResult());
@@ -108,7 +108,6 @@ public class Main {
 		}
 
 		printInputs(numberOfTeams, numberOfSeasons);
-		printOutputs(seasons);
 	}
 
 	/*
