@@ -121,6 +121,11 @@ public class Team {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public double getProfit()
+	{
+		return profit;
+	}
 
 	public double getGrossRevenue() {
 		return grossRevenue;
@@ -231,6 +236,20 @@ public class Team {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public void printRevenue(){
+		System.out.println("Team Name: " + name);
+		System.out.println("Hometown: " + hometown);
+		System.out.println("General Manager: " + GM.getName() + " Salary: "+ GM.getSalary());
+		System.out.println("Coach: " + coach.getName() + " Salary: " + coach.getSalary());
+		System.out.println("Total Management Expense: " + (GM.getSalary() + coach.getSalary()));
+		System.out.println("Roster Expense: " + (expenses - (GM.getSalary() + coach.getSalary())));
+		System.out.println("Total Payroll Expense: " + expenses);
+		System.out.println("Home Game Revenue: " + (population/10));
+		System.out.println("Win Revenue: $100000");
+		
+		
+	}
 
 	public void printTeam() {
 		System.out.println("Team Name: " + name);
@@ -325,16 +344,15 @@ public class Team {
 
 	}
 
-	public double profitCalculator() {
+	public void profitCalculator() {
 
-		for (int i = 0; i < starters.size(); i++) {
-			expenses += starters.get(i).getSalary();
+		for (int i = 0; i < roster.size(); i++) {
+			expenses += roster.get(i).getSalary();
 		}
 		expenses += GM.getSalary();
 		expenses += coach.getSalary();
 		profit = grossRevenue - expenses;
-		return profit;
-	}
+		}
 
 	/*
 	 * End of methods to update and calculate values

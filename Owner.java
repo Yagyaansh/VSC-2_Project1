@@ -193,7 +193,7 @@ public class Owner {
 		System.out.print("Owner: " + this.firstName + " " + lastName + " , ");
 		System.out.print("Happy Value: " + this.happyValue + " , ");
 		System.out.print("Unhappy Value: " + this.unhappyValue + " , ");
-		System.out.print("Patience: " + this.patience + " , ");
+		System.out.print("Patience: " + this.patience + ".\n");
 	}
 
 	/*

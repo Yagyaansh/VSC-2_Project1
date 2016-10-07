@@ -285,6 +285,9 @@ public class Main {
 			case "4":
 				printTeamDetails(s);
 				break;
+			case "5":
+				printTeamRevenues(s);
+				break;
 			default:
 				System.out.println("Invalid number. Program terminated. ");
 				break;
@@ -298,6 +301,15 @@ public class Main {
 			System.out.println("");
 		}
 
+	}
+	
+	public static void printTeamRevenues(Season s)
+	{
+		for (Team t: s.getTeams())
+		{
+			t.printRevenue();
+			System.out.println("");
+		}
 	}
 	
 	public static void printTeamGames(Season s){

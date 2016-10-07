@@ -54,6 +54,11 @@ public class GeneralManager {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public String getName()
+	{
+		return firstNameManager + " " + lastNameManager;
+	}
 
 	public void setSalary(int salary) {
 		this.salary = salary;

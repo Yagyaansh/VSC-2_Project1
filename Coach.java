@@ -90,6 +90,10 @@ public class Coach {
 	 * ------------------------
 	 */
 
+	public String getName()
+	{
+		return firstName + " " + lastName;
+	}
 	public int getScheme() {
 		return scheme;
 	}
