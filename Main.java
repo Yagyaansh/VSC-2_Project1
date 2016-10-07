@@ -324,7 +324,7 @@ public class Main {
 		
 	}
 
-	public static void printWeekDetails(ArrayList<Season> seasons, weeksToRun) {
+	public static void printWeekDetails(ArrayList<Season> seasons) {
 		// Print out season outcome and game statistics in each season
 		// for (int i = 0; i < seasons.size(); i++) {
 		// Season s = seasons.get(i);
