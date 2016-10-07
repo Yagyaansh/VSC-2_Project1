@@ -22,9 +22,9 @@ public class Main {
 	 * is then divided into an offensiveRoster and a defensiveRoster A list of
 	 * all the teams is then returned by the method createTeams() Then all the
 	 * seasons are created using the Season class The seasons are added to a
-	 * list The number of seasons is hard coded since the number should
-	 * not change too much Each season is then simulated and the results are
-	 * stored in a list called results This stores all the final results for the
+	 * list The number of seasons is hard coded since the number should not
+	 * change too much Each season is then simulated and the results are stored
+	 * in a list called results This stores all the final results for the
 	 * simulation
 	 * 
 	 * 
@@ -47,7 +47,7 @@ public class Main {
 		this.generalManagerPool = new GeneralManager_Pool(getGMPoolSize());
 		this.coachPool = new Coach_Pool(getCoachPoolSize());
 		this.playerPool = new Player_Pool(getPlayerPoolSize());
-		
+
 		int numberOfTeams = 16;
 		this.teams = new ArrayList<Team>();
 		this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
@@ -81,22 +81,22 @@ public class Main {
 			seasons.add(new Season(this.teams, 16));
 			Season s = seasons.get(i);
 			boolean isFirstSeason = false;
-			if(i==0) {
-				isFirstSeason= true;
+			if (i == 0) {
+				isFirstSeason = true;
 			}
 			s.scheduleRandSeason();
 			s.play();
 			results.add(s.seasonResult());
-			//s.printSeason();
-			//printSeasonDetails(seasons);
-			//printWinLossRecords(seasons);
-			printTeamDetails(seasons);
+			// s.printSeason();
+			// printSeasonDetails(seasons);
+			// printWinLossRecords(seasons);
+			// printTeamDetails(seasons);
 			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
-			
+
 		}
 
-		//printInputs(numberOfTeams, numberOfSeasons);
-		//printOutputs(seasons);
+		printInputs(numberOfTeams, numberOfSeasons);
+		printOutputs(seasons);
 	}
 
 	/*
@@ -105,16 +105,15 @@ public class Main {
 	 * participating in the simulation
 	 */
 
-	public void createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool,
-			Coach_Pool coachPool, Player_Pool playerPool) {
-		String[] teamNames = { "Boston Patriots", "Buffoalo Bills", "New York Jets", "Miami Dolphins",
-				"Pittsburgh Steelers", "Baltimore Ravens", "Cincinnati Bengals", "Clevelnad Browns", "Huston Texans",
-				"Jacksonville Jaguars", "Tennessee Titans", "Indianapolis Colts", "Denver Broncos",
-				"Oakland Raiders", "Kansas City Cheifs", "San Diego Chargers"};
-		String[] teamHometowns = { "Boston", "Buffoalo", "New York", "Miami",
-				"Pittsburgh", "Baltimore", "Cincinnati", "Cleveland", "Huston",
-				"Jacksonville", "Tennessee", "Indianapolis", "Denver",
-				"Oakland", "Kansas City", "San Diego" };
+	public void createTeams(int numberOfTeams, GeneralManager_Pool generalManagerPool, Coach_Pool coachPool,
+			Player_Pool playerPool) {
+		String[] teamNames = { "Boston Patriots", "Buffalo Bills", "New York Jets", "Miami Dolphins",
+				"Pittsburgh Steelers", "Baltimore Ravens", "Cincinnati Bengals", "Clevelnad Browns", "Houston Texans",
+				"Jacksonville Jaguars", "Tennessee Titans", "Indianapolis Colts", "Denver Broncos", "Oakland Raiders",
+				"Kansas City Chiefs", "San Diego Chargers" };
+		String[] teamHometowns = { "Boston", "Buffalo", "New York", "Miami", "Pittsburgh", "Baltimore", "Cincinnati",
+				"Cleveland", "Houston", "Jacksonville", "Tennessee", "Indianapolis", "Denver", "Oakland", "Kansas City",
+				"San Diego" };
 
 		for (int i = 0; i < numberOfTeams; i++) {
 			Team t = new Team(teamNames[i], teamHometowns[i], generalManagerPool.getRandomGM());
@@ -124,11 +123,11 @@ public class Main {
 		}
 		int rosterSize = 50;
 		int numberOfPositions = 6;
-		this.fillAllTeamRosters(rosterSize, numberOfPositions);		
+		this.fillAllTeamRosters(rosterSize, numberOfPositions);
 
 		for (Team t : this.teams) {
 			t.divideRoster_OffensiveAndDefensive();
-			//t.printTeam();
+			// t.printTeam();
 		}
 
 	}
@@ -141,10 +140,9 @@ public class Main {
 
 	private void fillAllTeamRosters(int rosterSize, int numberOfPositions) {
 		int i = 0;
-		
+
 		Collections.sort(this.playerPool.getPlayerPool());
-		for(i=0; i< (rosterSize/numberOfPositions); i++)
-		{
+		for (i = 0; i < (rosterSize / numberOfPositions); i++) {
 			this.allTeamsPick(Player.RUNNINGBACKSCORE);
 			this.allTeamsPick(Player.RECEIVERSCORE);
 			this.allTeamsPick(Player.OFFENSIVELINESCORE);
@@ -153,46 +151,44 @@ public class Main {
 			this.allTeamsPick(Player.DEFENSIVELINESCORE);
 		}
 		int remaining = rosterSize % numberOfPositions;
-		
+
 		this.allTeamsPick(Player.RUNNINGBACKSCORE);
 		remaining--;
-		if(remaining == 0)
+		if (remaining == 0)
 			return;
-		
+
 		this.allTeamsPick(Player.RECEIVERSCORE);
 		remaining--;
-		if(remaining == 0)
+		if (remaining == 0)
 			return;
-		
+
 		this.allTeamsPick(Player.OFFENSIVELINESCORE);
 		remaining--;
-		if(remaining == 0)
+		if (remaining == 0)
 			return;
-		
+
 		this.allTeamsPick(Player.SECONDARYSCORE);
 		remaining--;
-		if(remaining == 0)
+		if (remaining == 0)
 			return;
-		
+
 		this.allTeamsPick(Player.LINEBACKERSCORE);
 		remaining--;
-		
+
 	}
 
-
 	private void allTeamsPick(int position) {
-		for(Team team: this.teams)
-		{
+		for (Team team : this.teams) {
 			Player player = team.getGM().pickAPlayer(this.playerPool, position);
 			team.addToRoster(player);
-			//System.out.println("inside all teams pick");
+			// System.out.println("inside all teams pick");
 			player.setIsInATeam(true);
 			player.setTeam(team);
 			player.setCoach(team.getCoach());
 			player.setSalary(player.calculateSalary());
 			this.playerPool.getPlayerPool().remove(player);
 		}
-		
+
 	}
 
 	public void setGeneralManagerPool(GeneralManager_Pool generalManagerPool) {
@@ -288,35 +284,37 @@ public class Main {
 
 	public static void printSeasonDetails(ArrayList<Season> seasons) {
 		// Print out season outcome and game statistics in each season
-//		for (int i = 0; i < seasons.size(); i++) {
-//			Season s = seasons.get(i);
-//			System.out.println("SEASON #" + (i + 1) + " Victor: " + s.victors.get(i).getTeamName());
-//			s.printSeason();
-//			System.out.println("");
-//		}
+		// for (int i = 0; i < seasons.size(); i++) {
+		// Season s = seasons.get(i);
+		// System.out.println("SEASON #" + (i + 1) + " Victor: " +
+		// s.victors.get(i).getTeamName());
+		// s.printSeason();
+		// System.out.println("");
+		// }
 		System.out.println("OVERALL OUTCOME");
 		System.out.println("Victor: " + seasons.get(0).getVictors().get(0).getTeamName());
-		//seasons.get(0).printSeason();
+		// seasons.get(0).printSeason();
 	}
 
 	public static void printWinLossRecords(ArrayList<Season> seasons) {
-//		for (int i = 0; i < seasons.size(); i++) {
-//			Season s = seasons.get(i);
-//			System.out.println("SEASON #" + (i + 1));
-//			System.out.println(s.tempTeams.get(0).getWins());
-//			for (Team t : s.teams) {
-//				System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
-//			}
-//			System.out.println("");
-//		}
+		// for (int i = 0; i < seasons.size(); i++) {
+		// Season s = seasons.get(i);
+		// System.out.println("SEASON #" + (i + 1));
+		// System.out.println(s.tempTeams.get(0).getWins());
+		// for (Team t : s.teams) {
+		// System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + "
+		// " + "Losses-" + t.getLosses());
+		// }
+		// System.out.println("");
+		// }
 		System.out.println("TOTAL RECORD ACROSS SEASONS");
-				for (Team t : seasons.get(0).getTeams()) {
-					System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
-				}
+		for (Team t : seasons.get(0).getTeams()) {
+			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
+		}
 	}
 
 	public static void printTeamDetails(ArrayList<Season> seasons) {
-		for(int i=0; i<seasons.get(0).getTeams().size(); i++) {
+		for (int i = 0; i < seasons.get(0).getTeams().size(); i++) {
 			System.out.println(seasons.get(0).getTeams().get(i).getTeamName());
 		}
 		System.out.println("");
@@ -333,22 +331,37 @@ public class Main {
 			s.printRosterDetails(input);
 			System.out.println("");
 		}
-		//scan.close();
+		// scan.close();
 	}
 
 	public static void printRevenueDetails(ArrayList<Season> seasons) {
-		/*for (int i = 0; i < seasons.size(); i++) {
+		/*
+		 * for (int i = 0; i < seasons.size(); i++) { Season s = seasons.get(i);
+		 * System.out.println("SEASON #" + (i + 1)); for (int j = 0; j <
+		 * s.teams.size(); j++) { s.tempTeams.get(j).profitPrinter(); }
+		 * System.out.println(""); }
+		 */
+		System.out.println("OVERALL REVENUE DETAILS");
+		Season s = seasons.get(3);
+		for (int i = 0; i < s.getTeams().size(); i++) {
+			s.getTeams().get(i).profitPrinter();
+		}
+
+	}
+
+	public static void printOffseasonDetails(ArrayList<Season> seasons) {
+		for (int i = 0; i < seasons.size(); i++) {
 			Season s = seasons.get(i);
 			System.out.println("SEASON #" + (i + 1));
-			for (int j = 0; j < s.teams.size(); j++) {
-				s.tempTeams.get(j).profitPrinter();
+			System.out.print("Retired Players:");
+			for(int j=0; j<s.retiredPlayers.size(); j++){
+				s.retiredPlayers.get(i).printPlayer();
+			}
+			System.out.println("Fired Coaches:");
+			for(int j=0; j<s.firedCoaches.size(); j++){
+				s.firedCoaches.get(i).printCoach();
 			}
 			System.out.println("");
-		}*/
-		System.out.println("OVERALL REVENUE DETAILS");
-		Season s=seasons.get(3);
-		for(int i=0; i<s.getTeams().size(); i++){
-			s.getTeams().get(i).profitPrinter() ;
 		}
 
 	}

@@ -19,6 +19,9 @@ public class Season {
 	private int currWeek;
 	private int totalWeeks;
 	private Game[][] schedule;
+	
+	ArrayList<Player> retiredPlayers;
+	ArrayList<Coach> firedCoaches;
 
 	/*
 	 * Initializes all the lists
@@ -28,6 +31,8 @@ public class Season {
 		this.games = new ArrayList<Game>();
 		this.victors = new ArrayList<Team>();
 		this.tempTeams = new ArrayList<Team>();
+		this.retiredPlayers = new ArrayList<Player>();
+		this.firedCoaches = new ArrayList<Coach>();
 
 	}
 
@@ -41,6 +46,9 @@ public class Season {
 		this.games = new ArrayList<Game>();
 		this.victors = new ArrayList<Team>();
 		this.tempTeams = new ArrayList<Team>();
+		this.retiredPlayers = new ArrayList<Player>();
+		this.firedCoaches = new ArrayList<Coach>();
+
 
 	}
 
@@ -52,6 +60,8 @@ public class Season {
 		this.games = games;
 		this.victors = new ArrayList<Team>();
 		this.tempTeams = new ArrayList<Team>();
+		this.retiredPlayers = new ArrayList<Player>();
+		this.firedCoaches = new ArrayList<Coach>();
 
 	}
 
@@ -294,6 +304,7 @@ public class Season {
 				if (player.getAge() == 40) {
 					player.setIsInATeam(false);
 					player.setTeam(null);
+					retiredPlayers.add(player);
 				} else {
 					player.updateFit(coach); // this is fine because players not
 												// in any team roster dont have
@@ -387,6 +398,7 @@ public class Season {
 		if (!isFirstSeason) {
 			for (Team t : this.teams) {
 				if (t.getOwner().fireCoach()) {
+					firedCoaches.add(t.getCoach());
 					Coach replacementCoach = t.getGM().pickACoach(coachPool);
 					t.setCoach(replacementCoach);
 				}
