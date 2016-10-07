@@ -331,8 +331,8 @@ public class Main {
 		
 		//for (int i=0; i)
 		//for (Team t : seasons.get().getTeams()) {
-			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
-		}
+			//System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
+		
 	}
 
 	public static void printTeamDetails(ArrayList<Season> seasons) {
