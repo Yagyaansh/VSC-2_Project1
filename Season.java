@@ -16,7 +16,7 @@ public class Season {
 
 	// Make a deep copy of the team for printing references
 	private ArrayList<Team> tempTeams;
-	private int currWeek;
+	private int currWeek = 0;
 	private int totalWeeks;
 	private Game[][] schedule;
 	
@@ -98,6 +98,16 @@ public class Season {
 
 		}
 	}
+	
+	public Game[] getWeek(int week)
+	{
+		return schedule[week-1];
+	}
+	
+	public boolean isFinished()
+	{
+		return currWeek == totalWeeks-1;
+	}
 
 	public ArrayList<Team> getTeams() {
 		return teams;
@@ -127,8 +137,10 @@ public class Season {
 	 * All the games in the games list are played. The results of every game are
 	 * returned They are stored in the victors list
 	 */
-	public void play() {
-		for (currWeek = 0; currWeek < totalWeeks; currWeek++) {
+	public void play(int n) {
+		int end = currWeek + n;
+		for (int i = currWeek; i < end; i++) {
+			currWeek++;
 			for (Game g : this.schedule[currWeek]) {
 				Team victor = g.runGameSimulation();
 				g.getTeam1().getCurrentSeasonResult().addGame(currWeek, g);

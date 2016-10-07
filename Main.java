@@ -79,9 +79,10 @@ public class Main {
 		ArrayList<Team> results = new ArrayList<Team>();
 		int numberOfSeasons = 4;
 		System.out.println("How many seasons would you like to run? ");
+		numberOfSeasons = Integer.parseInt(mainScanner.next());
 		
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < numberOfSeasons; i++) {
 			seasons.add(new Season(this.teams, 16));
 			Season s = seasons.get(i);
 			boolean isFirstSeason = false;
@@ -89,7 +90,13 @@ public class Main {
 				isFirstSeason = true;
 			}
 			s.scheduleRandSeason();
-			s.play();
+			while (!s.isFinished())
+			{
+				System.out.println("How many weeks to run before stopping? ");
+				s.play(Integer.parseInt(mainScanner.next()));
+				System.out.println(s.getCurrWeek());
+			}
+
 			results.add(s.seasonResult());
 			// s.printSeason();
 			// printSeasonDetails(seasons);
