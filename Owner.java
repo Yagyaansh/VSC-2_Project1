@@ -127,7 +127,9 @@ public class Owner {
 	 * 
 	 * Overwrites last years wins and losses variables
 	 */
-	public boolean fireCoach(int teamWins, int teamLosses) {
+	
+	// I don't think this is needed anymore
+	/*public boolean fireCoach(int teamWins, int teamLosses) {
 		if (teamWins >= this.happyValue) {
 			this.lastYearWins = teamWins;
 			this.lastYearLosses = teamLosses;
@@ -151,7 +153,7 @@ public class Owner {
 			this.lastYearLosses = teamLosses;
 			return true;
 		}
-	}
+	}*/
 
 	// Just need the team here.
 	// Already being called by the owner object.
