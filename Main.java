@@ -269,7 +269,7 @@ public class Main {
 			String input = scan1.nextLine();
 			System.out.println("");
 			if (input.equals("1")) {
-				printSeasonDetails(seasons);
+				printWeekDetails(seasons);
 			} else if (input.equals("2")) {
 				printWinLossRecords(seasons);
 			} else if (input.equals("3")) {
@@ -293,7 +293,7 @@ public class Main {
 
 	}
 
-	public static void printSeasonDetails(ArrayList<Season> seasons) {
+	public static void printWeekDetails(ArrayList<Season> seasons) {
 		// Print out season outcome and game statistics in each season
 		// for (int i = 0; i < seasons.size(); i++) {
 		// Season s = seasons.get(i);
@@ -302,10 +302,19 @@ public class Main {
 		// s.printSeason();
 		// System.out.println("");
 		// }
-		System.out.println("OVERALL OUTCOME");
-		System.out.println("Victor: " + seasons.get(0).getVictors().get(0).getTeamName());
+		//System.out.println("OVERALL OUTCOME");
+		//System.out.println("Victor: " + seasons.get(0).getVictors().get(0).getTeamName());
 		// seasons.get(0).printSeason();
-	}
+		
+	/*	Scanner scan = new Scanner (System.in);
+		System.out.println("Please select a season: ");
+		String input = scan.nextLine();*/
+		for(int i =0; i< seasons.size(); i++ ) {
+			Season s = seasons.get(i);
+			s.printSeason();
+			 }
+		}
+	
 
 	public static void printWinLossRecords(ArrayList<Season> seasons) {
 		// for (int i = 0; i < seasons.size(); i++) {
@@ -318,8 +327,10 @@ public class Main {
 		// }
 		// System.out.println("");
 		// }
-		System.out.println("TOTAL RECORD ACROSS SEASONS");
-		for (Team t : seasons.get(0).getTeams()) {
+		// System.out.println("TOTAL RECORD ACROSS SEASONS");
+		
+		//for (int i=0; i)
+		//for (Team t : seasons.get().getTeams()) {
 			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
 		}
 	}

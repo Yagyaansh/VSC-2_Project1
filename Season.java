@@ -132,6 +132,7 @@ public class Season {
 	public void setCurrWeek(int currWeek) {
 		this.currWeek = currWeek;
 	}
+	
 
 	/*
 	 * All the games in the games list are played. The results of every game are
