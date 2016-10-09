@@ -95,7 +95,7 @@ public class Team {
 			this.divison = "AFC WEST";
 		}
 		
-		this.stadium = new Stadium();
+		this.stadium = new Stadium(this);
 	} 
 
 	/*
@@ -117,7 +117,7 @@ public class Team {
 		this.owner = new Owner(this);
 		this.results = new ArrayList<>();
 		this.result = new Result();
-		this.stadium = new Stadium();
+		this.stadium = new Stadium(this);
 	}
 
 	/*
