@@ -49,7 +49,7 @@ public class Main {
 		this.coachPool = new Coach_Pool(getCoachPoolSize());
 		this.playerPool = new Player_Pool(getPlayerPoolSize());
 
-		int numberOfTeams = 16;
+		int numberOfTeams = numberOfTeams();
 		this.teams = new ArrayList<Team>();
 		this.mainScanner = new Scanner(System.in);
 		this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
@@ -74,7 +74,7 @@ public class Main {
 
 	public void start() throws Exception {
 
-		int numberOfTeams = 16;
+		int numberOfTeams = numberOfTeams();
 		ArrayList<Season> seasons = new ArrayList<Season>();
 		ArrayList<Team> results = new ArrayList<Team>();
 		int numberOfSeasons = 4;
@@ -231,6 +231,10 @@ public class Main {
 
 	public static int getGMPoolSize() {
 		return 100;
+	}
+	
+	public static int numberOfTeams(){
+		return 16;
 	}
 
 	/*

@@ -1,32 +1,21 @@
 public class Media 
 {
-	private double totalAnnualFunds;
+	/*
+	 * All funds are annually updated and given to the teams
+	 */
+	private double totalBaseFunds; // divided equally for all teams
+	private double totalAdvertisementFunds;
+	private double totalLicensingFunds;
+	private int numberOfTeams;
+	
 	
 	public Media()
 	{
-		this.setTotalAnnualFunds(100000000);
+		this.totalBaseFunds = 100;
+		this.totalAdvertisementFunds = 100;
+		this.totalLicensingFunds = 100;
+		this.numberOfTeams = Main.numberOfTeams();
 	}
-
-
-	/*
-	 * Getters and setters for the fields in the class
-	 * -------------------------------------------------------------------------
-	 * ------------------------
-	 */
-	
-	public double getTotalAnnualFunds() {
-		return totalAnnualFunds;
-	}
-
-	public void setTotalAnnualFunds(double totalAnnualFunds) {
-		this.totalAnnualFunds = totalAnnualFunds;
-	}
-	
-	/*
-	 * End of Getters and Setters
-	 * -------------------------------------------------------------------------
-	 * ------------------------
-	 */
 	
 	public double getMediaRevenueFor(Team team)
 	{
@@ -38,6 +27,8 @@ public class Media
 		 * We have to figure out how much each team makes from
 		 * media coverage and licensing
 		 */
+		
+		
 		
 		return revenue;
 	}
