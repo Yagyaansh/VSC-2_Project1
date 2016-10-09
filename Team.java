@@ -378,7 +378,7 @@ public class Team {
 
 	}
 
-	public void updateExpenses() 
+	public void updateHomeTeamExpenses() 
 	{
 		for (int i = 0; i < roster.size(); i++) 
 		{
@@ -386,6 +386,18 @@ public class Team {
 		}
 		expenses += GM.getSalary();
 		expenses += coach.getSalary();
+		expenses += stadium.getCostForMaintainance()*1.5; // since the team played a home game the cost for maintainance for that week increases
+	}
+	
+	public void updateAwayTeamExpenses() 
+	{
+		for (int i = 0; i < roster.size(); i++) 
+		{
+			expenses += roster.get(i).getSalary();
+		}
+		expenses += GM.getSalary();
+		expenses += coach.getSalary();
+		expenses += stadium.getCostForMaintainance(); // basic cost of maintainance
 	}
 	
 	public void updateProfit()

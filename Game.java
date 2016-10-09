@@ -57,8 +57,8 @@ public class Game {
 		this.causeInjuries();
 
 		updateBothTeamRevenues(victor);
-		this.team1.updateExpenses();
-		this.team2.updateExpenses();
+		this.team1.updateHomeTeamExpenses();
+		this.team2.updateAwayTeamExpenses();
 		
 		this.team1.updateProfit();
 		this.team2.updateProfit();

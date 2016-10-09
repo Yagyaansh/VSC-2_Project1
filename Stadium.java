@@ -119,6 +119,9 @@ public class Stadium
 	
 	public void calculateCostOfMaintainance()
 	{
+		/*
+		 * Set cost per week !!
+		 */
 		double costRegular = capacityRegular * 100;
 		double costLuxury = capacityLuxury * 5000;
 		this.setCostForMaintainance(costRegular + costLuxury);
