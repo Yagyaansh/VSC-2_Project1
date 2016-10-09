@@ -3,7 +3,7 @@ public class Sponsor
 {
 	private Team team;
 	private int contractYears;
-	private double annualSponsorship;
+	private double sponsorshipPerGame;
 	private String hometown;
 	private int population;
 	
@@ -19,7 +19,7 @@ public class Sponsor
 		this.hometown = team.getHometown();
 		this.population = team.getPopulation();
 		this.determineContractYears();
-		this.determineAnnualSponsorship();
+		this.determineTotalSponsorshipForContractYears();
 		
 	}
 
@@ -47,11 +47,11 @@ public class Sponsor
 	public void setContractYears(int contractYears) {
 		this.contractYears = contractYears;
 	}
-	public double getAnnualSponsorship() {
-		return annualSponsorship;
+	public double getSponsorshipPerGame() {
+		return sponsorshipPerGame;
 	}
-	public void setAnnualSponsorship(double annualSponsorship) {
-		this.annualSponsorship = annualSponsorship;
+	public void setSponsorshipPerGame(double annualSponsorship) {
+		this.sponsorshipPerGame = annualSponsorship;
 	}
 	
 	/*
@@ -61,7 +61,7 @@ public class Sponsor
 	 */
 	
 
-	private void determineAnnualSponsorship() 
+	private void determineTotalSponsorshipForContractYears() 
 	{
 		double sponsorship = 0.0;
 		
@@ -69,9 +69,13 @@ public class Sponsor
 		 * TODO : 
 		 * Depending on population home town and previous record the team
 		 * is given a sponsorship
+		 * set sponsorship equal to the total amount of money the team will
+		 * get for x number of contract years
 		 */
 		
-		this.setAnnualSponsorship(sponsorship);
+		sponsorship = sponsorship/(Main.numberOfGames()*this.getContractYears());
+		
+		this.setSponsorshipPerGame(sponsorship);
 	}
 
 	private void determineContractYears() 

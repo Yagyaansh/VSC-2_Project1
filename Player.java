@@ -220,7 +220,13 @@ public class Player implements Comparable<Player>{
 	}
 
 	public int calculateSalary() {
-		int salary = (int) (this.age + (100 - Math.abs(this.fit - this.coach.getScheme()) + this.athleticism) * 100000);
+		/*
+		 * TODO : 
+		 * Verification
+		 * I changed the salary factor by 1/100 and subtracted $30,000
+		 * The player salary was ridiculous
+		 */
+		int salary = (int) (this.age + (100 - Math.abs(this.fit - this.coach.getScheme()) + this.athleticism) * 1000) - 30000;
 		this.salary = salary;
 		return salary;
 	}

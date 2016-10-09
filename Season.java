@@ -179,6 +179,17 @@ public class Season {
 
 		return seasonVictor;
 	}
+	
+	public int numberOfGamesInSeasonPerTeam()
+	{
+		/*
+		 * TODO : 
+		 * can someonwe verify that this is the total number of
+		 * games each team will play in a season
+		 */
+		
+		return schedule.length;
+	}
 
 	/*
 	 * Order the teams in a list depending on the win to loss ratio this is used

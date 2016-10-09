@@ -24,6 +24,7 @@ public class Team {
 	private Result result;
 	private String divison;
 	private Stadium stadium;
+	private Sponsor sponsor;
 
 	/*
 	 * Constructor to initialize a Team with NAME, HOMETOWN and GM population is
@@ -96,6 +97,7 @@ public class Team {
 		}
 		
 		this.stadium = new Stadium(this);
+		this.sponsor = new Sponsor(this);
 	} 
 
 	/*
@@ -118,6 +120,7 @@ public class Team {
 		this.results = new ArrayList<>();
 		this.result = new Result();
 		this.stadium = new Stadium(this);
+		this.sponsor = new Sponsor(this);
 	}
 
 	/*
@@ -263,7 +266,7 @@ public class Team {
 		System.out.println("Total Management Expense: " + (GM.getSalary() + coach.getSalary()));
 		System.out.println("Roster Expense: " + (expenses - (GM.getSalary() + coach.getSalary())));
 		System.out.println("Total Payroll Expense: " + expenses);
-		System.out.println("Home Game Revenue: " + (population/10));
+		System.out.println("Home Game Revenue: " + this.grossRevenue);
 		System.out.println("Win Revenue: $100000");
 		
 		
@@ -339,7 +342,12 @@ public class Team {
 	}
 
 	public void updateHomeTeamRevenue() {
-		this.grossRevenue += (population / 10);
+		double revenue = 0.0;
+		double fromStadium = stadium.revenueGenerated();
+		double fromMedia = Media.getMediaRevenueFor(this);
+		double fromSponsors = sponsor.getSponsorshipPerGame();
+		revenue = fromStadium + fromMedia + fromSponsors;
+		this.grossRevenue += revenue;
 	}
 
 	public void updateWinningTeamRevenue() {

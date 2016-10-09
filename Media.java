@@ -3,21 +3,12 @@ public class Media
 	/*
 	 * All funds are annually updated and given to the teams
 	 */
-	private double totalBaseFunds; // divided equally for all teams
-	private double advertisementFund;
-	private double licensingFund;
-	private int numberOfTeams;
+	private static double totalBaseFunds = 100; // divided equally for all teams
+	private static double advertisementFund = 100;
+	private static double licensingFund = 100;
+	private static int numberOfTeams = Main.numberOfTeams();
 	
-	
-	public Media()
-	{
-		this.totalBaseFunds = 100;
-		this.advertisementFund = 100;
-		this.licensingFund = 100;
-		this.numberOfTeams = Main.numberOfTeams();
-	}
-	
-	public double getMediaRevenueFor(Team team)
+	public static double getMediaRevenueFor(Team team)
 	{
 		double revenue = 0.0;
 		
@@ -37,7 +28,7 @@ public class Media
 		return revenue;
 	}
 
-	private double getLicensingRevenue(Team team) {
+	private static double getLicensingRevenue(Team team) {
 		
 		double revenue = 0.0;
 		
@@ -55,7 +46,7 @@ public class Media
 		return revenue;
 	}
 
-	private double getAdvertisementRevenue(Team team) {
+	private static double getAdvertisementRevenue(Team team) {
 		
 		double revenue = 0.0;
 		

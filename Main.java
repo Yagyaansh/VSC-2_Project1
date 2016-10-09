@@ -73,6 +73,17 @@ public class Main {
 	 */
 
 	public void start() throws Exception {
+		
+//		int testTotal = 0;
+//		Team test = teams.get(0);
+//		for(Player p: test.getRoster())
+//		{
+//			System.out.println(p.getSalary());
+//			testTotal += p.getSalary();
+//		}
+//		System.out.println(testTotal);
+//		
+//		System.exit(0);
 
 		int numberOfTeams = numberOfTeams();
 		ArrayList<Season> seasons = new ArrayList<Season>();
@@ -103,6 +114,17 @@ public class Main {
 		}
 
 		printInputs(numberOfTeams, numberOfSeasons);
+	}
+	
+	public static double numberOfGames() {
+		
+		/*
+		 * TODO : 
+		 * 
+		 * How do we calculate this value ??
+		 */
+		
+		return 16;
 	}
 
 	/*
@@ -396,6 +418,7 @@ public class Main {
 		}
 
 	}
+
 
 	/*
 	 * All the print methods are between the lines
