@@ -387,6 +387,11 @@ public class Team {
 		expenses += GM.getSalary();
 		expenses += coach.getSalary();
 	}
+	
+	public void updateProfit()
+	{
+		this.profit += (this.grossRevenue - this.expenses);
+	}
 
 	/*
 	 * End of methods to update and calculate values

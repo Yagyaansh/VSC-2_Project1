@@ -59,6 +59,9 @@ public class Game {
 		updateBothTeamRevenues(victor);
 		this.team1.updateExpenses();
 		this.team2.updateExpenses();
+		
+		this.team1.updateProfit();
+		this.team2.updateProfit();
 
 		// A copy to refer to later
 		this.tempTeam1 = team1.deepCopy();
