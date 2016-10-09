@@ -349,6 +349,14 @@ public class Team {
 		revenue = fromStadium + fromMedia + fromSponsors;
 		this.grossRevenue += revenue;
 	}
+	
+	public void updateAwayTeamRevenue(){
+		double revenue = 0.0;
+		double fromMedia = (Media.getMediaRevenueFor(this)/10); // because the team is playing away it gets only 1/10 of media revenue
+		double fromSponsors = sponsor.getSponsorshipPerGame(); // gets sopnsorship whether home or away
+		revenue = fromMedia + fromSponsors;
+		this.grossRevenue += revenue;
+	}
 
 	public void updateWinningTeamRevenue() {
 		this.grossRevenue += 100000;
@@ -370,15 +378,15 @@ public class Team {
 
 	}
 
-	public void profitCalculator() {
-
-		for (int i = 0; i < roster.size(); i++) {
+	public void updateExpenses() 
+	{
+		for (int i = 0; i < roster.size(); i++) 
+		{
 			expenses += roster.get(i).getSalary();
 		}
 		expenses += GM.getSalary();
 		expenses += coach.getSalary();
-		profit = grossRevenue - expenses;
-		}
+	}
 
 	/*
 	 * End of methods to update and calculate values

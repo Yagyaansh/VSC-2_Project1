@@ -57,8 +57,8 @@ public class Game {
 		this.causeInjuries();
 
 		updateBothTeamRevenues(victor);
-		this.team1.profitCalculator();
-		this.team2.profitCalculator();
+		this.team1.updateExpenses();
+		this.team2.updateExpenses();
 
 		// A copy to refer to later
 		this.tempTeam1 = team1.deepCopy();
@@ -73,6 +73,7 @@ public class Game {
 	 */
 	public void updateBothTeamRevenues(Team victor) {
 		this.team1.updateHomeTeamRevenue();
+		this.team2.updateAwayTeamRevenue();
 		victor.updateWinningTeamRevenue();
 	}
 
