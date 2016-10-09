@@ -23,6 +23,7 @@ public class Team {
 	private ArrayList<Result> results;
 	private Result result;
 	private String divison;
+	private Stadium stadium;
 
 	/*
 	 * Constructor to initialize a Team with NAME, HOMETOWN and GM population is
@@ -93,6 +94,8 @@ public class Team {
 		if( this.name.equals("Broncos") || this.name.equals("Ravens") || this.name.equals("Cheifs") ||this.name.equals("Chargers")){
 			this.divison = "AFC WEST";
 		}
+		
+		this.stadium = new Stadium();
 	} 
 
 	/*
@@ -114,6 +117,7 @@ public class Team {
 		this.owner = new Owner(this);
 		this.results = new ArrayList<>();
 		this.result = new Result();
+		this.stadium = new Stadium();
 	}
 
 	/*
@@ -205,14 +209,23 @@ public class Team {
 		result = new Result();
 	}
 	
-	// offseason for this "current season" has just started
+	// off-season for this "current season" has just started
+	
 	public Result getCurrentSeasonResult()
 	{
 		return this.result;
 	}
 	
+	public Stadium getStadium() {
+		return stadium;
+	}
+
+	public void setStadium(Stadium stadium) {
+		this.stadium = stadium;
+	}
+	
 	// this is the season before the current season
-	// if the offseason has been called then this past season should return null
+	// if the off-season has been called then this past season should return null
 	// since there is no prior season
 	// to ensure that this works the owner must call this before the season result is saved to the list
 	// the season result is saved to the list as the final action in the offseason method of the season class
@@ -223,6 +236,11 @@ public class Team {
 		if(this.results.size() == 0)
 			return null;
 		return this.results.get(this.results.size() - 1);
+	}
+	
+	public int getPopulation()
+	{
+		return this.population;
 	}
 
 	/*
