@@ -22,20 +22,26 @@ public class UICharts {
 		scores.setTitle("Performance");
 		XYChart.Series<String, Number> series = new XYChart.Series<>();
 		
-		for(Result result: t.getResults())
-		{
-			int week = 0;
-			Game[] games = result.getGames();
-			for(Game g: games)
-			{
-				XYChart.Data<String, Number> data;
-				if(t.getTeamName().equals(g.getTeam1().getTeamName()))
-					data = new XYChart.Data<>("Week : " + week++, g.getTeam1Score());
-				else
-					data = new XYChart.Data<>("Week : " + week++, g.getTeam2Score());
-				series.getData().add(data);
-			}
-		}
+		series.getData().add(new XYChart.Data<String,Number>("Week 1", 34));
+		series.getData().add(new XYChart.Data<String,Number>("Week 2", 45));
+
+		
+//		for(Result result: t.getResults())
+//		{
+//			int week = 0;
+//			Game[] games = result.getGames();
+//			for(Game g: games)
+//			{
+//				XYChart.Data<String, Number> data;
+//				if(t.getTeamName().equals(g.getTeam1().getTeamName()))
+//					data = new XYChart.Data<>("Week : " + week++, g.getTeam1Score());
+//				else
+//					data = new XYChart.Data<>("Week : " + week++, g.getTeam2Score());
+//				series.getData().add(data);
+//			}
+//		}
+//		this.scores.getData().addAll(series);
+		
 		this.scores.getData().addAll(series);
 	}
 
