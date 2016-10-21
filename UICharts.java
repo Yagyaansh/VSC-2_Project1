@@ -1,17 +1,18 @@
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 public class UICharts {
-	NumberAxis xAxis;
+	CategoryAxis xAxis;
 	NumberAxis yAxis;
-	private BarChart<Number,Number> scores;
+	private BarChart<String,Number> scores;
 	
 	public UICharts()
 	{
-		xAxis = new NumberAxis();
+		xAxis = new CategoryAxis();
 		yAxis = new NumberAxis();
-		scores = new BarChart<Number,Number>(xAxis,yAxis);
+		scores = new BarChart<String,Number>(xAxis,yAxis);
 	}
 	
 	public void generateScoresChart(Team t)
@@ -19,7 +20,7 @@ public class UICharts {
 		xAxis.setLabel("Game Week");
 		yAxis.setLabel("Number of Wins and Losses");
 		scores.setTitle("Performance");
-		XYChart.Series<Number, Number> series = new XYChart.Series<>();
+		XYChart.Series<String, Number> series = new XYChart.Series<>();
 		
 		for(Result result: t.getResults())
 		{
@@ -27,22 +28,22 @@ public class UICharts {
 			Game[] games = result.getGames();
 			for(Game g: games)
 			{
-				XYChart.Data<Number, Number> data;
+				XYChart.Data<String, Number> data;
 				if(t.getTeamName().equals(g.getTeam1().getTeamName()))
-					data = new XYChart.Data<>(week++, g.getTeam1Score());
+					data = new XYChart.Data<>("Week : " + week++, g.getTeam1Score());
 				else
-					data = new XYChart.Data<>(week++, g.getTeam2Score());
+					data = new XYChart.Data<>("Week : " + week++, g.getTeam2Score());
 				series.getData().add(data);
 			}
 		}
 		this.scores.getData().addAll(series);
 	}
 
-	public BarChart<Number,Number> getScores() {
+	public BarChart<String,Number> getScores() {
 		return scores;
 	}
 
-	public void setScores(BarChart<Number,Number> scores) {
+	public void setScores(BarChart<String,Number> scores) {
 		this.scores = scores;
 	}
 
