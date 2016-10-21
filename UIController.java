@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -31,6 +32,8 @@ public class UIController implements Initializable {
 	private Button button2;
 	@FXML
 	private ChoiceBox gameResultsChoiceBox;
+	@FXML 
+	private BarChart<Number,Number> uiChart;
 	 
 
 	@FXML
@@ -74,6 +77,9 @@ public class UIController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		UICharts chart = new UICharts();
+		chart.generateScoresChart(new Team());
+		uiChart = chart.getScores();
 		// TODO Auto-generated method stub
 		
 	}
