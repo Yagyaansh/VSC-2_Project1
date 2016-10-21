@@ -33,6 +33,9 @@ public class UIController implements Initializable {
 	private Button button2;
 	@FXML
 	private ChoiceBox gameResultsChoiceBox;
+	@FXML private ChoiceBox winLossChoiceBox;
+	@FXML private ChoiceBox teamRosterChoiceBox;
+	@FXML private ChoiceBox teamRevenueChoiceBox;
 	//@FXML
 	//private BarChart<String, Number> uiChart;
 
@@ -71,6 +74,9 @@ public class UIController implements Initializable {
 	public void initScene2()
 	{
 		gameResultsChoiceBox.setItems(teamChoices);
+		teamRevenueChoiceBox.setItems(teamChoices);
+		teamRosterChoiceBox.setItems(teamChoices);
+		winLossChoiceBox.setItems(teamChoices);
 		
 		
 //		XYChart.Series<String, Number> series = new XYChart.Series<>();
