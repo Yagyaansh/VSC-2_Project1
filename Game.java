@@ -182,6 +182,16 @@ public class Game {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public double getTeam1Score()
+	{
+		return this.team1Score;
+	}
+	
+	public double getTeam2Score()
+	{
+		return this.team2Score;
+	}
 
 	public Team getVictor() {
 		return this.victor;
