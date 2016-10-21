@@ -32,8 +32,8 @@ public class UIController implements Initializable {
 	private Button button2;
 	@FXML
 	private ChoiceBox gameResultsChoiceBox;
-	@FXML 
-	private BarChart<Number,Number> uiChart;
+	//@FXML 
+	//private BarChart<Number,Number> uiChart;
 	 
 
 	@FXML
@@ -77,9 +77,9 @@ public class UIController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		UICharts chart = new UICharts();
-		chart.generateScoresChart(new Team());
-		uiChart = chart.getScores();
+		//UICharts chart = new UICharts();
+		//chart.generateScoresChart(new Team());
+	//	uiChart = chart.getScores();
 		// TODO Auto-generated method stub
 		
 	}
