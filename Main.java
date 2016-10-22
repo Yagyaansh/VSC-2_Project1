@@ -258,6 +258,11 @@ public class Main {
 	public static int numberOfTeams(){
 		return 16;
 	}
+	
+	public ArrayList<Team> getTeams()
+	{
+		return this.teams;
+	}
 
 	/*
 	 * End of Getters and Setters
