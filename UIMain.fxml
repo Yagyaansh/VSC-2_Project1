@@ -46,7 +46,7 @@
             <HBox spacing="5.0">
                <children>
                   <Label text="How many seasons would you like to run?" />
-                  <TextField prefHeight="25.0" prefWidth="84.0" promptText="NumSeasons" />
+                  <TextField fx:id="numSeasons" prefHeight="25.0" prefWidth="84.0" promptText="NumSeasons" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -61,7 +61,7 @@
    <right>
       <VBox alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="button1" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#handleButtonAction" text="Start Simulation">
+            <Button fx:id="startSimulation" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#startSimulation" text="Start Simulation">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>

@@ -40,6 +40,7 @@ public class Main {
 	private Player_Pool playerPool;
 	private ArrayList<Team> teams;
 	private static Scanner mainScanner;
+	private int weeksToRun;
 
 	/*
 	 * Constructor - hard-coded with the sizes of the pools Change pool size
@@ -55,6 +56,7 @@ public class Main {
 		this.teams = new ArrayList<Team>();
 		this.mainScanner = new Scanner(System.in);
 		this.createTeams(numberOfTeams, getGeneralManagerPool(), getCoachPool(), getPlayerPool());
+		this.weeksToRun = -1;
 	}
 
 	/*
@@ -92,7 +94,7 @@ public class Main {
 		ArrayList<Team> results = new ArrayList<Team>();
 		int numberOfSeasons = 4;
 		System.out.println("How many seasons would you like to run? ");
-		numberOfSeasons = Integer.parseInt(mainScanner.nextLine());
+		numberOfSeasons = 3;//Integer.parseInt(mainScanner.nextLine());
 
 		for (int i = 0; i < numberOfSeasons; i++) {
 			seasons.add(new Season(this.teams, 16));
@@ -105,10 +107,15 @@ public class Main {
 			while (!s.isFinished()) {
 				System.out.println("\nSeason " + (i + 1) + " Week " + (s.getCurrWeek() + 1));
 				System.out.println("How many weeks to run before stopping? ");
-				int weeksToRun = Integer.parseInt(mainScanner.nextLine());
+				if (this.weeksToRun != -1)
+				{
+				//int wksToRun = Integer.parseInt(mainScanner.nextLine());
 				s.play(weeksToRun);
 				System.out.println("\nSeason " + (i + 1) + " Week " + (s.getCurrWeek() + 1));
-				printOutputs(s, weeksToRun);
+				System.out.println("It worked");
+				weeksToRun = -1;
+				printOutputs(s);
+				}
 			}
 			results.add(s.seasonResult());
 			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
@@ -127,6 +134,11 @@ public class Main {
 		 */
 		
 		return 16;
+	}
+	
+	public void setWeeksToRun(int weeks)
+	{
+		this.weeksToRun = weeks;
 	}
 
 	/*
@@ -286,7 +298,7 @@ public class Main {
 
 	}
 
-	public static void printOutputs(Season s, int weeksToRun) {
+	public static void printOutputs(Season s) {
 		while (true) {
 			System.out.println("Option 1: Print out game statistics for one team");
 			System.out.println("Option 2: Print full game statistics for one week");
@@ -302,7 +314,7 @@ public class Main {
 				printTeamGames(s);
 				break;
 			case "2":
-				printWeekDetails(s, weeksToRun);
+				printWeekDetails(s);
 				break;
 			case "3":
 				printWinLossRecords(s);
@@ -387,7 +399,7 @@ public class Main {
 	}
 
 	// Print out week outcome and game statistics in one season
-	public static String printWeekDetails(Season s, int weeksToRun) {
+	public static String printWeekDetails(Season s) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		PrintStream old = System.out;
