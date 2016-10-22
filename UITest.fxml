@@ -50,7 +50,6 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <TextField fx:id="weeksToRun" prefHeight="25.0" prefWidth="83.0" promptText="numWeeks" />
                   <Button fx:id="contSim" mnemonicParsing="false" onAction="#handleSubmitAction" text="Continue" />
-                  <Button fx:id="button2" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#handleButtonAction" text="Goto Scene 1" />
                </children>
             </HBox>
             <HBox>

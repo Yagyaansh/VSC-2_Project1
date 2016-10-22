@@ -148,6 +148,11 @@ public class Main {
 		}
 
 	}
+	
+	public Season getPrevSeason()
+	{
+		return seasons.get(currSeasonNum-1);
+	}
 
 	public void start() throws Exception {
 		
