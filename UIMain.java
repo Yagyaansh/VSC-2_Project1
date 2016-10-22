@@ -24,6 +24,15 @@ public class UIMain extends Application {
 //		} catch(Exception e) {
 //			e.printStackTrace();
 //		}
+		
+		
+		Main m1 = new Main();
+		try {
+			m1.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		BorderPane root = FXMLLoader.load(getClass().getResource("UIMain.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
