@@ -58,7 +58,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <Label text="Future Variabale to be added here...">
+            <Label text="Future Variables to be added here...">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
