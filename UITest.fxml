@@ -73,7 +73,6 @@
                <children>
                   <Label text="Get Win/Loss Ratios" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <ChoiceBox fx:id="winLossChoiceBox" prefWidth="150.0" />
                   <Button fx:id="subWinLoss" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
@@ -89,7 +88,6 @@
                <children>
                   <Label text="Get Team Revenue" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <ChoiceBox fx:id="teamRevenueChoiceBox" prefWidth="150.0" />
                   <Button fx:id="subTeamRevenue" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>

@@ -87,16 +87,14 @@ public class UIController extends Application implements Initializable {
 	@FXML
 	public void initScene2() {
 		gameResultsChoiceBox.setItems(teamChoices);
-		teamRevenueChoiceBox.setItems(teamChoices);
 		teamRosterChoiceBox.setItems(teamChoices);
-		winLossChoiceBox.setItems(teamChoices);
-		//textHeader.setText("Get Statistics: " + " Week " + m1.getCurrSeason().getCurrWeek());
-
-		// XYChart.Series<String, Number> series = new XYChart.Series<>();
-		//
-		// series.getData().add(new XYChart.Data<String,Number>("Week 1", 34));
-		// series.getData().add(new XYChart.Data<String,Number>("Week 2", 45));
-		// uiChart.getData().addAll(series)
+		try
+		{
+		textHeader.setText("Get Statistics: " + " Week " + m1.getCurrSeason().getCurrWeek() + " Season " + m1.getCurrSeasonNum());
+		} catch (NullPointerException e)
+		{
+			
+		}
 	}
 
 	@FXML
@@ -109,21 +107,16 @@ public class UIController extends Application implements Initializable {
 			// continue to next weeks
 			int weeksToContinue = Integer.parseInt((String) weeksToRun.getText());
 			if (currSeason <= seasonsToSim) {
-				// m1.setWeeksToRun(weeksToContinue);
-				System.out.println("Changing weekstorun");
 				m1.step2(currSeason, weeksToContinue);
 				m1.setCurrWeek(currWeek + weeksToContinue);
-				System.out.println(weeksToContinue);
 				if (m1.getCurrWeek() > 15) {
 					m1.setCurrSeasonNum(++currSeason);
-					System.out.println(m1.getCurrSeasonNum());
 					m1.setCurrWeek(0);
 				}
 			}
 			else
 			{
 				statOutput.setText("Simulation Complete");
-				System.out.println(currSeason + " " + seasonsToSim);
 			}
 		
 				
@@ -140,28 +133,24 @@ public class UIController extends Application implements Initializable {
 		}
 		else if (e.getSource() == subWinLoss)
 		{
-			teamName = (String) winLossChoiceBox.getValue();
-			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHell"
-					+ "o\nthere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
+			//teamName = (String) winLossChoiceBox.getValue();
+			statOutput.setText(Main.printWinLossRecords(m1.getCurrSeason()));
 		}
 		else if (e.getSource() == subTeamRoster)
 		{
 			teamName = (String) teamRosterChoiceBox.getValue();
-			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHello\nth"
-					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
+			statOutput.setText(Main.printTeamDetails(m1.getCurrSeason(), teamName));
 		}
 		else if (e.getSource() == subWeekGames)
 		{
 			int week = Integer.parseInt((String) weekNum.getText());
-			statOutput.setText("Here are the stats for week " + week + "\nhello\nthere\nhello\nthere\nHello\nth"
-					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
+			statOutput.setText(Main.printWeekDetails(m1.getCurrSeason(), week));
 			
 		}
 		else if(e.getSource() == subTeamRevenue)
 		{
-			teamName = (String) teamRevenueChoiceBox.getValue();
-			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHello\nth"
-					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
+			//teamName = (String) teamRevenueChoiceBox.getValue();
+			statOutput.setText(Main.printTeamRevenues(m1.getCurrSeason()));
 		}
 		statOutput.setEditable(false);
 		

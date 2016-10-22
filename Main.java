@@ -115,8 +115,6 @@ public class Main {
 		seasons = new ArrayList<Season>();
 		results = new ArrayList<Team>();
 		numberOfSeasons = numSeasons;
-		System.out.println("Number of seasons " + numberOfSeasons);
-		System.out.println("teams" + numberOfTeams);
 	}
 	
 	public void step2(int seasonNum, int weeks) {
@@ -126,9 +124,7 @@ public class Main {
 			seasons.get(seasonNum);
 			System.out.println();
 		} catch (NullPointerException e) {
-			System.out.println("Inside nullptr");
 			seasons.add(new Season(this.teams, numberOfTeams));
-			System.out.println("adding" + seasonNum + seasons.size());
 			currSeason = seasons.get(seasonNum);
 			isFirstSeason = false;
 			if (seasonNum == 0) {
@@ -137,9 +133,7 @@ public class Main {
 			currSeason.scheduleRandSeason();
 		} catch (IndexOutOfBoundsException e)
 		{
-			System.out.println("inside out" + seasonNum);
 			seasons.add(new Season(this.teams, numberOfTeams));
-			System.out.println("adding" + seasonNum + seasons.size());
 			currSeason = seasons.get(seasonNum);
 			isFirstSeason = false;
 			if (seasonNum == 0) {
@@ -388,13 +382,13 @@ public class Main {
 				printTeamGames(s,"Buffalo Bills");
 				break;
 			case "2":
-				printWeekDetails(s);
+				//printWeekDetails(s);
 				break;
 			case "3":
 				printWinLossRecords(s);
 				break;
 			case "4":
-				printTeamDetails(s);
+				//printTeamDetails(s);
 				break;
 			case "5":
 				printTeamRevenues(s);
@@ -427,7 +421,7 @@ public class Main {
 		}
 		System.out.flush();
 		System.setOut(old);
-		System.out.println(baos.toString());
+		//System.out.println(baos.toString());
 		return baos.toString();
 	}
 
@@ -469,25 +463,23 @@ public class Main {
 //		} while (!found);
 		System.out.flush();
 		System.setOut(old);
-		System.out.println(baos.toString());
-		System.out.println("hello");
+		//System.out.println(baos.toString());
 		return baos.toString();
 	}
 
 	// Print out week outcome and game statistics in one season
-	public static String printWeekDetails(Season s) {
+	public static String printWeekDetails(Season s,int week) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		PrintStream old = System.out;
 		System.setOut(ps);
-		int week = 0;
-		do {
-			if (week > s.getCurrWeek())
-				System.out.println("That week has not been played yet.");
-
-			System.out.println("What week would you like to look at? ");
-			week = Integer.parseInt(mainScanner.nextLine());
-		} while (week > s.getCurrWeek());
+//		do {
+//			if (week > s.getCurrWeek())
+//				System.out.println("That week has not been played yet.");
+//
+//			System.out.println("What week would you like to look at? ");
+//			week = Integer.parseInt(mainScanner.nextLine());
+//		} while (week > s.getCurrWeek());
 
 		System.out.println("WEEK #" + week);
 		for (int j = 0; j < s.getWeek(week).length; j++) {
@@ -496,7 +488,7 @@ public class Main {
 		}
 		System.out.flush();
 		System.setOut(old);
-		System.out.println(baos.toString());
+		//System.out.println(baos.toString());
 		return baos.toString();
 	}
 
@@ -512,26 +504,26 @@ public class Main {
 		System.out.println("");
 		System.out.flush();
 		System.setOut(old);
-		System.out.println(baos.toString());
+		//System.out.println(baos.toString());
 		return baos.toString();
 
 	}
 
-	public static String printTeamDetails(Season s) {
+	public static String printTeamDetails(Season s, String teamName) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		PrintStream old = System.out;
 		System.setOut(ps);
-		for (int i = 0; i < s.getTeams().size(); i++) {
-			System.out.println(s.getTeams().get(i).getTeamName());
-		}
-		System.out.println("");
-		System.out.print("Please select a team: ");
-		String input = mainScanner.nextLine();
-		s.printRosterDetails(input);
+//		for (int i = 0; i < s.getTeams().size(); i++) {
+//			System.out.println(s.getTeams().get(i).getTeamName());
+//		}
+//		System.out.println("");
+//		System.out.print("Please select a team: ");
+//		String input = mainScanner.nextLine();
+		s.printRosterDetails(teamName);
 		System.out.flush();
 		System.setOut(old);
-		System.out.println(baos.toString());
+		//System.out.println(baos.toString());
 		return baos.toString();
 
 
