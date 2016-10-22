@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -26,7 +27,7 @@ public class UIController extends Application implements Initializable {
 			"Cincinnati Bengals", "Cleveland Browns", "Houston Texans", "Jacksonville Jaguars", "Tennessee Titans",
 			"Indianapolis Colts", "Denver Broncos", "Oakland Raiders", "Kansas City Chiefs", "San Diego Chargers");
 	
-	private Main m1;
+	private static Main m1;
 	//----Scene 1
 	@FXML
 	private Button startSimulation;
@@ -46,8 +47,10 @@ public class UIController extends Application implements Initializable {
 	@FXML private Button subTeamRevenue;
 	@FXML private TextField weekNum;
 	@FXML private TextArea statOutput;
+	@FXML private Label textHeader;
 	//@FXML
 	//private BarChart<String, Number> uiChart;
+	
 
 
 	@FXML
@@ -68,14 +71,16 @@ public class UIController extends Application implements Initializable {
 	@FXML
 	public void startSimulation() throws IOException
 	{
-		int seasonsToSim = Integer.parseInt((String) numSeasons.getText());
+		m1.setSeasonsToSim(Integer.parseInt((String) numSeasons.getText()));
+		if (m1 == null)
+			System.out.println("null");
+		m1.step1(16, m1.getSeasonsToSim());
 		Stage stage = null;
 		Parent root = null;
 		stage = (Stage) startSimulation.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-
 		stage.show();
 		
 	}
@@ -85,6 +90,7 @@ public class UIController extends Application implements Initializable {
 		teamRevenueChoiceBox.setItems(teamChoices);
 		teamRosterChoiceBox.setItems(teamChoices);
 		winLossChoiceBox.setItems(teamChoices);
+		//textHeader.setText("Get Statistics: " + " Week " + m1.getCurrSeason().getCurrWeek());
 
 		// XYChart.Series<String, Number> series = new XYChart.Series<>();
 		//
@@ -95,21 +101,42 @@ public class UIController extends Application implements Initializable {
 
 	@FXML
 	public void handleSubmitAction(ActionEvent e) throws IOException {
+		int currSeason = m1.getCurrSeasonNum();
+		int currWeek = m1.getCurrWeek();
+		int seasonsToSim = m1.getSeasonsToSim();
 		String teamName = null;
-		if (e.getSource() == contSim)
-		{
-			//continue to next weeks
+		if (e.getSource() == contSim) {
+			// continue to next weeks
 			int weeksToContinue = Integer.parseInt((String) weeksToRun.getText());
-			m1.setWeeksToRun(weeksToContinue);
-			System.out.println("Changing weekstorun");
+			if (currSeason <= seasonsToSim) {
+				// m1.setWeeksToRun(weeksToContinue);
+				System.out.println("Changing weekstorun");
+				m1.step2(currSeason, weeksToContinue);
+				m1.setCurrWeek(currWeek + weeksToContinue);
+				System.out.println(weeksToContinue);
+				if (m1.getCurrWeek() > 15) {
+					m1.setCurrSeasonNum(++currSeason);
+					System.out.println(m1.getCurrSeasonNum());
+					m1.setCurrWeek(0);
+				}
+			}
+			else
+			{
+				statOutput.setText("Simulation Complete");
+				System.out.println(currSeason + " " + seasonsToSim);
+			}
+		
+				
+			
+			
+			
 			
 			
 		}
 		else if (e.getSource() == subGameResults)
 		{
 			teamName = (String) gameResultsChoiceBox.getValue();
-			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHell"
-					+ "o\nthere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
+			statOutput.setText((Main.printTeamGames(m1.getCurrSeason(),teamName)));
 		}
 		else if (e.getSource() == subWinLoss)
 		{
@@ -136,6 +163,7 @@ public class UIController extends Application implements Initializable {
 			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHello\nth"
 					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
 		}
+		statOutput.setEditable(false);
 		
 		
 	}
@@ -158,9 +186,9 @@ public class UIController extends Application implements Initializable {
 		}
 
 	public static void main(String[] args) throws Exception {
+		m1 = new Main();
 		launch(args);
-		Main m1 = new Main();
-		m1.start();
+
 	}
 	
 	@Override

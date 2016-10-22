@@ -19,7 +19,7 @@ public class Season {
 	private int currWeek = 0;
 	private int totalWeeks;
 	private Game[][] schedule;
-	
+	private boolean isFinished = false;
 	ArrayList<Player> retiredPlayers;
 	ArrayList<Coach> firedCoaches;
 
@@ -106,7 +106,7 @@ public class Season {
 	
 	public boolean isFinished()
 	{
-		return currWeek == totalWeeks-1;
+		return isFinished;
 	}
 
 	public ArrayList<Team> getTeams() {
@@ -148,8 +148,13 @@ public class Season {
 				g.getTeam1().getCurrentSeasonResult().addGame(currWeek, g);
 				g.getTeam2().getCurrentSeasonResult().addGame(currWeek, g);
 				victors.add(victor);
+				//System.out.println("Running game");
 			}
 
+		}
+		if(end == totalWeeks)
+		{
+			isFinished = true;
 		}
 
 	}
@@ -429,7 +434,7 @@ public class Season {
 				}
 			}
 		}
-		
+		System.out.println("offseason result reset");
 		for (Team t : this.teams){
 			t.addToResults(t.getCurrentSeasonResult());
 			t.newTeamResult();
@@ -544,6 +549,7 @@ public class Season {
 		}
 
 	}
+
 	
 
 	/*

@@ -55,7 +55,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label text="Get Statistics:">
+                  <Label fx:id="textHeader" text="Get Statistics:">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

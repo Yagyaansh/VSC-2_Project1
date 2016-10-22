@@ -37,10 +37,43 @@ public class Main {
 	 */
 	private GeneralManager_Pool generalManagerPool;
 	private Coach_Pool coachPool;
+	
+	public int getCurrWeek() {
+		return currWeek;
+	}
+
+	public void setCurrWeek(int currWeek) {
+		this.currWeek = currWeek;
+	}
+
+	public int getCurrSeasonNum() {
+		return currSeasonNum;
+	}
+
+	public void setCurrSeasonNum(int currSeasonNum) {
+		this.currSeasonNum = currSeasonNum;
+	}
+
+	public int getSeasonsToSim() {
+		return seasonsToSim;
+	}
+
+	public void setSeasonsToSim(int seasonsToSim) {
+		this.seasonsToSim = seasonsToSim;
+	}
+
 	private Player_Pool playerPool;
 	private ArrayList<Team> teams;
 	private static Scanner mainScanner;
 	private int weeksToRun;
+	private Season currSeason;
+	private int numberOfSeasons;
+	private ArrayList<Team> results;
+	private ArrayList<Season> seasons;
+	private int numberOfTeams;
+	private int currWeek;
+	private int currSeasonNum;
+	private int seasonsToSim;
 
 	/*
 	 * Constructor - hard-coded with the sizes of the pools Change pool size
@@ -75,6 +108,52 @@ public class Main {
 	/*
 	 * Performs all the functionalities that the older main method did
 	 */
+	
+	public void step1(int numTeams,int numSeasons)
+	{
+		numberOfTeams = numTeams;
+		seasons = new ArrayList<Season>();
+		results = new ArrayList<Team>();
+		numberOfSeasons = numSeasons;
+		System.out.println("Number of seasons " + numberOfSeasons);
+		System.out.println("teams" + numberOfTeams);
+	}
+	
+	public void step2(int seasonNum, int weeks) {
+		boolean isFirstSeason = false;
+
+		try {
+			seasons.get(seasonNum);
+			System.out.println();
+		} catch (NullPointerException e) {
+			System.out.println("Inside nullptr");
+			seasons.add(new Season(this.teams, numberOfTeams));
+			System.out.println("adding" + seasonNum + seasons.size());
+			currSeason = seasons.get(seasonNum);
+			isFirstSeason = false;
+			if (seasonNum == 0) {
+				isFirstSeason = true;
+			}
+			currSeason.scheduleRandSeason();
+		} catch (IndexOutOfBoundsException e)
+		{
+			System.out.println("inside out" + seasonNum);
+			seasons.add(new Season(this.teams, numberOfTeams));
+			System.out.println("adding" + seasonNum + seasons.size());
+			currSeason = seasons.get(seasonNum);
+			isFirstSeason = false;
+			if (seasonNum == 0) {
+				isFirstSeason = true;
+			}
+			currSeason.scheduleRandSeason();
+		}
+		currSeason.play(weeks);
+		if (currSeason.isFinished()) {
+			results.add(currSeason.seasonResult());
+			currSeason.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
+		}
+
+	}
 
 	public void start() throws Exception {
 		
@@ -89,12 +168,6 @@ public class Main {
 //		
 //		System.exit(0);
 
-		int numberOfTeams = numberOfTeams();
-		ArrayList<Season> seasons = new ArrayList<Season>();
-		ArrayList<Team> results = new ArrayList<Team>();
-		int numberOfSeasons = 4;
-		System.out.println("How many seasons would you like to run? ");
-		numberOfSeasons = 3;//Integer.parseInt(mainScanner.nextLine());
 
 		for (int i = 0; i < numberOfSeasons; i++) {
 			seasons.add(new Season(this.teams, 16));
@@ -107,23 +180,19 @@ public class Main {
 			while (!s.isFinished()) {
 				System.out.println("\nSeason " + (i + 1) + " Week " + (s.getCurrWeek() + 1));
 				System.out.println("How many weeks to run before stopping? ");
-				if (this.weeksToRun != -1)
-				{
-				//int wksToRun = Integer.parseInt(mainScanner.nextLine());
 				s.play(weeksToRun);
 				System.out.println("\nSeason " + (i + 1) + " Week " + (s.getCurrWeek() + 1));
 				System.out.println("It worked");
-				weeksToRun = -1;
 				printOutputs(s);
 				}
 			}
-			results.add(s.seasonResult());
-			s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
+			//esults.add(s.seasonResult());
+			//s.offSeason(this.getPlayerPool(), this.getCoachPool(), isFirstSeason);
 
 		}
 
-		printInputs(numberOfTeams, numberOfSeasons);
-	}
+		//printInputs(numberOfTeams, numberOfSeasons);
+	
 	
 	public static double numberOfGames() {
 		
@@ -139,6 +208,11 @@ public class Main {
 	public void setWeeksToRun(int weeks)
 	{
 		this.weeksToRun = weeks;
+	}
+	
+	public Season getCurrSeason()
+	{
+		return currSeason;
 	}
 
 	/*
@@ -311,7 +385,7 @@ public class Main {
 			System.out.println("");
 			switch (input) {
 			case "1":
-				printTeamGames(s);
+				printTeamGames(s,"Buffalo Bills");
 				break;
 			case "2":
 				printWeekDetails(s);
@@ -357,26 +431,27 @@ public class Main {
 		return baos.toString();
 	}
 
-	public static String printTeamGames(Season s) {
+	public static String printTeamGames(Season s,String teamName) {
+		System.out.println("We made it fam" + s.getCurrWeek());
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		PrintStream old = System.out;
 		System.setOut(ps);
 		boolean found = false;
-		do {
-			System.out.println("");
-			for (int i = 0; i < s.getTeams().size(); i++) {
-				System.out.print(s.getTeams().get(i).getTeamName() + ", ");
-				if ((i+1) % 5 == 0)
-					System.out.println("");
-			}
-			System.out.println("\n");
-			System.out.print("Please select a team: ");
-			String input = mainScanner.nextLine();
+//		do {
+//			System.out.println("");
+//			for (int i = 0; i < s.getTeams().size(); i++) {
+//				System.out.print(s.getTeams().get(i).getTeamName() + ", ");
+//				if ((i+1) % 5 == 0)
+//					System.out.println("");
+//			}
+//			System.out.println("\n");
+//			System.out.print("Please select a team: ");
+//			String input = mainScanner.nextLine();
 
 			Team t = new Team();
 			for (int i = 0; i < s.getTeams().size(); i++) {
-				if (s.getTeams().get(i).getTeamName().equals(input)) {
+				if (s.getTeams().get(i).getTeamName().equals(teamName)) {
 					t = s.getTeams().get(i);
 					found = true;
 				}
@@ -389,12 +464,13 @@ public class Main {
 					System.out.println("");
 				}
 			}
-			if (!found)
-				System.out.println("\nTeam not found, check the spelling.\n");
-		} while (!found);
+//			if (!found)
+//				System.out.println("\nTeam not found, check the spelling.\n");
+//		} while (!found);
 		System.out.flush();
 		System.setOut(old);
 		System.out.println(baos.toString());
+		System.out.println("hello");
 		return baos.toString();
 	}
 
