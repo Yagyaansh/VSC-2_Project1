@@ -18,6 +18,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -29,7 +30,8 @@ public class UIController implements Initializable {
 	
 	//----Scene 1
 	@FXML
-	private Button button1;
+	private Button startSimulation;
+	@FXML private TextField numSeasons;
 	// ---- Scene 2
 	@FXML private Button button2;
 	@FXML private ChoiceBox gameResultsChoiceBox;
@@ -44,7 +46,7 @@ public class UIController implements Initializable {
 	@FXML private Button subWeekGames;
 	@FXML private Button subTeamRevenue;
 	@FXML private TextField weekNum;
-	@FXML private TextField statOutput;
+	@FXML private TextArea statOutput;
 	//@FXML
 	//private BarChart<String, Number> uiChart;
 
@@ -56,25 +58,28 @@ public class UIController implements Initializable {
 		// System.out.println(event.getSource());
 		Stage stage = null;
 		Parent root = null;
-		System.out.println(button1);
-		if (event.getSource() == button1) {
-			stage = (Stage) button1.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
-
-			// System.out.println("Button1 pressed");
-
-		}
 		if (event.getSource() == button2) {
 			stage = (Stage) button2.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("UIMain.fxml"));
 			// System.out.println("Button2 pressed");
 		}
+		
+	}
+
+	@FXML
+	public void startSimulation() throws IOException
+	{
+		int seasonsToSim = Integer.parseInt((String) numSeasons.getText());
+		Stage stage = null;
+		Parent root = null;
+		stage = (Stage) startSimulation.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
+		
 	}
-
 	@FXML
 	public void initScene2() {
 		gameResultsChoiceBox.setItems(teamChoices);
@@ -91,28 +96,43 @@ public class UIController implements Initializable {
 
 	@FXML
 	public void handleSubmitAction(ActionEvent e) throws IOException {
+		String teamName = null;
 		if (e.getSource() == contSim)
 		{
 			//continue to next weeks
+			int weeksToContinue = Integer.parseInt((String) weeksToRun.getText());
+			
 		}
 		else if (e.getSource() == subGameResults)
 		{
-			
+			teamName = (String) gameResultsChoiceBox.getValue();
+			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHell"
+					+ "o\nthere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
 		}
 		else if (e.getSource() == subWinLoss)
 		{
-			
+			teamName = (String) winLossChoiceBox.getValue();
+			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHell"
+					+ "o\nthere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
 		}
 		else if (e.getSource() == subTeamRoster)
 		{
-			
+			teamName = (String) teamRosterChoiceBox.getValue();
+			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHello\nth"
+					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
 		}
 		else if (e.getSource() == subWeekGames)
 		{
+			int week = Integer.parseInt((String) weekNum.getText());
+			statOutput.setText("Here are the stats for week " + week + "\nhello\nthere\nhello\nthere\nHello\nth"
+					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
 			
 		}
 		else if(e.getSource() == subTeamRevenue)
 		{
+			teamName = (String) teamRevenueChoiceBox.getValue();
+			statOutput.setText("Here are the stats for the " + teamName + "\nhello\nthere\nhello\nthere\nHello\nth"
+					+ "ere\nhello\nthere\nHello\nthere\nhello\nthere\nHello\nthere\nhello\nthere\n");
 		}
 		
 		

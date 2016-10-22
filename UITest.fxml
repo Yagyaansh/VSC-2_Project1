@@ -49,7 +49,7 @@
                   <Label text="Continue With Season" />
                   <Region HBox.hgrow="ALWAYS" />
                   <TextField fx:id="weeksToRun" prefHeight="25.0" prefWidth="83.0" promptText="numWeeks" />
-                  <Button fx:id="contSim" mnemonicParsing="false" text="Continue" />
+                  <Button fx:id="contSim" mnemonicParsing="false" onAction="#handleSubmitAction" text="Continue" />
                   <Button fx:id="button2" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#handleButtonAction" text="Goto Scene 1" />
                </children>
             </HBox>
@@ -66,7 +66,7 @@
                   <Label text="Get Game Results" />
                   <Region HBox.hgrow="ALWAYS" />
                   <ChoiceBox fx:id="gameResultsChoiceBox" prefWidth="150.0" />
-                  <Button fx:id="subGameResults" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="subGameResults" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="135.0" spacing="10.0">
@@ -74,7 +74,7 @@
                   <Label text="Get Win/Loss Ratios" />
                   <Region HBox.hgrow="ALWAYS" />
                   <ChoiceBox fx:id="winLossChoiceBox" prefWidth="150.0" />
-                  <Button fx:id="subWinLoss" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="subWinLoss" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="160.0" spacing="10.0">
@@ -82,7 +82,7 @@
                   <Label text="Get Team Roster Details" />
                   <Region HBox.hgrow="ALWAYS" />
                   <ChoiceBox fx:id="teamRosterChoiceBox" prefWidth="150.0" />
-                  <Button fx:id="subTeamRoster" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="subTeamRoster" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="185.0" spacing="10.0">
@@ -90,7 +90,7 @@
                   <Label text="Get Team Revenue" />
                   <Region HBox.hgrow="ALWAYS" />
                   <ChoiceBox fx:id="teamRevenueChoiceBox" prefWidth="150.0" />
-                  <Button fx:id="subTeamRevenue" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="subTeamRevenue" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">
@@ -98,7 +98,7 @@
                   <Label text="Game Stats for one Week" />
                   <Region HBox.hgrow="ALWAYS" />
                   <TextField fx:id="weekNum" prefHeight="25.0" prefWidth="83.0" promptText="Week " />
-                  <Button fx:id="subWeekGames" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="subWeekGames" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
          </children>
