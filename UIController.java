@@ -18,6 +18,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class UIController implements Initializable {
@@ -25,24 +26,28 @@ public class UIController implements Initializable {
 			"Buffalo Bills", "New York Jets", "Miami Dolphins", "Pittsburgh Steelers", "Baltimore Ravens",
 			"Cincinnati Bengals", "Cleveland Browns", "Houston Texans", "Jacksonville Jaguars", "Tennessee Titans",
 			"Indianapolis Colts", "Denver Broncos", "Oakland Raiders", "Kansas City Chiefs", "San Diego Chargers");
-	@FXML
-	private CheckBox testbox;
+	
+	//----Scene 1
 	@FXML
 	private Button button1;
-	@FXML
-	private Button button2;
-	@FXML
-	private ChoiceBox gameResultsChoiceBox;
+	// ---- Scene 2
+	@FXML private Button button2;
+	@FXML private ChoiceBox gameResultsChoiceBox;
 	@FXML private ChoiceBox winLossChoiceBox;
 	@FXML private ChoiceBox teamRosterChoiceBox;
 	@FXML private ChoiceBox teamRevenueChoiceBox;
+	@FXML private TextField weeksToRun;
+	@FXML private Button contSim;
+	@FXML private Button subGameResults;
+	@FXML private Button subWinLoss;
+	@FXML private Button subTeamRoster;
+	@FXML private Button subWeekGames;
+	@FXML private Button subTeamRevenue;
+	@FXML private TextField weekNum;
+	@FXML private TextField statOutput;
 	//@FXML
 	//private BarChart<String, Number> uiChart;
 
-	@FXML
-	private void testCheck() {
-		System.out.println("Checked the box");
-	}
 
 	@FXML
 	private void handleButtonAction(ActionEvent event) throws IOException {
@@ -69,22 +74,48 @@ public class UIController implements Initializable {
 
 		stage.show();
 	}
-	
+
 	@FXML
-	public void initScene2()
-	{
+	public void initScene2() {
 		gameResultsChoiceBox.setItems(teamChoices);
 		teamRevenueChoiceBox.setItems(teamChoices);
 		teamRosterChoiceBox.setItems(teamChoices);
 		winLossChoiceBox.setItems(teamChoices);
-		
-		
-//		XYChart.Series<String, Number> series = new XYChart.Series<>();
-//		
-//		series.getData().add(new XYChart.Data<String,Number>("Week 1", 34));
-//		series.getData().add(new XYChart.Data<String,Number>("Week 2", 45));
-//		uiChart.getData().addAll(series);
 
+		// XYChart.Series<String, Number> series = new XYChart.Series<>();
+		//
+		// series.getData().add(new XYChart.Data<String,Number>("Week 1", 34));
+		// series.getData().add(new XYChart.Data<String,Number>("Week 2", 45));
+		// uiChart.getData().addAll(series)
+	}
+
+	@FXML
+	public void handleSubmitAction(ActionEvent e) throws IOException {
+		if (e.getSource() == contSim)
+		{
+			//continue to next weeks
+		}
+		else if (e.getSource() == subGameResults)
+		{
+			
+		}
+		else if (e.getSource() == subWinLoss)
+		{
+			
+		}
+		else if (e.getSource() == subTeamRoster)
+		{
+			
+		}
+		else if (e.getSource() == subWeekGames)
+		{
+			
+		}
+		else if(e.getSource() == subTeamRevenue)
+		{
+		}
+		
+		
 	}
 
 	@Override
