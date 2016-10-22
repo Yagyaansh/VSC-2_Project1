@@ -139,13 +139,46 @@ public class Stadium
 		int poulation = this.population;
 		
 		int capacity = 0;
-		
 		/*
 		 * TODO : 
 		 * We can determine the capacity depending on home-town
 		 * and towns population
 		 * What data and teams to use for this ?
 		 */
+		if (hometown == "Boston"){
+			capacity = 66829;
+		} else if (hometown == "Buffalo") {
+			capacity = 71608;
+		} else if (hometown == "New York") {
+			capacity = 82500;
+		} else if(hometown == "Miami"){
+			capacity = 65326;
+		} else if (hometown == "Pittsburgh") {
+			capacity = 68400;
+		} else if (hometown == "Baltimore") {
+			capacity = 71008;
+		} else if (hometown == "Cincinnati") {
+			capacity = 65515;
+		} else if (hometown == "Cleveland") {
+			capacity = 67431;
+		} else if (hometown == "Houston") {
+			capacity = 72220;
+		} else if (hometown == "Jacksonville") {
+			capacity = 67246;
+		} else if (hometown == "Tennessee") {
+			capacity = 69143;
+		} else if (hometown == "Indianapolis") {
+			capacity = 67000;
+		} else if (hometown == "Denver") {
+			capacity = 76125;
+		} else if (hometown == "Oakland") {
+			capacity = 56063;
+		} else if (hometown == "Kansas City") {
+			capacity = 76416;
+		} else if (hometown == "San Diego") {
+			capacity = 70561;
+		}
+		
 		
 		this.setCapacityRegular(capacity);
 	}
@@ -163,6 +196,39 @@ public class Stadium
 		 * and towns population
 		 * What data and teams to use for this ?
 		 */
+		if (hometown == "Boston"){
+			capacity = 87;
+		} else if (hometown == "Buffalo") {
+			capacity = 121;
+		} else if (hometown == "New York") {
+			capacity = 218;
+		} else if(hometown == "Miami"){
+			capacity = 193;
+		} else if (hometown == "Pittsburgh") {
+			capacity = 129;
+		} else if (hometown == "Baltimore") {
+			capacity = 125;
+		} else if (hometown == "Cincinnati") {
+			capacity = 114;
+		} else if (hometown == "Cleveland") {
+			capacity = 147;
+		} else if (hometown == "Houston") {
+			capacity = 196;
+		} else if (hometown == "Jacksonville") {
+			capacity = 75;
+		} else if (hometown == "Tennessee") {
+			capacity = 177;
+		} else if (hometown == "Indianapolis") {
+			capacity = 137;
+		} else if (hometown == "Denver") {
+			capacity = 132;
+		} else if (hometown == "Oakland") {
+			capacity = 143;
+		} else if (hometown == "Kansas City") {
+			capacity = 80;
+		} else if (hometown == "San Diego") {
+			capacity = 113;
+		}
 		
 		this.setCapacityLuxury(capacity);
 	}
@@ -187,6 +253,56 @@ public class Stadium
 		 * depending on home town and team we can determine price
 		 * we can use population too if needed
 		 */
+		
+		if (hometown == "Boston"){
+			basePriceRegular = 130.73;
+			basePriceLuxury = 10000;
+		} else if (hometown == "Buffalo") {
+			basePriceRegular = 88.18;
+			basePriceLuxury = 8000;
+		} else if (hometown == "New York") {
+			basePriceRegular = 115.50;
+			basePriceLuxury = 16500;
+		} else if(hometown == "Miami"){
+			basePriceRegular = 98.25;
+			basePriceLuxury = 15000;
+		} else if (hometown == "Pittsburgh") {
+			basePriceRegular = 93.56;
+			basePriceLuxury = 15000;
+		} else if (hometown == "Baltimore") {
+			basePriceRegular = 112.11;
+			basePriceLuxury = 10000;
+		} else if (hometown == "Cincinnati") {
+			basePriceRegular = 74.13;
+			basePriceLuxury = 8000;
+		} else if (hometown == "Cleveland") {
+			basePriceRegular = 69.13;
+			basePriceLuxury = 8000;
+		} else if (hometown == "Houston") {
+			basePriceRegular = 94.73;
+			basePriceLuxury = 6000;
+		} else if (hometown == "Jacksonville") {
+			basePriceRegular = 61.36;
+			basePriceLuxury = 8000;
+		} else if (hometown == "Tennessee") {
+			basePriceRegular = 67.15;
+			basePriceLuxury = 8000;
+		} else if (hometown == "Indianapolis") {
+			basePriceRegular = 87.44;
+			basePriceLuxury = 10000;
+		} else if (hometown == "Denver") {
+			basePriceRegular = 114.00;
+			basePriceLuxury = 20000;
+		} else if (hometown == "Oakland") {
+			basePriceRegular = 71.03;
+			basePriceLuxury = 10000;
+		} else if (hometown == "Kansas City") {
+			basePriceRegular = 73.79;
+			basePriceLuxury = 11000;
+		} else if (hometown == "San Diego") {
+			basePriceRegular = 84.55;
+			basePriceLuxury = 10000;
+		}
 		
 		this.setPriceRegular(basePriceRegular);
 		this.setPriceLuxury(basePriceLuxury);
