@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -328,14 +330,26 @@ public class Main {
 
 	}
 
-	public static void printTeamRevenues(Season s) {
+	public static String printTeamRevenues(Season s) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		for (Team t : s.getTeams()) {
 			t.printRevenue();
 			System.out.println("");
 		}
+		System.out.flush();
+		System.setOut(old);
+		System.out.println(baos.toString());
+		return baos.toString();
 	}
 
-	public static void printTeamGames(Season s) {
+	public static String printTeamGames(Season s) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		boolean found = false;
 		do {
 			System.out.println("");
@@ -366,11 +380,18 @@ public class Main {
 			if (!found)
 				System.out.println("\nTeam not found, check the spelling.\n");
 		} while (!found);
-
+		System.out.flush();
+		System.setOut(old);
+		System.out.println(baos.toString());
+		return baos.toString();
 	}
 
 	// Print out week outcome and game statistics in one season
-	public static void printWeekDetails(Season s, int weeksToRun) {
+	public static String printWeekDetails(Season s, int weeksToRun) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		int week = 0;
 		do {
 			if (week > s.getCurrWeek())
@@ -385,18 +406,34 @@ public class Main {
 			s.getWeek(week)[j].printGame();
 			System.out.println("");
 		}
-
+		System.out.flush();
+		System.setOut(old);
+		System.out.println(baos.toString());
+		return baos.toString();
 	}
 
-	public static void printWinLossRecords(Season s) {
+	public static String printWinLossRecords(Season s) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		System.out.println("WIN-LOSS RECORDS");
 		for (Team t : s.getTeams()) {
 			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
 		}
 		System.out.println("");
+		System.out.flush();
+		System.setOut(old);
+		System.out.println(baos.toString());
+		return baos.toString();
+
 	}
 
-	public static void printTeamDetails(Season s) {
+	public static String printTeamDetails(Season s) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		for (int i = 0; i < s.getTeams().size(); i++) {
 			System.out.println(s.getTeams().get(i).getTeamName());
 		}
@@ -404,6 +441,11 @@ public class Main {
 		System.out.print("Please select a team: ");
 		String input = mainScanner.nextLine();
 		s.printRosterDetails(input);
+		System.out.flush();
+		System.setOut(old);
+		System.out.println(baos.toString());
+		return baos.toString();
+
 
 	}
 
