@@ -107,7 +107,7 @@
    <bottom>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="statOutput" prefHeight="200.0" prefWidth="200.0" text=" " />
+            <TextArea fx:id="statOutput" prefHeight="200.0" prefWidth="200.0" text=" " VBox.vgrow="ALWAYS" />
             <Label alignment="BOTTOM_LEFT" text="Setear NFL Simulation">
                <font>
                   <Font name="Arial Bold" size="11.0" />

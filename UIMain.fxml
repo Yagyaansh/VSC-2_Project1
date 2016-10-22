@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="368.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
    <top>
@@ -38,7 +39,10 @@
       </VBox>
    </top>
    <bottom>
-      <Label contentDisplay="TOP" text=" Setear NFL Simulation" BorderPane.alignment="BOTTOM_LEFT" />
+      <Label contentDisplay="TOP" text=" Setear NFL Simulation" BorderPane.alignment="BOTTOM_LEFT">
+         <font>
+            <Font name="Arial Bold" size="11.0" />
+         </font></Label>
    </bottom>
    <left>
       <VBox BorderPane.alignment="CENTER">
