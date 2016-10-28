@@ -384,7 +384,7 @@ public class Main {
 			System.out.println("");
 			switch (input) {
 			case "1":
-				printTeamGames(s,"Buffalo Bills");
+				printTeamGames(s,"Buffalo Bills",false);
 				break;
 			case "2":
 				//printWeekDetails(s);
@@ -430,32 +430,21 @@ public class Main {
 		return baos.toString();
 	}
 
-	public static String printTeamGames(Season s,String teamName) {
-		System.out.println("We made it fam" + s.getCurrWeek());
+	public static String printTeamGames(Season s,String teamName, boolean isNewSeason) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		PrintStream old = System.out;
 		System.setOut(ps);
 		boolean found = false;
-//		do {
-//			System.out.println("");
-//			for (int i = 0; i < s.getTeams().size(); i++) {
-//				System.out.print(s.getTeams().get(i).getTeamName() + ", ");
-//				if ((i+1) % 5 == 0)
-//					System.out.println("");
-//			}
-//			System.out.println("\n");
-//			System.out.print("Please select a team: ");
-//			String input = mainScanner.nextLine();
-
-			Team t = new Team();
-			for (int i = 0; i < s.getTeams().size(); i++) {
-				if (s.getTeams().get(i).getTeamName().equals(teamName)) {
-					t = s.getTeams().get(i);
-					found = true;
-				}
+		Team t = new Team();
+		for (int i = 0; i < s.getTeams().size(); i++) {
+			if (s.getTeams().get(i).getTeamName().equals(teamName)) {
+				t = s.getTeams().get(i);
+				found = true;
 			}
-			//TODO: Need to make this dependent on season int so we can get previous season results
+		}
+		
+		if (!isNewSeason) {
 			for (int i = 0; i < t.getCurrentSeasonResult().getGames().length; i++) {
 				if (t.getCurrentSeasonResult().getGames()[i] != null) {
 					System.out.println("Game " + (i + 1));
@@ -463,12 +452,19 @@ public class Main {
 					System.out.println("");
 				}
 			}
-//			if (!found)
-//				System.out.println("\nTeam not found, check the spelling.\n");
-//		} while (!found);
+		} else {
+			for (int i = 0; i < t.getPreviousSeasonResult().getGames().length; i++) {
+				if (t.getPreviousSeasonResult().getGames()[i] != null) {
+					System.out.println("Game " + (i + 1));
+					t.getPreviousSeasonResult().getGames()[i].printGame();
+					System.out.println("");
+				}
+			}
+		}
+
 		System.out.flush();
 		System.setOut(old);
-		//System.out.println(baos.toString());
+
 		return baos.toString();
 	}
 
