@@ -129,8 +129,13 @@ public class UIController extends Application implements Initializable {
 		else if (e.getSource() == subGameResults)
 		{
 			teamName = (String) gameResultsChoiceBox.getValue();
+			System.out.println(m1.getCurrWeek() + " " + m1.getCurrSeasonNum());
 			if (m1.getCurrWeek() == 0 && m1.getCurrSeasonNum() != 0)
+			{
+				System.out.println("In print");
 				statOutput.setText((Main.printTeamGames(m1.getPrevSeason(),teamName)));
+				m1.getPrevSeason().printRosterDetails(teamName);
+			}
 			else
 				statOutput.setText((Main.printTeamGames(m1.getCurrSeason(),teamName)));
 		}

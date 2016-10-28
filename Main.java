@@ -455,7 +455,7 @@ public class Main {
 					found = true;
 				}
 			}
-
+			//TODO: Need to make this dependent on season int so we can get previous season results
 			for (int i = 0; i < t.getCurrentSeasonResult().getGames().length; i++) {
 				if (t.getCurrentSeasonResult().getGames()[i] != null) {
 					System.out.println("Game " + (i + 1));
