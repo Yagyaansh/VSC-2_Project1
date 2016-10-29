@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -18,8 +19,10 @@ public class NameGenerator{
 		try {
 		firstNames = new ArrayList<String>();
 		lastNames = new ArrayList<String>();
-		String fileFirstName = "firstNames.txt";
-		String fileLastName = "lastNames.txt";
+		String fileFirstName = "/firstNames.txt";
+		InputStream in = this.getClass().getClassLoader()
+                .getResourceAsStream("SomeTextFile.txt");
+		String fileLastName = "/lastNames.txt";
 		Scanner file1 = new Scanner(new File(fileFirstName));
 		Scanner file2 = new Scanner(new File(fileLastName));
 		while (file1.hasNextLine()) {
