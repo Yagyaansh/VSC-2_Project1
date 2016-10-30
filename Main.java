@@ -191,19 +191,7 @@ public class Main {
 		}
 
 		//printInputs(numberOfTeams, numberOfSeasons);
-	
-	
-	public static double numberOfGames() {
 		
-		/*
-		 * TODO : 
-		 * 
-		 * How do we calculate this value ??
-		 */
-		
-		return 16;
-	}
-	
 	public void setWeeksToRun(int weeks)
 	{
 		this.weeksToRun = weeks;
@@ -344,6 +332,16 @@ public class Main {
 	
 	public static int numberOfTeams(){
 		return 16;
+	}
+	
+	public static int numberOfWeeks()
+	{
+		return 16;
+	}
+	
+	public static int numberOfGamesPerWeek()
+	{
+		return 8;
 	}
 	
 	public ArrayList<Team> getTeams()

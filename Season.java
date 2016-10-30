@@ -41,7 +41,7 @@ public class Season {
 	 */
 	public Season(ArrayList<Team> teams, int seasonLength) {
 		this.totalWeeks = seasonLength;
-		this.schedule = new Game[16][16];
+		this.schedule = new Game[Main.numberOfWeeks()][Main.numberOfGamesPerWeek()]; // [weeks][games]
 		this.teams = teams;
 		this.games = new ArrayList<Game>();
 		this.victors = new ArrayList<Team>();
@@ -85,18 +85,120 @@ public class Season {
 	}
 
 	public void scheduleRandSeason() {
-		Random myRand = new Random();
-		for (int i = 0; i < totalWeeks; i++) {
-			for (int j = 0; j < teams.size(); j++) {
-				int opponent;
-				do
-					opponent = myRand.nextInt(teams.size());
-				while (opponent == j);
-				schedule[i][j] = new Game(teams.get(j), teams.get(opponent));
-
+		
+//		Random myRand = new Random();
+//		for (int i = 0; i < totalWeeks; i++) {
+//			for (int j = 0; j < teams.size(); j++) {
+//				int opponent;
+//				do
+//					opponent = myRand.nextInt(teams.size());
+//				while (opponent == j);
+//				schedule[i][j] = new Game(teams.get(j), teams.get(opponent));
+//
+//			}
+//
+//		}
+		
+		int week = 0;
+		int[] sequence = {3,4,5,6,7,8,16,15,14,13,12,11,10,9};
+		
+		class Node
+		{
+			Node next;
+			int number;
+			
+			Node()
+			{
+				this.number = 0;
 			}
-
 		}
+		
+		int[][] scheduler = new int[8][2];
+		scheduler[0][0] = 1;
+		
+		Node n1 = new Node();
+		n1.number = 2;
+		Node start = n1;
+	
+		for(int i=3; i<17; i++)
+		{
+			Node n = new Node();
+			n.number = sequence[i-3];
+			n1.next = n;
+			n1 = n1.next;
+		}
+		
+		n1.next = start;
+		Node root = start;
+		Node masterRoot = start;
+		// System.out.println(root.number);
+		
+//		for(int i=0; i<15; i++)
+//		{
+//			System.out.println(root.number);
+//			root = root.next;
+//		}
+		
+		//System.exit(0);
+		
+		for(int i=0; i<16; i++)
+		{
+			// System.out.println("here" + start.number);
+			
+			for(int j=0; j<i; j++)
+			{
+				root = root.next;
+			}
+			
+			// System.out.println(root.number);
+			
+			start = root;
+			root = masterRoot;
+			int countRow = 1;
+			int countCol = 0;
+			int stop = start.number;
+			//System.out.println(stop);
+			int d = 1;
+			while(start.next.number != stop)
+			{
+			// System.out.println(" \t" + start.next.number);
+				//System.out.println("\n" + start.number);
+				scheduler[countRow][countCol] = start.number;
+				countRow = countRow + d;
+				if(countRow == 8)
+				{
+					countRow = 7;
+					d = d*-1;
+					++countCol;
+				}
+				start = start.next;
+			}
+			// System.out.println("\n" + start.number);
+			scheduler[countRow][countCol] = start.number;
+			
+			// System.out.println();
+			// System.out.println();
+			
+//			System.out.println(" ------------------------------------------------------------- \n\n");
+//			for(int m=0; m<8; m++)
+//			{
+//				for(int n=0; n<2; n++)
+//				{
+//					System.out.print("\t" + scheduler[m][n]);
+//				}
+//				System.out.println();
+//			}
+//			
+//			System.out.println(" ------------------------------------------------------------- \n\n");
+
+			for(int x=0; x<8; x++)
+			{
+				Game g = new Game(teams.get(scheduler[x][0]-1), teams.get(scheduler[x][1]-1));
+				schedule[week][x] = g;
+			}
+			week++;
+		}
+		
 	}
 	
 	public Game[] getWeek(int week)

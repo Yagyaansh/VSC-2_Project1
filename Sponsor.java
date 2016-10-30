@@ -73,7 +73,7 @@ public class Sponsor
 		 * get for x number of contract years
 		 */
 		
-		sponsorship = sponsorship/(Main.numberOfGames()*this.getContractYears());
+		//sponsorship = sponsorship/(Main.numberOfGames()*this.getContractYears());
 		
 		this.setSponsorshipPerGame(sponsorship);
 	}
