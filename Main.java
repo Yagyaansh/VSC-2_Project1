@@ -192,6 +192,7 @@ public class Main {
 
 		//printInputs(numberOfTeams, numberOfSeasons);
 		
+	
 	public void setWeeksToRun(int weeks)
 	{
 		this.weeksToRun = weeks;

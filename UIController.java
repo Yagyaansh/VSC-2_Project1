@@ -34,7 +34,7 @@ public class UIController extends Application implements Initializable {
 	@FXML
 	private TextField numSeasons;
 	@FXML
-	private TextField homeTeamAdvantage;
+	private TextField homeFieldAdvantage;
 	@FXML
 	private TextField injuryRate;
 	// ---- Scene 2
@@ -105,10 +105,31 @@ public class UIController extends Application implements Initializable {
 			}
 			else
 				numSeasons.setText("Not Valid");
+			
+//------------------------------------------------------------------------------------------------------------------
+			if (Integer.parseInt((String) homeFieldAdvantage.getText()) != 0) {
+
+				Game.setTeam1Advantage(Integer.parseInt((String) homeFieldAdvantage.getText()));
+				
+//				if (m1 == null)
+//					System.out.println("null");
+//				m1.step1(16, m1.getSeasonsToSim());
+//				Stage stage = null;
+//				Parent root = null;
+//				stage = (Stage) startSimulation.getScene().getWindow();
+//				root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
+//				Scene scene = new Scene(root);
+//				stage.setScene(scene);
+//				stage.show();
+			}
+			else
+				homeFieldAdvantage.setText("Not Valid");
 		} catch (NumberFormatException e)
 		{
 			numSeasons.setText("Not Valid");
+			homeFieldAdvantage.setText("Not Valid");
 		}
+		
 	}
 	@FXML
 	public void initScene2() {

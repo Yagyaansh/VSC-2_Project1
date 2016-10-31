@@ -6,7 +6,7 @@ public class Game {
 	private double team2Determinate;
 	private double team1Stochiastic;
 	private double team2Stochiastic;
-	private double team1advantage;
+	private static double team1advantage;
 	private double team2advantage;
 	private double team1Score;
 	private double team2Score;
@@ -15,6 +15,7 @@ public class Game {
 	private Team victor;
 	private String city;
 	private boolean isLastGame;
+//	int intHomeFieldAdvantage;
 
 	//Deep Copy for printing out purposes
 	private Team tempTeam1;
@@ -103,8 +104,8 @@ public class Game {
 		team1Stochiastic = Math.abs(3*team1Stochiastic);
 		team2Stochiastic = Math.abs(3*team2Stochiastic);
 		
-		//Advantage of 7 for home team (team 1)
-		team1advantage = 7;
+//		//Advantage of 7 for home team (team 1)
+//		team1advantage = intHomeFieldAdvantage;
 		team2advantage = 0;
 
 		team1Score = team1Determinate + team1Stochiastic + team1advantage;
@@ -182,6 +183,16 @@ public class Game {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public static void setTeam1Advantage(double intHomeFieldAdvantage){
+		//Advantage of 7 for home team (team 1)
+		team1advantage = intHomeFieldAdvantage;
+
+	}
+	
+	public static double getTeam1Advantage(){
+		return team1advantage;
+	}
 	
 	public double getTeam1Score()
 	{
