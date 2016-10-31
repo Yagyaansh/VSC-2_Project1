@@ -33,6 +33,10 @@ public class UIController extends Application implements Initializable {
 	private Button startSimulation;
 	@FXML
 	private TextField numSeasons;
+	@FXML
+	private TextField homeTeamAdvantage;
+	@FXML
+	private TextField injuryRate;
 	// ---- Scene 2
 	@FXML
 	private Button button2;
@@ -87,6 +91,7 @@ public class UIController extends Application implements Initializable {
 		try {
 			if (Integer.parseInt((String) numSeasons.getText()) != 0) {
 				m1.setSeasonsToSim(Integer.parseInt((String) numSeasons.getText()));
+				
 				if (m1 == null)
 					System.out.println("null");
 				m1.step1(16, m1.getSeasonsToSim());
@@ -104,9 +109,7 @@ public class UIController extends Application implements Initializable {
 		{
 			numSeasons.setText("Not Valid");
 		}
-		
 	}
-
 	@FXML
 	public void initScene2() {
 		gameResultsChoiceBox.setItems(teamChoices);

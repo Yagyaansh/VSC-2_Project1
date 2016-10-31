@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="368.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
+<BorderPane prefHeight="368.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -47,7 +47,7 @@
    <left>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox spacing="5.0">
+            <HBox prefHeight="31.0" prefWidth="355.0" spacing="5.0">
                <children>
                   <Label text="How many seasons would you like to run?" />
                   <TextField fx:id="numSeasons" prefHeight="25.0" prefWidth="84.0" promptText="NumSeasons" />
@@ -62,11 +62,23 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <Label text="Future Variables to be added here...">
+            <Label>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
+            <HBox prefHeight="32.0" prefWidth="355.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="260.0" text="Set Home Field Advantage (default = 7)" />
+                  <TextField prefHeight="27.0" prefWidth="93.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="32.0" prefWidth="355.0">
+               <children>
+                  <Label text="Set Injury Rate (default = .9, which is 10%)" />
+                  <TextField prefHeight="27.0" prefWidth="94.0" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </left>
