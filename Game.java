@@ -20,6 +20,7 @@ public class Game {
 	//Deep Copy for printing out purposes
 	private Team tempTeam1;
 	private Team tempTeam2;
+	private double intHomeFieldAdvantage;
 
 	/*
 	 * Initializes a game object using 2 classes team 1 is always at home input
@@ -39,6 +40,7 @@ public class Game {
 		this.city = team1.getHometown();
 		this.victor = new Team();
 		this.isLastGame = false;
+		this.intHomeFieldAdvantage = 7;
 	}
 
 	/*
@@ -105,7 +107,7 @@ public class Game {
 		team2Stochiastic = Math.abs(3*team2Stochiastic);
 		
 //		//Advantage of 7 for home team (team 1)
-//		team1advantage = intHomeFieldAdvantage;
+		team1advantage = intHomeFieldAdvantage;
 		team2advantage = 0;
 
 		team1Score = team1Determinate + team1Stochiastic + team1advantage;
