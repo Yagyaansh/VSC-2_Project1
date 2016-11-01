@@ -30,7 +30,6 @@ public class Game {
 		this.team2Determinate = 0.0;
 		this.team1Stochiastic = 0.0;
 		this.team2Stochiastic = 0.0;
-		this.team1advantage = 0.0;
 		this.team2advantage = 0.0;
 		this.team1Score = 0.0;
 		this.team2Score = 0.0;
@@ -184,9 +183,12 @@ public class Game {
 	 * ------------------------
 	 */
 	
-	public static void setTeam1Advantage(double intHomeFieldAdvantage){
+	public static void setTeam1Advantage(double homeFieldAdvantage){
 		//Advantage of 7 for home team (team 1)
-		team1advantage = intHomeFieldAdvantage;
+		
+		System.out.println(homeFieldAdvantage);
+
+		team1advantage = homeFieldAdvantage;
 
 	}
 	
