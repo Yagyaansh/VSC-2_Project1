@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane onMouseMoved="#initScene2" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
+<BorderPane onMouseMoved="#initScene2" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -72,6 +72,7 @@
                <children>
                   <Label text="Get Win/Loss Ratios" />
                   <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#showGraph" text="Graph" />
                   <Button fx:id="subWinLoss" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>

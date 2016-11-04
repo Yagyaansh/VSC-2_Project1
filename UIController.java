@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class UIController extends Application implements Initializable {
@@ -262,6 +264,18 @@ public class UIController extends Application implements Initializable {
 		primaryStage.show();
 
 	}
+	
+	@FXML
+	private void showGraph() throws IOException{
+		
+		BorderPane Graph = FXMLLoader.load((getClass().getResource("WinLossRatioGraph.fxml")));		
+		Stage addDialogStage = new Stage();
+		addDialogStage.setTitle("Graph");
+		addDialogStage.initModality(Modality.WINDOW_MODAL);
+		Scene scene = new Scene(Graph);
+		addDialogStage.setScene(scene);
+		addDialogStage.showAndWait();
+	}
 
 	public static void main(String[] args) throws Exception {
 		m1 = new Main();
@@ -273,5 +287,6 @@ public class UIController extends Application implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}
+	
 
 }
