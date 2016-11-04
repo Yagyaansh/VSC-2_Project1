@@ -7,6 +7,7 @@ public class Game {
 	private double team1Stochastic;
 	private double team2Stochastic;
 	private static double team1advantage = 7;
+	private static double injuryRate = .9;
 	private int team2advantage;
 	private double team1Score;
 	private double team2Score;
@@ -136,14 +137,14 @@ public class Game {
 		for (int i = 0; i < 22; i++) {
 			Random rand = new Random();
 			double d = rand.nextDouble();
-			if (d >= 0.9) {
+			if (d >= injuryRate) {
 				team1.getStarters().get(i).injured();
 				if (this.isLastGame()) {
 					team1.getStarters().get(i).careerEndingInjury();
 				}
 			}
 			d = rand.nextDouble();
-			if (d >= 0.9) {
+			if (d >= injuryRate) {
 				team2.getStarters().get(i).injured();
 				if (this.isLastGame()) {
 					team2.getStarters().get(i).careerEndingInjury();
@@ -183,6 +184,16 @@ public class Game {
 		//Advantage of 7 for home team (team 1)
 		team1advantage = intHomeFieldAdvantage;
 
+	}
+	
+	public static void setInjuryRate(double injRate)
+	{
+		injuryRate = injRate;
+	}
+	
+	private static double getInjuryRate()
+	{
+		return injuryRate;
 	}
 	
 	public static double getTeam1Advantage(){

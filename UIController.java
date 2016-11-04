@@ -113,6 +113,20 @@ public class UIController extends Application implements Initializable {
 				validSim = false;
 			}
 		}
+		if (!injuryRate.getText().equals("")) {
+			try {
+				if (Double.parseDouble((String) injuryRate.getText()) >= 0 && Double.parseDouble((String) injuryRate.getText()) <= 1.0 ) {
+					Game.setInjuryRate(Double.parseDouble((String) injuryRate.getText()));
+				} else {
+					injuryRate.setText("Not Valid");
+					validSim = false;
+				}
+			} catch (NumberFormatException e) {
+				injuryRate.setText("Not Valid");
+				validSim = false;
+			}
+		}
+
 
 		if (validSim) {
 
