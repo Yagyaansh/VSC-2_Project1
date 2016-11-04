@@ -90,34 +90,7 @@ public class UIController extends Application implements Initializable {
 		try {
 			if (Integer.parseInt((String) numSeasons.getText()) != 0) {
 				m1.setSeasonsToSim(Integer.parseInt((String) numSeasons.getText()));
-				// System.out.println(homeFieldAdvantage);
-				System.out.println("here");
-				System.out.println(homeFieldAdvantage);
-				try{
-					Game.setTeam1Advantage(Integer.parseInt(homeFieldAdvantage.getText()));
-				}
-				catch(NullPointerException e){
-					Game.setTeam1Advantage(7);
-				}
-				if (m1 == null)
-					System.out.println("null");
-				m1.step1(16, m1.getSeasonsToSim());
-				Stage stage = null;
-				Parent root = null;
-				stage = (Stage) startSimulation.getScene().getWindow();
-				root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
-				Scene scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
-			}
-			else
-				numSeasons.setText("Not Valid");	
-		} 
-		catch (NumberFormatException e)
-		{
-			numSeasons.setText("Not Valid");
-			homeFieldAdvantage.setText("Not Valid");
-		}
+
 			} else
 			{
 				numSeasons.setText("Not Valid");
