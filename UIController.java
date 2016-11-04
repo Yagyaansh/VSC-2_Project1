@@ -92,8 +92,10 @@ public class UIController extends Application implements Initializable {
 				m1.setSeasonsToSim(Integer.parseInt((String) numSeasons.getText()));
 
 			} else
+			{
 				numSeasons.setText("Not Valid");
-			validSim = false;
+				validSim = false;
+			}
 		} catch (NumberFormatException e) {
 			numSeasons.setText("Not Valid");
 			validSim = false;
@@ -102,9 +104,10 @@ public class UIController extends Application implements Initializable {
 			try {
 				if (Integer.parseInt((String) homeFieldAdvantage.getText()) != 0) {
 					Game.setTeam1Advantage(Integer.parseInt((String) homeFieldAdvantage.getText()));
-				} else
+				} else {
 					homeFieldAdvantage.setText("Not Valid");
-				validSim = false;
+					validSim = false;
+				}
 			} catch (NumberFormatException e) {
 				homeFieldAdvantage.setText("Not Valid");
 				validSim = false;
