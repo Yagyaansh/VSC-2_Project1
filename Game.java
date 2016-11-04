@@ -246,14 +246,20 @@ public class Game {
 	 */
 
 	public void printGame() {
+		if(this.team1advantage>0){
+			System.out.println(team1.getTeamName() + "@Home");
+		}
+		else{
+			System.out.println(team1.getTeamName() + "@Away");
+		}
 		System.out.println(
-				team1.getTeamName() + ": " + this.team1Score + "   " + team2.getTeamName() + ": " + this.team2Score);
-		System.out.println(team1.getTeamName() + " Determinate = " + "  " + this.team1Determinate + "  "
+				team1.getTeamName() + " Score: " + this.team1Score + "   " + team2.getTeamName() + " Score: " + this.team2Score);
+		System.out.println(team1.getTeamName() + " Determinate  = " + "  " + this.team1Determinate + "  "
 				+ team2.getTeamName() + " Determinate = " + this.team2Determinate);
-		System.out.println(team1.getTeamName() + " Stochastic = " + "  " + this.team1Stochastic + "  "
+		System.out.println(team1.getTeamName() + " Stochastic      = " + "  " + this.team1Stochastic + "  "
 				+ team2.getTeamName() + " Stochastic = " + this.team2Stochastic);
-		System.out.println(team1.getTeamName() + " Advantage = " + "  " + this.team1advantage + "  "
-				+ team2.getTeamName() + " Advantage = " + this.team2advantage);
+		System.out.println(team1.getTeamName() + " Advantage     = " + "  " + this.team1advantage + "  "
+				+ team2.getTeamName() + " Advantage =   " + this.team2advantage);
 	}
 
 	/*
