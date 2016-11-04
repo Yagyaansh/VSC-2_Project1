@@ -37,6 +37,10 @@ public class UIController extends Application implements Initializable {
 	private TextField homeFieldAdvantage;
 	@FXML
 	private TextField injuryRate;
+	@FXML
+	private TextField injuryMean;
+	@FXML
+	private TextField stochStdev;
 	// ---- Scene 2
 	@FXML
 	private Button button2;
@@ -123,6 +127,32 @@ public class UIController extends Application implements Initializable {
 				}
 			} catch (NumberFormatException e) {
 				injuryRate.setText("Not Valid");
+				validSim = false;
+			}
+		}
+		if (!injuryMean.getText().equals("")) {
+			try {
+				if (Integer.parseInt((String) injuryMean.getText()) >= 0) {
+					Player.setInjuryMean(Integer.parseInt((String) injuryMean.getText()));
+				} else {
+					injuryMean.setText("Not Valid");
+					validSim = false;
+				}
+			} catch (NumberFormatException e) {
+				injuryMean.setText("Not Valid");
+				validSim = false;
+			}
+		}
+		if (!stochStdev.getText().equals("")) {
+			try {
+				if (Integer.parseInt((String) stochStdev.getText()) >= 0) {
+					Game.setStochStdev(Integer.parseInt((String) stochStdev.getText()));
+				} else {
+					stochStdev.setText("Not Valid");
+					validSim = false;
+				}
+			} catch (NumberFormatException e) {
+				stochStdev.setText("Not Valid");
 				validSim = false;
 			}
 		}

@@ -21,6 +21,7 @@ public class Player implements Comparable<Player>{
 	private int salary;
 	private boolean rookie;
 	private boolean injured;
+	private static int injuryMean = 2;
 	private int injuryDaysRemaining;
 	private boolean offensive;
 	private Coach coach;
@@ -352,6 +353,15 @@ public class Player implements Comparable<Player>{
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public static int getInjuryMean()
+	{
+		return injuryMean;
+	}
+	public static void setInjuryMean(int weeks)
+	{
+		injuryMean = weeks;
+	}
 
 	public boolean isRookie() {
 		return this.rookie;
@@ -395,7 +405,7 @@ public class Player implements Comparable<Player>{
 
 	public void injured() {
 		Random rand = new Random();
-		this.injuryDaysRemaining = (2 + (Math.abs((int)(rand.nextGaussian()))));
+		this.injuryDaysRemaining = (injuryMean + (Math.abs((int)(rand.nextGaussian()))));
 		this.injured = true;
 	}
 

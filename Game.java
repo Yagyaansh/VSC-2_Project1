@@ -8,6 +8,7 @@ public class Game {
 	private double team2Stochastic;
 	private static double team1advantage = 7;
 	private static double injuryRate = .9;
+	private static double stochStdev = 4;
 	private int team2advantage;
 	private double team1Score;
 	private double team2Score;
@@ -98,8 +99,8 @@ public class Game {
 
 		Random generator1 = new Random();
 		
-		team1Stochastic = Math.round(4 * generator1.nextGaussian());
-		team2Stochastic = Math.round(4 * generator1.nextGaussian());
+		team1Stochastic = Math.round(stochStdev * generator1.nextGaussian());
+		team2Stochastic = Math.round(stochStdev * generator1.nextGaussian());
 		
 		team1Stochastic = Math.abs(3*team1Stochastic);
 		team2Stochastic = Math.abs(3*team2Stochastic);
@@ -187,6 +188,11 @@ public class Game {
 
 		team1advantage = homeFieldAdvantage;
 
+	}
+	
+	public static void setStochStdev(int stdev)
+	{
+		stochStdev = stdev;
 	}
 	
 	public static void setInjuryRate(double injRate)
