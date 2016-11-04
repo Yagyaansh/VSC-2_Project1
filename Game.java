@@ -4,10 +4,11 @@ public class Game {
 
 	private double team1Determinate;
 	private double team2Determinate;
-	private double team1Stochiastic;
-	private double team2Stochiastic;
-	private static double team1advantage;
-	private double team2advantage;
+	private double team1Stochastic;
+	private double team2Stochastic;
+	private static double team1advantage = 7;
+	private static double injuryRate = .9;
+	private int team2advantage;
 	private double team1Score;
 	private double team2Score;
 	private Team team1;
@@ -28,9 +29,8 @@ public class Game {
 	public Game(Team team1, Team team2) {
 		this.team1Determinate = 0.0;
 		this.team2Determinate = 0.0;
-		this.team1Stochiastic = 0.0;
-		this.team2Stochiastic = 0.0;
-		this.team2advantage = 0.0;
+		this.team1Stochastic = 0.0;
+		this.team2Stochastic = 0.0;
 		this.team1Score = 0.0;
 		this.team2Score = 0.0;
 		this.team1 = team1;
@@ -38,6 +38,7 @@ public class Game {
 		this.city = team1.getHometown();
 		this.victor = new Team();
 		this.isLastGame = false;
+		this.team2advantage = 0;
 	}
 
 	/*
@@ -97,18 +98,14 @@ public class Game {
 
 		Random generator1 = new Random();
 		
-		team1Stochiastic = Math.round(4 * generator1.nextGaussian());
-		team2Stochiastic = Math.round(4 * generator1.nextGaussian());
+		team1Stochastic = Math.round(4 * generator1.nextGaussian());
+		team2Stochastic = Math.round(4 * generator1.nextGaussian());
 		
-		team1Stochiastic = Math.abs(3*team1Stochiastic);
-		team2Stochiastic = Math.abs(3*team2Stochiastic);
-		
-//		//Advantage of 7 for home team (team 1)
-//		team1advantage = intHomeFieldAdvantage;
-		team2advantage = 0;
+		team1Stochastic = Math.abs(3*team1Stochastic);
+		team2Stochastic = Math.abs(3*team2Stochastic);
 
-		team1Score = team1Determinate + team1Stochiastic + team1advantage;
-		team2Score = team2Determinate + team2Stochiastic + team2advantage;
+		team1Score = team1Determinate + team1Stochastic + team1advantage;
+		team2Score = team2Determinate + team2Stochastic + team2advantage;
 
 		if (team1Score > team2Score) {
 			victor = team1;
@@ -140,14 +137,14 @@ public class Game {
 		for (int i = 0; i < 22; i++) {
 			Random rand = new Random();
 			double d = rand.nextDouble();
-			if (d >= 0.9) {
+			if (d >= injuryRate) {
 				team1.getStarters().get(i).injured();
 				if (this.isLastGame()) {
 					team1.getStarters().get(i).careerEndingInjury();
 				}
 			}
 			d = rand.nextDouble();
-			if (d >= 0.9) {
+			if (d >= injuryRate) {
 				team2.getStarters().get(i).injured();
 				if (this.isLastGame()) {
 					team2.getStarters().get(i).careerEndingInjury();
@@ -190,6 +187,16 @@ public class Game {
 
 		team1advantage = homeFieldAdvantage;
 
+	}
+	
+	public static void setInjuryRate(double injRate)
+	{
+		injuryRate = injRate;
+	}
+	
+	private static double getInjuryRate()
+	{
+		return injuryRate;
 	}
 	
 	public static double getTeam1Advantage(){
@@ -243,8 +250,8 @@ public class Game {
 				team1.getTeamName() + ": " + this.team1Score + "   " + team2.getTeamName() + ": " + this.team2Score);
 		System.out.println(team1.getTeamName() + " Determinate = " + "  " + this.team1Determinate + "  "
 				+ team2.getTeamName() + " Determinate = " + this.team2Determinate);
-		System.out.println(team1.getTeamName() + " Stochiastic = " + "  " + this.team1Stochiastic + "  "
-				+ team2.getTeamName() + " Stochiastic = " + this.team2Stochiastic);
+		System.out.println(team1.getTeamName() + " Stochastic = " + "  " + this.team1Stochastic + "  "
+				+ team2.getTeamName() + " Stochastic = " + this.team2Stochastic);
 		System.out.println(team1.getTeamName() + " Advantage = " + "  " + this.team1advantage + "  "
 				+ team2.getTeamName() + " Advantage = " + this.team2advantage);
 	}

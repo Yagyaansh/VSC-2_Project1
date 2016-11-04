@@ -68,14 +68,12 @@ public class UIController extends Application implements Initializable {
 	private TextArea statOutput;
 	@FXML
 	private Label textHeader;
+
 	// @FXML
 	// private BarChart<String, Number> uiChart;
 
 	@FXML
 	private void handleButtonAction(ActionEvent event) throws IOException {
-		// System.out.println("in button action");
-		// System.out.println(event);
-		// System.out.println(event.getSource());
 		Stage stage = null;
 		Parent root = null;
 		if (event.getSource() == button2) {
@@ -88,10 +86,10 @@ public class UIController extends Application implements Initializable {
 
 	@FXML
 	public void startSimulation() throws IOException {
+		boolean validSim = true;
 		try {
 			if (Integer.parseInt((String) numSeasons.getText()) != 0) {
 				m1.setSeasonsToSim(Integer.parseInt((String) numSeasons.getText()));
-				
 				// System.out.println(homeFieldAdvantage);
 				System.out.println("here");
 				System.out.println(homeFieldAdvantage);
@@ -120,26 +118,56 @@ public class UIController extends Application implements Initializable {
 			numSeasons.setText("Not Valid");
 			homeFieldAdvantage.setText("Not Valid");
 		}
-			
-//------------------------------------------------------------------------------------------------------------------
-//			if (Integer.parseInt((String) homeFieldAdvantage.getText()) != 0) {
-//
-//				Game.setTeam1Advantage(Integer.parseInt((String) homeFieldAdvantage.getText()));
-//				
-//				if (m1 == null)
-//					System.out.println("null");
-//				m1.step1(16, m1.getSeasonsToSim());
-//				Stage stage = null;
-//				Parent root = null;
-//				stage = (Stage) startSimulation.getScene().getWindow();
-//				root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
-//				Scene scene = new Scene(root);
-//				stage.setScene(scene);
-//				stage.show();
-//			}
-//			else
-//				homeFieldAdvantage.setText("Not Valid");
-		
+			} else
+			{
+				numSeasons.setText("Not Valid");
+				validSim = false;
+			}
+		} catch (NumberFormatException e) {
+			numSeasons.setText("Not Valid");
+			validSim = false;
+		}
+		if (!homeFieldAdvantage.getText().equals("")) {
+			try {
+				if (Integer.parseInt((String) homeFieldAdvantage.getText()) != 0) {
+					Game.setTeam1Advantage(Integer.parseInt((String) homeFieldAdvantage.getText()));
+				} else {
+					homeFieldAdvantage.setText("Not Valid");
+					validSim = false;
+				}
+			} catch (NumberFormatException e) {
+				homeFieldAdvantage.setText("Not Valid");
+				validSim = false;
+			}
+		}
+		if (!injuryRate.getText().equals("")) {
+			try {
+				if (Double.parseDouble((String) injuryRate.getText()) >= 0 && Double.parseDouble((String) injuryRate.getText()) <= 1.0 ) {
+					Game.setInjuryRate(Double.parseDouble((String) injuryRate.getText()));
+				} else {
+					injuryRate.setText("Not Valid");
+					validSim = false;
+				}
+			} catch (NumberFormatException e) {
+				injuryRate.setText("Not Valid");
+				validSim = false;
+			}
+		}
+
+
+		if (validSim) {
+
+			if (m1 == null)
+				System.out.println("null");
+			m1.step1(16, m1.getSeasonsToSim());
+			Stage stage = null;
+			Parent root = null;
+			stage = (Stage) startSimulation.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("UITest.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
 	}
 	@FXML
 	public void initScene2() {
@@ -177,14 +205,13 @@ public class UIController extends Application implements Initializable {
 			teamName = (String) gameResultsChoiceBox.getValue();
 			System.out.println(m1.getCurrWeek() + " " + m1.getCurrSeasonNum());
 			if (m1.getCurrWeek() == 0 && m1.getCurrSeasonNum() != 0) {
-				//System.out.println("In print");
-				statOutput.setText((Main.printTeamGames(m1.getPrevSeason(), teamName,true)));
-				//m1.getPrevSeason().printRosterDetails(teamName);
-			} else
-				if(m1.getCurrWeek() == 0 && m1.getCurrSeasonNum() == 0)
-					statOutput.setText("The season hasn't started yet");
-				else
-					statOutput.setText((Main.printTeamGames(m1.getCurrSeason(), teamName,false)));
+				// System.out.println("In print");
+				statOutput.setText((Main.printTeamGames(m1.getPrevSeason(), teamName, true)));
+				// m1.getPrevSeason().printRosterDetails(teamName);
+			} else if (m1.getCurrWeek() == 0 && m1.getCurrSeasonNum() == 0)
+				statOutput.setText("The season hasn't started yet");
+			else
+				statOutput.setText((Main.printTeamGames(m1.getCurrSeason(), teamName, false)));
 		} else if (e.getSource() == subWinLoss) {
 			// teamName = (String) winLossChoiceBox.getValue();
 			if (m1.getCurrWeek() == 0 && m1.getCurrSeasonNum() != 0)
