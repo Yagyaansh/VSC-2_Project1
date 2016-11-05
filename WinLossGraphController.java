@@ -1,4 +1,5 @@
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.chart.XYChart;
 
 public class WinLossGraphController implements Initializable{
 
+	public static ArrayList<Team> teams;
 	
 	@FXML
 	private BarChart<?, ?> WinLossChart;
@@ -23,15 +25,20 @@ public class WinLossGraphController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		XYChart.Series set1 = new XYChart.Series<>();
+		for (int x = 0; x < teams.size(); x++){
+			System.out.println("--------------------------");
+			System.out.println(teams.get(x).getWins());
+			System.out.println(teams.get(x).getLosses());
+			System.out.println(teams.get(x).getWins()/(double) (teams.get(x).getLosses()+teams.get(x).getWins()));
+			set1.getData().add(new XYChart.Data(teams.get(x).getTeamName(), (teams.get(x).getWins()/((double)(teams.get(x).getLosses()+teams.get(x).getWins())))));
 		
-		
-		set1.getData().add(new XYChart.Data("Patriots", 99));
-		set1.getData().add(new XYChart.Data("Cowboys", 1));
-		set1.getData().add(new XYChart.Data("Redskins", 50));
-		set1.getData().add(new XYChart.Data("Scouts", 99));
-		set1.getData().add(new XYChart.Data("Patriots", 99));
-	
+		}
+
 		
 		WinLossChart.getData().addAll(set1);
+	}
+	
+	public static void setTeams(ArrayList<Team> inTeams){
+		teams = inTeams;
 	}
 }

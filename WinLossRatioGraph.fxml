@@ -12,7 +12,7 @@
           <CategoryAxis fx:id="X" label="Teams" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="Y" label="Ratio" side="LEFT" />
+          <NumberAxis fx:id="Y" label="Ratio" side="LEFT" upperBound="1.0" />
         </yAxis>
       </BarChart>
    </center>

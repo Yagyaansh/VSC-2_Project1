@@ -268,6 +268,8 @@ public class UIController extends Application implements Initializable {
 	@FXML
 	private void showGraph() throws IOException{
 		
+		WinLossGraphController.setTeams(m1.getTeams());
+		
 		BorderPane Graph = FXMLLoader.load((getClass().getResource("WinLossRatioGraph.fxml")));		
 		Stage addDialogStage = new Stage();
 		addDialogStage.setTitle("Graph");
