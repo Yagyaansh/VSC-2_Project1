@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -180,9 +181,12 @@ public class Player implements Comparable<Player>{
 	public void printPlayer() {
 
 		System.out.print("Player: " + this.firstName + " " + this.lastName + " , ");
-		System.out.printf("Fit: %.1f, ", this.fit);
+		System.out.printf("Fit: %.1f, ", this.fit, " , ");
 		System.out.print("Athleticism: " + this.athleticism + " , ");
-		System.out.println("Salary: $" + this.salary + ". ");
+		if(this.injuryDaysRemaining>0){
+			System.out.print("Weeks Remaining Unitl Healed: " + this.getWeekRemaining() + " , ");
+		}
+		System.out.println("Salary: $" + moneyFormatter(this.salary) + ". ");
 	}
 
 	/*
@@ -398,10 +402,15 @@ public class Player implements Comparable<Player>{
 	public int getAge() {
 		return this.age;
 	}
+	
+	public int getWeekRemaining(){
+		return this.injuryDaysRemaining;
+	}
 
 	public boolean isInjured() {
 		return this.injured;
 	}
+	
 
 	public void injured() {
 		Random rand = new Random();
@@ -524,6 +533,11 @@ public class Player implements Comparable<Player>{
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
+	
+	public String moneyFormatter(int number){
+		String convertedString = new DecimalFormat("#,###").format(number);
+		return convertedString;
+	}
 
 	public Player deepCopy() {
 		Player p = new Player();

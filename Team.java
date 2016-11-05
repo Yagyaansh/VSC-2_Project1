@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -158,6 +159,7 @@ public class Team {
 		return this.defensiveRoster;
 	}
 
+	
 	public void addToRoster(Player player) {
 		this.roster.add(player);
 	}
@@ -261,13 +263,13 @@ public class Team {
 	public void printRevenue(){
 		System.out.println("Team Name: " + name);
 		System.out.println("Hometown: " + hometown);
-		System.out.println("General Manager: " + GM.getName() + " Salary: "+ GM.getSalary());
-		System.out.println("Coach: " + coach.getName() + " Salary: " + coach.getSalary());
-		System.out.println("Total Management Expense: " + (GM.getSalary() + coach.getSalary()));
-		System.out.println("Roster Expense: " + (expenses - (GM.getSalary() + coach.getSalary())));
-		System.out.println("Total Payroll Expense: " + expenses);
-		System.out.println("Home Game Revenue: " + this.grossRevenue);
-		System.out.println("Win Revenue: $100000");
+		System.out.println("General Manager: " + GM.getName() + " Salary: "+ "$"+moneyFormatter(GM.getSalary()));
+		System.out.println("Coach: " + coach.getName() + " Salary: " + "$"+moneyFormatter(coach.getSalary()));
+		System.out.println("Total Management Expense: " + "$"+moneyFormatter((GM.getSalary() + coach.getSalary())));
+		System.out.println("Roster Expense: " + "$"+ moneyFormatter((expenses - (GM.getSalary() + coach.getSalary()))));
+		System.out.println("Total Payroll Expense: " +"$"+ moneyFormatter(expenses));
+		System.out.println("Home Game Revenue: " + "$"+moneyFormatter(this.grossRevenue));
+		System.out.println("Win Revenue: $100,000.00");
 		
 		
 	}
@@ -279,37 +281,28 @@ public class Team {
 		GM.printGeneralManager();
 		coach.printCoach();
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("COMPLETE ROSTER: ");
+		System.out.println("COMPLETE ROSTER: " + this.getRoster().size());
 		for (int i = 0; i < roster.size(); i++) {
 			roster.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("STARTING LINEUP: ");
+		System.out.println("STARTING LINEUP: " +this.getStarters().size());
 		for (int i = 0; i < starters.size(); i++) {
 			starters.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("OFFENSE ROSTER: ");
+		System.out.println("OFFENSE ROSTER: " + this.getOffensivePlayersInRoster().size());
 		for (int i = 0; i < offensiveRoster.size(); i++) {
 			offensiveRoster.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("DEFENSE ROSTER: ");
+		System.out.println("DEFENSE ROSTER: " + this.getDefensivePlayersInRoster().size());
 		for (int i = 0; i < defensiveRoster.size(); i++) {
 			defensiveRoster.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("INJURED PLAYERS: ");
-		int numberOfInjuries = 0;
-		for (Player p : this.roster) {
-			if (p.isInjured()) {
-				p.printPlayer();
-				numberOfInjuries++;
-			}
-		}
-		if (numberOfInjuries == 0) {
-			System.out.println("None");
-		}
+		System.out.println("INJURED PLAYERS: " + findInjuredPlayers().size());
+		printInjuredPlayers();
 		System.out.println("");
 	}
 
@@ -489,6 +482,29 @@ public class Team {
 	// 	}
 	// }
 
+	
+	public ArrayList<Player> findInjuredPlayers(){
+		ArrayList<Player> injuredPlayers = new ArrayList<Player>();
+		for (Player p : this.roster) {
+			if (p.isInjured()) {
+				injuredPlayers.add(p);
+			}
+		}
+		return injuredPlayers;
+	}
+	
+	public void printInjuredPlayers(){
+		int numberOfInjuries=0;
+		for (Player p : this.roster) {
+			if (p.isInjured()) {
+				p.printPlayer();
+				numberOfInjuries++;
+			}
+		}
+		if (numberOfInjuries == 0) {
+			System.out.println("None");
+		}
+	}
 	/*
 	 * Removes all the players who have suffered career ending injuries for
 	 * whatever reason For the player to be removed the careerEndingInjury field
@@ -497,6 +513,7 @@ public class Team {
 	 * The players are not replaced by new players in the pool
 	 */
 
+	
 	public void removeCareerEndingInjuredPlayers(Player_Pool players) {
 		ArrayList<Player> playerPool = players.getPlayerPool();
 		for (Player player : playerPool) {
@@ -533,7 +550,16 @@ public class Team {
 		this.expenses = 0;
 		this.profit = 0;
 	}
-
+	
+	public String moneyFormatter(int number){
+		String convertedString = new DecimalFormat("#,###.00").format(number);
+		return convertedString;
+	}
+	public String moneyFormatter(double db){
+		String convertedString = new DecimalFormat("#,###.00").format(db);
+		return convertedString;
+	}
+	
 	public Team deepCopy() {
 		Team t = new Team();
 		t.name = this.getTeamName();

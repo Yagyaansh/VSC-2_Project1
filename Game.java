@@ -253,13 +253,129 @@ public class Game {
 
 	public void printGame() {
 		if(this.team1advantage>0){
-			System.out.println(team1.getTeamName() + "@Home");
+			System.out.println(team2.getTeamName() + "@" + team1.getTeamName());
 		}
 		else{
-			System.out.println(team1.getTeamName() + "@Away");
+			System.out.println(team1.getTeamName() + "@" + team2.getTeamName());
 		}
 		System.out.println(
 				team1.getTeamName() + " Score: " + this.team1Score + "   " + team2.getTeamName() + " Score: " + this.team2Score);
+//		String printTeam1Determinate = team1.getTeamName() + " Determinate  = " + "  " + this.team1Determinate;
+//		String printTeam2Determinate = team2.getTeamName() + " Determinate  = " + "  " + this.team2Determinate;
+//		String printTeam1Stochastic = team1.getTeamName() + " Stochastic      = " + "  " + this.team1Stochastic;
+//		String printTeam2Stochastic = team2.getTeamName() + " Stochastic      = " + "  " + this.team2Stochastic;
+//		String printTeam1Advantage = team1.getTeamName() + " Advantage     = " + "  " + this.team1advantage;
+//		String printTeam2Advantage = team2.getTeamName() + " Advantage     = " + "  " + this.team2advantage;
+//		
+//		String whitespace = "";
+//		
+//		int length1 = printTeam1Determinate.length();
+//		int length2 = printTeam1Stochastic.length();
+//		int length3 = printTeam1Advantage.length();
+//		int maxLength=0;
+//		
+//		boolean string1IsLongest=false;
+//		boolean string2IsLongest=false;
+//		boolean string3IsLongest=false;
+//		
+//		if(length1>length2 && length1>length3){
+//			if(length1-length2 > length1-length3){
+//				maxLength=length1-length2;
+//			}
+//			else{
+//				maxLength=length1-length3;
+//			}
+//			string1IsLongest=true;
+//			string2IsLongest=false;
+//			string3IsLongest=false;
+//
+//		}
+//		else if(length2>length1 && length2>length3){
+//			if(length2-length1 > length2-length3){
+//				maxLength=length2-length1;
+//			}
+//			else{
+//				maxLength=length2-length3;
+//			}
+//			string1IsLongest=false;
+//			string2IsLongest=true;
+//			string3IsLongest=false;
+//		}
+//		else if(length3>length1 && length3>length2){
+//			if(length3-length1 > length3-length1){
+//				maxLength=length3-length1;
+//			}
+//			else{
+//				maxLength=length1-length3;
+//			}
+//			string1IsLongest=false;
+//			string2IsLongest=true;
+//			string3IsLongest=false;
+//		}
+//		else if(length1==length2 && length1>length3){
+//			maxLength=length1-length3;
+//			string1IsLongest=true;
+//			string2IsLongest=true;
+//			string3IsLongest=false;
+//		}
+//		else if(length1==length3 && length1>length2){
+//			maxLength=length1-length2;
+//			string1IsLongest=true;
+//			string2IsLongest=false;
+//			string3IsLongest=true;
+//		}
+//		else if(length2==length3 && length2>length1){
+//			maxLength=length2-length1;
+//			string1IsLongest=false;
+//			string2IsLongest=true;
+//			string3IsLongest=true;
+//		}
+//		else {
+//			maxLength=1;
+//			string1IsLongest=true;
+//			string2IsLongest=true;
+//			string3IsLongest=true;
+//		}
+//		for (int i=0; i<maxLength; i++){
+//			whitespace = whitespace + " ";
+//		}
+//		
+//		if(string1IsLongest==true && string2IsLongest==false && string3IsLongest==false){
+//			System.out.println(printTeam1Determinate + " " + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + whitespace + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + whitespace + printTeam2Advantage);
+//		}
+//		else if(string1IsLongest==false && string2IsLongest==true && string3IsLongest==false){
+//			System.out.println(printTeam1Determinate + whitespace + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + " " + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + whitespace + printTeam2Advantage);
+//		}
+//		else if (string1IsLongest==false && string2IsLongest==false && string3IsLongest==true){
+//			System.out.println(printTeam1Determinate + whitespace + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + whitespace + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + " " + printTeam2Advantage);
+//		}
+//		else if (string1IsLongest==true && string2IsLongest==true && string3IsLongest==false){
+//			System.out.println(printTeam1Determinate + " " + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + " " + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + whitespace + printTeam2Advantage);
+//		}
+//		else if (string1IsLongest==false && string2IsLongest==true && string3IsLongest==true){
+//			System.out.println(printTeam1Determinate + whitespace + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + " " + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + " " + printTeam2Advantage);
+//		}
+//		else if (string1IsLongest==true && string2IsLongest==false && string3IsLongest==true){
+//			System.out.println(printTeam1Determinate + " " + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + whitespace + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + " " + printTeam2Advantage);
+//		}
+//		else{
+//			System.out.println(printTeam1Determinate + " " + printTeam2Determinate);
+//			System.out.println(printTeam1Stochastic + " " + printTeam2Stochastic);
+//			System.out.println(printTeam1Advantage + " " + printTeam2Advantage);
+//		}
+		
 		System.out.println(team1.getTeamName() + " Determinate  = " + "  " + this.team1Determinate + "  "
 				+ team2.getTeamName() + " Determinate = " + this.team2Determinate);
 		System.out.println(team1.getTeamName() + " Stochastic      = " + "  " + this.team1Stochastic + "  "

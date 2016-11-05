@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,7 +41,7 @@ public class GeneralManager {
 	public void printGeneralManager() {
 		System.out.print("General Manager: " + firstNameManager + " " + lastNameManager + " , ");
 		System.out.print("Scouting Score: " + this.scoutingScore + " , ");
-		System.out.println("Salary: $" + this.salary + ". ");
+		System.out.println("Salary: $" + moneyFormatter(this.salary) + ". ");
 	}
 
 	/*
@@ -116,6 +117,10 @@ public class GeneralManager {
 		return null;
 	}
 
+	public String moneyFormatter(int number){
+		String convertedString = new DecimalFormat("#,###").format(number);
+		return convertedString;
+	}
 	
 
 	public GeneralManager deepCopy() {

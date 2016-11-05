@@ -1,4 +1,6 @@
 import java.io.File;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -73,8 +75,8 @@ public class Coach {
 
 		System.out.print("Coach: Coach" /* + firstNameCoach + */ + " " + lastName + " , ");
 		System.out.print("Scheme: " + this.scheme + " , ");
-		System.out.print("Teaching Factor: " + this.teachingFactor+" , ");
-		System.out.println("Salary: $" + this.salary + ". ");
+		System.out.print("Teaching Factor: " + decimalConverter(this.teachingFactor)+" , ");
+		System.out.println("Salary: $" + moneyFormatter(this.salary) + ". ");
 
 	}
 
@@ -123,7 +125,16 @@ public class Coach {
 	 * -------------------------------------------------------------------------
 	 * ------------------------
 	 */
-
+	public String decimalConverter(Double db){
+	    DecimalFormat formatter = new DecimalFormat("#0.00");
+	    String output= formatter.format(db);
+	    return output;
+	}
+	public String moneyFormatter(int number){
+		String convertedString = new DecimalFormat("#,###").format(number);
+		return convertedString;
+	}
+	
 	public Coach deepCopy() {
 		Coach c = new Coach();
 		c.scheme = this.scheme;
