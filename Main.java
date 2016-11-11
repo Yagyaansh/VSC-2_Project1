@@ -498,8 +498,12 @@ public class Main {
 		PrintStream old = System.out;
 		System.setOut(ps);
 		System.out.println("WIN-LOSS RECORDS");
+		
 		for (Team t : s.getTeams()) {
-			System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
+			if (s.getCurrWeek() == 16)
+				System.out.println(t.getTeamName() + ": " + "Wins-" + t.getPreviousSeasonResult().getWins() + " " + "Losses-" + t.getPreviousSeasonResult().getLosses());
+			else
+				System.out.println(t.getTeamName() + ": " + "Wins-" + t.getWins() + " " + "Losses-" + t.getLosses());
 		}
 		System.out.println("");
 		System.out.flush();
