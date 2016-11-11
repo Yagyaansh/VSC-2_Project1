@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane onMouseMoved="#initScene2" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
+<BorderPane onMouseMoved="#initScene2" prefHeight="594.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -41,8 +41,8 @@
          </children>
       </VBox>
    </top>
-   <left>
-      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+   <center>
+      <VBox prefHeight="238.0" prefWidth="645.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <HBox spacing="10.0">
                <children>
@@ -87,7 +87,7 @@
             <HBox layoutX="10.0" layoutY="185.0" spacing="10.0">
                <children>
                   <Label text="Get Team Revenue" />
-                  <Region HBox.hgrow="ALWAYS" />
+                  <Region prefHeight="31.0" prefWidth="278.0" HBox.hgrow="ALWAYS" />
                   <Button fx:id="subTeamRevenue" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
@@ -99,28 +99,23 @@
                   <Button fx:id="subWeekGames" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit" />
                </children>
             </HBox>
+            <VBox prefHeight="310.0" prefWidth="645.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <TextArea fx:id="statOutput" prefHeight="500.0" prefWidth="645.0" text=" " />
+                  <Label alignment="BOTTOM_LEFT" text="Setear NFL Simulation">
+                     <font>
+                        <Font name="Arial Bold" size="11.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
       </VBox>
-   </left>
-   <bottom>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextArea fx:id="statOutput" prefHeight="200.0" prefWidth="200.0" text=" " />
-            <Label alignment="BOTTOM_LEFT" text="Setear NFL Simulation">
-               <font>
-                  <Font name="Arial Bold" size="11.0" />
-               </font>
-               <padding>
-                  <Insets bottom="3.0" left="3.0" />
-               </padding>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets left="5.0" right="5.0" />
-         </BorderPane.margin>
-      </VBox>
-   </bottom>
+   </center>
 </BorderPane>

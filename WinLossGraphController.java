@@ -26,12 +26,7 @@ public class WinLossGraphController implements Initializable{
 	public void initialize(URL url, ResourceBundle rb) {
 		XYChart.Series set1 = new XYChart.Series<>();
 		for (int x = 0; x < teams.size(); x++){
-			System.out.println("--------------------------");
-			System.out.println(teams.get(x).getWins());
-			System.out.println(teams.get(x).getLosses());
-			System.out.println(teams.get(x).getWins()/(double) (teams.get(x).getLosses()+teams.get(x).getWins()));
 			set1.getData().add(new XYChart.Data(teams.get(x).getTeamName(), (teams.get(x).getWins()/((double)(teams.get(x).getLosses()+teams.get(x).getWins())))));
-		
 		}
 
 		
