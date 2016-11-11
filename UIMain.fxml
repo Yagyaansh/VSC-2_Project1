@@ -113,9 +113,8 @@
                      </GridPane.margin>
                   </Label>
                   <TextField fx:id="injuryMean" promptText="Mean Duration =  2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label layoutX="15.0" layoutY="180.0" text="Game Stochastic Standard Deviation (Default = " GridPane.rowIndex="4" />
-                  <Label layoutX="10.0" layoutY="230.0" text="Set Injury Mean Duration in weeks (Default = 2)" GridPane.rowIndex="5" />
-                  <TextField fx:id="stochStdev" layoutX="312.0" layoutY="176.0" promptText="Mean Duration =  2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label layoutX="15.0" layoutY="180.0" text="Game Stochastic Standard Deviation (Default = 4) " GridPane.rowIndex="4" />
+                  <TextField fx:id="stochStdev" layoutX="312.0" layoutY="176.0" promptText="Std dev = 4" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <VBox prefHeight="236.0" prefWidth="400.0">

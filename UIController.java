@@ -174,6 +174,8 @@ public class UIController extends Application implements Initializable {
 			stage.show();
 		}
 	}
+	
+	
 	@FXML
 	public void initScene2() {
 		gameResultsChoiceBox.setItems(teamChoices);
