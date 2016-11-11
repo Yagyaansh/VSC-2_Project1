@@ -481,7 +481,7 @@ public class Main {
 //			week = Integer.parseInt(mainScanner.nextLine());
 //		} while (week > s.getCurrWeek());
 
-		System.out.println("WEEK #" + week);
+		System.out.println("ALL GAMES IN WEEK #" + week);
 		for (int j = 0; j < s.getWeek(week).length; j++) {
 			s.getWeek(week)[j].printGame();
 			System.out.println("");
