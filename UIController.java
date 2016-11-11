@@ -178,11 +178,9 @@ public class UIController extends Application implements Initializable {
 	
 	@FXML
 	public void initScene2() {
-		gameResultsChoiceBox.setItems(teamChoices);
-		teamRosterChoiceBox.setItems(teamChoices);
+
 		try {
-			textHeader.setText(
-					"Get Statistics: " + " Week " + (m1.getCurrWeek() + 1) + " Season " + (m1.getCurrSeasonNum() + 1));
+			
 		} catch (NullPointerException e) {
 
 		}
@@ -197,6 +195,10 @@ public class UIController extends Application implements Initializable {
 		if (e.getSource() == contSim) {
 			// continue to next weeks
 			int weeksToContinue = Integer.parseInt((String) weeksToRun.getText());
+			gameResultsChoiceBox.setItems(teamChoices);
+			teamRosterChoiceBox.setItems(teamChoices);
+			textHeader.setText("Get Statistics: " + " Week " + ((m1.getCurrWeek() + weeksToContinue) <= 16 ? (m1.getCurrWeek() + weeksToContinue) : 16) + " Season " + (m1.getCurrSeasonNum() + 1));
+
 			if (currSeason <= seasonsToSim) {
 				m1.step2(currSeason, weeksToContinue);
 				m1.setCurrWeek(currWeek + weeksToContinue);
