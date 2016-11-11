@@ -179,13 +179,26 @@ public class Player implements Comparable<Player>{
 	 */
 
 	public void printPlayer() {
+		if(this.injuryDaysRemaining>0){
+			System.out.print("*" + "Player: " + this.firstName + " " + this.lastName + " , ");
+		}
+		else{
+			System.out.print("Player: " + this.firstName + " " + this.lastName + " , ");
+		}
+		System.out.printf("Fit: %.1f, ", this.fit, " , ");
+		System.out.print("Athleticism: " + this.athleticism + " , ");
+		if(this.injuryDaysRemaining>0){
+			System.out.print("Weeks Until Healed: " + this.getWeekRemaining() + " , ");
+		}
+		System.out.println("Salary: $" + moneyFormatter(this.salary) + ". ");
+	}
+	
+	public void printInjuredPlayer() {
 
 		System.out.print("Player: " + this.firstName + " " + this.lastName + " , ");
 		System.out.printf("Fit: %.1f, ", this.fit, " , ");
 		System.out.print("Athleticism: " + this.athleticism + " , ");
-		if(this.injuryDaysRemaining>0){
-			System.out.print("Weeks Remaining Unitl Healed: " + this.getWeekRemaining() + " , ");
-		}
+		System.out.print("Weeks Until Healed: " + this.getWeekRemaining() + " , ");
 		System.out.println("Salary: $" + moneyFormatter(this.salary) + ". ");
 	}
 

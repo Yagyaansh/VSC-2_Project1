@@ -275,33 +275,35 @@ public class Team {
 	}
 
 	public void printTeam() {
+		System.out.println("Note: * denotes an injured player");
+		System.out.println("");
 		System.out.println("Team Name: " + name);
 		System.out.println("Hometown: " + hometown);
 		owner.printOwner();
 		GM.printGeneralManager();
 		coach.printCoach();
+//		System.out.println("----------------------------------------------------------------------------------------");
+//		System.out.println("COMPLETE ROSTER: " + this.getRoster().size());
+//		for (int i = 0; i < roster.size(); i++) {
+//			roster.get(i).printPlayer();
+//		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("COMPLETE ROSTER: " + this.getRoster().size());
-		for (int i = 0; i < roster.size(); i++) {
-			roster.get(i).printPlayer();
-		}
-		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("STARTING LINEUP: " +this.getStarters().size());
+		System.out.println("STARTING LINEUP: " + "("+ this.getStarters().size() + " Players)" ) ;
 		for (int i = 0; i < starters.size(); i++) {
 			starters.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("OFFENSE ROSTER: " + this.getOffensivePlayersInRoster().size());
+		System.out.println("OFFENSE ROSTER: " + "("+ this.getOffensivePlayersInRoster().size() + " Players)");
 		for (int i = 0; i < offensiveRoster.size(); i++) {
 			offensiveRoster.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("DEFENSE ROSTER: " + this.getDefensivePlayersInRoster().size());
+		System.out.println("DEFENSE ROSTER: " + "("+ this.getDefensivePlayersInRoster().size() + " Players)");
 		for (int i = 0; i < defensiveRoster.size(); i++) {
 			defensiveRoster.get(i).printPlayer();
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("INJURED PLAYERS: " + findInjuredPlayers().size());
+		System.out.println("INJURED PLAYERS: " + "("+ findInjuredPlayers().size() + " Players)");
 		printInjuredPlayers();
 		System.out.println("");
 	}
@@ -497,7 +499,7 @@ public class Team {
 		int numberOfInjuries=0;
 		for (Player p : this.roster) {
 			if (p.isInjured()) {
-				p.printPlayer();
+				p.printInjuredPlayer();
 				numberOfInjuries++;
 			}
 		}
