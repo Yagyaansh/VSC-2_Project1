@@ -71,9 +71,6 @@
          </children>
       </VBox>
    </left>
-   <right>
-      <VBox alignment="BOTTOM_RIGHT" prefHeight="454.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
-   </right>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -116,6 +113,9 @@
                   <Label layoutX="15.0" layoutY="180.0" text="Game Stochastic Standard Deviation (Default = 4) " GridPane.rowIndex="4" />
                   <TextField fx:id="stochStdev" layoutX="312.0" layoutY="176.0" promptText="Std dev = 4" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
             </GridPane>
             <VBox prefHeight="236.0" prefWidth="400.0">
                <children>
