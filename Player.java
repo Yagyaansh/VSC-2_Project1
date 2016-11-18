@@ -221,6 +221,7 @@ public class Player implements Comparable<Player>{
 	private int getRandomAthleticismScore() {
 		Random rand = new Random();
 		athleticism = (int) (50 + Math.sqrt(12) * rand.nextGaussian());
+		System.out.println(athleticism);
 		return athleticism;
 	}
 
@@ -451,6 +452,7 @@ public class Player implements Comparable<Player>{
 	public void increaseAge() {
 		this.age++;
 		this.athleticism = this.athleticism - 2;
+		System.out.println("increasing age");
 		if (this.age > 21) {
 			this.rookie = false;
 		}

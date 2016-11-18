@@ -105,7 +105,7 @@ public class UIController extends Application implements Initializable {
 			try {
 				if (Double.parseDouble((String) injuryRate.getText()) >= 0
 						&& Double.parseDouble((String) injuryRate.getText()) <= 1.0) {
-					Game.setInjuryRate(Double.parseDouble((String) injuryRate.getText()));
+					Game.setInjuryRate(1 - Double.parseDouble((String) injuryRate.getText()));
 				} else {
 					injuryRate.setText("Not Valid");
 					validSim = false;
