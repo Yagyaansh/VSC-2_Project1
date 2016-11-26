@@ -133,6 +133,8 @@ public class Stadium
 		this.setPriceLuxury(priceLuxury*(matchHype+0.1));
 	}
 	
+	
+	//Citation: Source of this data is https://en.wikipedia.org/wiki/List_of_current_National_Football_League_stadiums
 	public void determinedCapacityRegular()
 	{
 		String hometown = this.hometown;
@@ -183,6 +185,9 @@ public class Stadium
 		this.setCapacityRegular(capacity);
 	}
 	
+	/*Citation: Source of this data is https://en.wikipedia.org/wiki/List_of_current_National_Football_League_stadiums and 
+	https://www.suitehop.com/
+	*/
 	public void determinedCapacityLuxury()
 	{
 		String hometown = this.hometown;
@@ -238,7 +243,7 @@ public class Stadium
 		this.age++ ;
 	}
 	
-
+//Citation: Source for this data is https://www.teammarketing.com/tmr/66 - under the Fan Cost Index PDF files and https://www.suitehop.com/
 	private void determineBasePrices() 
 	{
 		String hometown = this.hometown;
